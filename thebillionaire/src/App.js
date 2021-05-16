@@ -16,26 +16,26 @@ import Form from  './components/Pages/SignUp/Form';
 
 function App() {
   return (
-    <Router>
-    {/* <Mens></Mens> */}
-    {/* <Womens></Womens> */}
-    <Prodover></Prodover>
-    
-    {/* <SignUp></SignUp> */}
-    {/* <Form></Form> */}
-    </Router>
-
     // <Router>
-    //   <Navbar></Navbar>
-    //   {/* <nav></nav> */}
-    //   <Switch>        
-    //     <Route path='/' exact component={Home} />
-    //     <Route path='/services' component={Services} />
-    //     <Route path='/products' component={Products} />
-    //     <Route path='/sign-up' component={SignUp} />
-    //   </Switch>
-    //   <Footer />
+    // <Mens></Mens>
+    // <Womens></Womens>
+    // <Prodover></Prodover>
+    
+    // <SignUp></SignUp>
+    // <Form></Form>
     // </Router>
+
+    <Router>
+      <Navbar></Navbar>
+      {/* <nav></nav> */}
+      <Switch>        
+        <Route path='/' exact component={Home} />
+        <Route path='/services' component={Services} />
+        <Route path='/products' component={Products} />
+        <Route path='/sign-up' component={SignUp} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
