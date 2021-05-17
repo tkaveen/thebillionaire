@@ -13,29 +13,32 @@ import Mens from './components/Pages/MensProducts';
 import Womens from './components/Pages/WomensProducts';
 import Prodover from './components/Pages/ProductOverview';
 import Form from  './components/Pages/SignUp/Form';
+import Admin from './components/Pages/Admin/AdminDashboard';
+
 
 function App() {
   return (
-    // <Router>
-    // <Mens></Mens>
-    // <Womens></Womens>
-    // <Prodover></Prodover>
-    
-    // <SignUp></SignUp>
-    // <Form></Form>
-    // </Router>
-
     <Router>
-      <Navbar></Navbar>
-      {/* <nav></nav> */}
-      <Switch>        
-        <Route path='/' exact component={Home} />
-        <Route path='/services' component={Services} />
-        <Route path='/products' component={Products} />
-        <Route path='/sign-up' component={SignUp} />
-      </Switch>
-      <Footer />
+    {/* <Mens></Mens>
+    <Womens></Womens>
+    <Prodover></Prodover>
+    
+    <SignUp></SignUp>
+    <Form></Form> */}
+  <Admin></Admin>
     </Router>
+
+    // <Router>
+    //   <Navbar></Navbar>
+    //   {/* <nav></nav> */}
+    //   <Switch>        
+    //     <Route path='/' exact component={Home} />
+    //     <Route path='/services' component={Services} />
+    //     <Route path='/products' component={Products} />
+    //     <Route path='/sign-up' component={SignUp} />
+    //   </Switch>
+    //   <Footer />
+    // </Router>
   );
 }
 
