@@ -18,27 +18,27 @@ import Admin from './components/Pages/Admin/AdminDashboard';
 
 function App() {
   return (
-    <Router>
-    {/* <Mens></Mens> */}
-    {/* <Womens></Womens> */}
-    <Prodover></Prodover>
+  //   <Router>
+  //   <Mens></Mens>
+  //   <Womens></Womens>
+  //   <Prodover></Prodover>
     
-    {/* <SignUp></SignUp> */}
-    {/* <Form></Form> */}
-  {/* <Admin></Admin> */}
-    </Router>
+  //   <SignUp></SignUp>
+  //   <Form></Form>
+  // <Admin></Admin>
+  //   </Router>
 
-    // <Router>
-    //   <Navbar></Navbar>
-    //   {/* <nav></nav> */}
-    //   <Switch>        
-    //     <Route path='/' exact component={Home} />
-    //     <Route path='/services' component={Services} />
-    //     <Route path='/products' component={Products} />
-    //     <Route path='/sign-up' component={SignUp} />
-    //   </Switch>
-    //   <Footer />
-    // </Router>
+    <Router>
+      <Navbar></Navbar>
+      {/* <nav></nav> */}
+      <Switch>        
+        <Route path='/' exact component={Home} />
+        <Route path='/services' component={Services} />
+        <Route path='/products' component={Products} />
+        <Route path='/sign-up' component={SignUp} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
