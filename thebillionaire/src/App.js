@@ -19,13 +19,13 @@ import Admin from './components/Pages/Admin/AdminDashboard';
 function App() {
   return (
     <Router>
-    {/* <Mens></Mens>
-    <Womens></Womens>
+    {/* <Mens></Mens> */}
+    {/* <Womens></Womens> */}
     <Prodover></Prodover>
     
-    <SignUp></SignUp>
-    <Form></Form> */}
-  <Admin></Admin>
+    {/* <SignUp></SignUp> */}
+    {/* <Form></Form> */}
+  {/* <Admin></Admin> */}
     </Router>
 
     // <Router>
