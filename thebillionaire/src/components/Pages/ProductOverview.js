@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 // import S1 from "../components/images/S1.png";
 // import S2 from "../components/images/S2.png";
 import S1 from "../images/S1.png";
+import { ButtonGroup, Button } from '@material-ui/core';
 
 function ProductOverview() {
   return (
@@ -21,6 +22,7 @@ function ProductOverview() {
             <Link to="/sign-up" className="pricing__container-cardpo"></Link>
             <Link to="/sign-up" className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">
+                <br></br>
                 <h1>Flower Shirt</h1>
                 <br></br>
                 <br></br>
@@ -35,6 +37,7 @@ function ProductOverview() {
                     <div className="column">
                       <div className="overview">
                         <div className="overview-content">
+                          <h1>8.88$</h1><br></br>
                           <p>
                             New Flower Shirt with cotton material New Flower
                             Shirt with cotton material New Flower Shirt with
@@ -45,6 +48,17 @@ function ProductOverview() {
                           <br></br>
                           <h3>SIZE :</h3>
                           <br></br>
+                          <div>
+                            <ButtonGroup
+                              color="Secondary"
+                              aria-label="outlined primary button group"
+                            >
+                              <Button>S</Button>
+                              <Button>M</Button>
+                              <Button>L</Button>
+                              <Button>XL</Button>
+                            </ButtonGroup>
+                          </div>
                         </div>
                       </div>
                     </div>
