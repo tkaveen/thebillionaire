@@ -22,9 +22,34 @@ function ProductOverview() {
             <Link to="/sign-up" className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">
                 <h1>Flower Shirt</h1>
-                <div className="imageholder">
-                  <img src={S1}></img>
+                <div>
+                  <div className="row">
+                    <div className="column">
+                      {/* <div className='left'>fgdfgzfdg</div> */}
+                      <div className="imageholder">
+                        <img src={S1}></img>
+                      </div>
+                    </div>
+                    <div className="column">
+                      
+                      <div className="overview">
+                      
+                        <p>
+                          New Flower Shirt with cotton material New Flower Shirt
+                          with cotton material New Flower Shirt with cotton
+                          material New Flower Shirt with cotton material New
+                          Flower Shirt with cotton material New Flower Shirt
+                          with cotton material
+                        </p>
+                        <br></br>
+                        <h3>SIZE :</h3>
+                        <br></br>
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 {/* <h3>Scott T-Shirt</h3>
                 <h4>$29.99</h4> */}
                 {/* <p>per month</p> */}
@@ -36,19 +61,6 @@ function ProductOverview() {
                 {/* <Button buttonSize='btn--wide' buttonColor='blue'>
                 Buy Now
                 </Button> */}
-              </div>
-              <div className="overview">
-                <p>
-                  New Flower Shirt with cotton material New Flower Shirt with
-                  cotton material New Flower Shirt with cotton material New
-                  Flower Shirt with cotton material New Flower Shirt with cotton
-                  material New Flower Shirt with cotton material
-                </p>
-                <br></br>
-                <h3>SIZE :</h3>
-                <br></br>
-
-                
               </div>
             </Link>
             <Link to="/sign-up" className="pricing__container-cardpo"></Link>

@@ -35,13 +35,20 @@
     width: 30%;
     height: 30%;
     /* justify-content: left; */
-    margin-top: 4%;
+    margin-bottom: 500px;
     margin-right: 70%;
+    position: absolute;
   }
+
+
 
   .overview{
     color: #ffffff;
     margin: 0 240px;
+    position: relative;
+    margin-left: 40%;
+    margin-top: 40%;
+
   }
   
   .pricing__container {
