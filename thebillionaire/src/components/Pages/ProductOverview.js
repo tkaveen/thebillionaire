@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 // import S2 from "../components/images/S2.png";
 import S1 from "../images/S1.png";
 import { ButtonGroup, Button, Divider } from "@material-ui/core";
+// import IncrementButton from '../IncrementButton/IncrementButton';
 
 function ProductOverview() {
   return (
@@ -73,6 +74,7 @@ function ProductOverview() {
                               <div className="quantity">
                                 <h3>Quantity :</h3>
                                 <br></br>
+                                {/* <IncrementButton></IncrementButton> */}
                                 <div>
                                   <ButtonGroup
                                     color="Secondary"
