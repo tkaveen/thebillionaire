@@ -22,6 +22,8 @@ function ProductOverview() {
             <Link to="/sign-up" className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">
                 <h1>Flower Shirt</h1>
+                <br></br>
+                <br></br>
                 <div>
                   <div className="row">
                     <div className="column">
@@ -31,20 +33,19 @@ function ProductOverview() {
                       </div>
                     </div>
                     <div className="column">
-                      
                       <div className="overview">
-                      
-                        <p>
-                          New Flower Shirt with cotton material New Flower Shirt
-                          with cotton material New Flower Shirt with cotton
-                          material New Flower Shirt with cotton material New
-                          Flower Shirt with cotton material New Flower Shirt
-                          with cotton material
-                        </p>
-                        <br></br>
-                        <h3>SIZE :</h3>
-                        <br></br>
-                        
+                        <div className="overview-content">
+                          <p>
+                            New Flower Shirt with cotton material New Flower
+                            Shirt with cotton material New Flower Shirt with
+                            cotton material New Flower Shirt with cotton
+                            material New Flower Shirt with cotton material New
+                            Flower Shirt with cotton material
+                          </p>
+                          <br></br>
+                          <h3>SIZE :</h3>
+                          <br></br>
+                        </div>
                       </div>
                     </div>
                   </div>
