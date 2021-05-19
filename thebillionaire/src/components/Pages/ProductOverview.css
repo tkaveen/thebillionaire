@@ -36,6 +36,7 @@
     height: 30%;
     /* justify-content: left; */
     margin-top: 4%;
+    margin-right: 70%;
   }
 
   .overview{
@@ -139,7 +140,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      width: 50%;
     }
     .overview{
       display: flex;
