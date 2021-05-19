@@ -46,8 +46,14 @@
     /* margin-top: 40%; */
 
   }
+
+.quantity{
+  margin-left: 50%;
+  margin-top: -20%;
+}
+
   .overview-content{
-    margin-top: -300px
+    margin-top: -330px
   }
   
   .pricing__container {

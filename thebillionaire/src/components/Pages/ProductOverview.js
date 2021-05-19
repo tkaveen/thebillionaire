@@ -23,7 +23,9 @@ function ProductOverview() {
             <Link to="/sign-up" className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">
                 <br></br>
+                <br></br>
                 <h1>Flower Shirt</h1>
+                <br></br>
                 <br></br>
                 <br></br>
                 <div>
@@ -46,21 +48,45 @@ function ProductOverview() {
                             material New Flower Shirt with cotton material New
                             Flower Shirt with cotton material
                           </p>
+                          <hr></hr>
+                          {/* <Divider color="light" variant="middle" /> */}
                           <br></br>
-                          <h3>SIZE :</h3>
-                          <br></br>
-                          <div>
-                            <ButtonGroup
-                              color="Secondary"
-                              aria-label="outlined primary button group"
-                            >
-                              <Button>S</Button>
-                              <Button>M</Button>
-                              <Button>L</Button>
-                              <Button>XL</Button>
-                            </ButtonGroup>
+                          <div className="row">
+                            <div className="column">
+                              <div className="size">
+                                <h3>Size :</h3>
+                                <br></br>
+                                <div>
+                                  <ButtonGroup
+                                    color="Secondary"
+                                    aria-label="outlined primary button group"
+                                  >
+                                    <Button>S</Button>
+                                    <Button>M</Button>
+                                    <Button>L</Button>
+                                    <Button>XL</Button>
+                                  </ButtonGroup>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="column">
+                              <div className="quantity">
+                                <h3>Quantity :</h3>
+                                <br></br>
+                                <div>
+                                  <ButtonGroup
+                                    color="Secondary"
+                                    aria-label="outlined primary button group"
+                                  >
+                                    <Button>S</Button>
+                                    <Button>M</Button>
+                                    <Button>L</Button>
+                                    <Button>XL</Button>
+                                  </ButtonGroup>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <Divider orientation="vertical" flexItem />
                           <br></br>
                           <br></br>
                           {/* <Button variant="outlined" color='secondary'>Add to Cart</Button> */}
