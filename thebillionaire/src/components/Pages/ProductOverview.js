@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // import S1 from "../components/images/S1.png";
 // import S2 from "../components/images/S2.png";
 import S1 from "../images/S1.png";
-import { ButtonGroup, Button } from '@material-ui/core';
+import { ButtonGroup, Button, Divider } from "@material-ui/core";
 
 function ProductOverview() {
   return (
@@ -37,7 +37,8 @@ function ProductOverview() {
                     <div className="column">
                       <div className="overview">
                         <div className="overview-content">
-                          <h1>8.88$</h1><br></br>
+                          <h1>8.88 $</h1>
+                          <br></br>
                           <p>
                             New Flower Shirt with cotton material New Flower
                             Shirt with cotton material New Flower Shirt with
@@ -59,6 +60,14 @@ function ProductOverview() {
                               <Button>XL</Button>
                             </ButtonGroup>
                           </div>
+                          <Divider orientation="vertical" flexItem />
+                          <br></br>
+                          <br></br>
+                          {/* <Button variant="outlined" color='secondary'>Add to Cart</Button> */}
+                          <Button variant="contained">Add to Cart</Button>
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          {/* <Button variant="outlined">Buy Now</Button> */}
+                          <Button variant="contained">Buy Now</Button>
                         </div>
                       </div>
                     </div>
