@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 
 const navbar = (props) => {
@@ -13,24 +14,23 @@ const navbar = (props) => {
           <Nav.Link href="#pricing">MESSAGES</Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets"></Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            <button
+          <Nav.Link>
+            <NavLink
+              to="/signin"
               class="btn btn-outline-secondary "
               type="button"
-              style={{ borderRadius: "4rem" }}
             >
               Sign In
-            </button>
+            </NavLink>
           </Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            <button
+          <Nav.Link>
+            <NavLink
+              to="/signup"
               class="btn btn-outline-secondary "
               type="button"
-              style={{ borderRadius: "4rem" }}
             >
-              Sign Out
-            </button>
+              Sign Up
+            </NavLink>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
