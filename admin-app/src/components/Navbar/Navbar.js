@@ -5,7 +5,10 @@ import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 const navbar = (props) => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">ADMIN DASHBOARD</Navbar.Brand>
+      {/* <Navbar.Brand href="#home">ADMIN DASHBOARD</Navbar.Brand> */}
+      <Link to="/" className="navbar-brand">
+        ADMIN DASHBOARD
+      </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
