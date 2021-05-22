@@ -18,7 +18,7 @@ export default function Signup() {
                 </Col>
                 <Col md={6}>
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Last </Form.Label>
+                    <Form.Label>Last Name</Form.Label>
                     <Form.Control type="text" placeholder="Last Name" />
                   </Form.Group>
                 </Col>
