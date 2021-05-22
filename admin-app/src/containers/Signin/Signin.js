@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import { login } from "../../actions";
 import { useDispatch } from "react-redux";
+import Input from "../../components/Ui/Input";
 
 export default function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const userLogin = (e) => {
     e.preventDefault();
 
     const user = {
-      email: "kaveen@gmail.com",
-      password: "123456",
+      email,
+      password,
     };
 
     dispatch(login(user));
@@ -24,14 +28,20 @@ export default function Signin() {
         <Row style={{ marginTop: "50px" }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={userLogin}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
+              <Input
+                label="Email"
+                placeholder="Email"
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                label="Password"
+                placeholder="Password"
+                value={password}
+                type="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <Button variant="primary" type="submit">
                 Submit
               </Button>
