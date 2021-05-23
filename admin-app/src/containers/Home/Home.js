@@ -3,6 +3,13 @@ import { Jumbotron } from "react-bootstrap";
 import Layout from "../../components/Layout";
 
 export default function Home() {
+
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+  }, []);
+
   return (
     <Layout>
       <Jumbotron className="text-center" style={{ margin: "5rem" }}>
