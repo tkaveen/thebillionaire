@@ -1,16 +1,23 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Navbar, Nav, Button, NavDropdown, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { signout } from "../../actions/auth.actions";
 
 const Header = (props) => {
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(signout());
+  };
 
   const renderLoggedInLinks = () => {
     return (
       <Nav>
         <li className="nav-item">
-          <span className="nav-link">sign Out</span>
+          <span className="nav-link" onClick={logout}>
+            Sign Out
+          </span>
         </li>
         {/* <Nav.Link>
           <NavLink class="btn btn-outline-secondary " type="button">
@@ -24,24 +31,26 @@ const Header = (props) => {
   const renderNonLoggedInLinks = () => {
     return (
       <Nav>
-        <Nav.Link>
+        <li className="nav-item">
           <NavLink
             to="/signin"
-            class="btn btn-outline-secondary "
-            type="button"
+            className="nav-link"
+            // class="btn btn-outline-secondary "
+            // type="button"
           >
             Sign In
           </NavLink>
-        </Nav.Link>
-        <Nav.Link>
+        </li>
+        <li className="nav-item">
           <NavLink
             to="/signup"
-            class="btn btn-outline-secondary "
-            type="button"
+            className="nav-link"
+            // class="btn btn-outline-secondary "
+            // type="button"
           >
             Sign Up
           </NavLink>
-        </Nav.Link>
+        </li>
       </Nav>
     );
   };
@@ -54,19 +63,21 @@ const Header = (props) => {
       variant="dark"
       style={{ zIndex: 1 }}
     >
-      {/* <Navbar.Brand href="#home">ADMIN DASHBOARD</Navbar.Brand> */}
-      <Link to="/" className="navbar-brand">
-        ADMIN DASHBOARD
-      </Link>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          {/* <Nav.Link href="#features">DASHBOARD</Nav.Link> */}
-          {/* <Nav.Link href="#pricing">DOCTORS</Nav.Link> */}
-          {/* <Nav.Link href="#pricing">MESSAGES</Nav.Link> */}
-        </Nav>
-        {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
-      </Navbar.Collapse>
+      <Container fluid>
+        {/* <Navbar.Brand href="#home">ADMIN DASHBOARD</Navbar.Brand> */}
+        <Link to="/" className="navbar-brand">
+          ADMIN DASHBOARD
+        </Link>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            {/* <Nav.Link href="#features">DASHBOARD</Nav.Link> */}
+            {/* <Nav.Link href="#pricing">DOCTORS</Nav.Link> */}
+            {/* <Nav.Link href="#pricing">MESSAGES</Nav.Link> */}
+          </Nav>
+          {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };
