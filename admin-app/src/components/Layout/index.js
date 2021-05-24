@@ -1,13 +1,38 @@
 import React from "react";
 import Header from "../Navbar/Navbar";
+import { Col, Row, Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-const Layout = (props)=>{
-    return(
-        <>
-        <Header/>
-        {props.children}
-        </>
-    )
-}
+const Layout = (props) => {
+  return (
+    <>
+      <Header />
+      {props.sidebar ? (
+        <Container fluid>
+          <Row>
+            <Col md={2} className="slidebar">
+              <ul>
+                <li>
+                  <NavLink to={`/`}>Home</NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/products`}>Products</NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/orders`}>Orders</NavLink>
+                </li>
+              </ul>
+            </Col>
+            <Col md={10} style={{ marginLeft: "auto" }}>
+              {props.children}
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        props.children
+      )}
+    </>
+  );
+};
 
 export default Layout;
