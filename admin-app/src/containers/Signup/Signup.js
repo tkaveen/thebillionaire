@@ -84,7 +84,7 @@ export default function Signup() {
     return (
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-          loading
+          loading...
         </Alert>
       </Snackbar>
     );
