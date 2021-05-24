@@ -8,6 +8,6 @@ router.post("/admin/signup", signup);
 
 router.post("/admin/signin", signin);
 
-router.post("/admin/signout", requireSignin, signout);
+router.post("/admin/signout", signout);
 
 module.exports = router;
