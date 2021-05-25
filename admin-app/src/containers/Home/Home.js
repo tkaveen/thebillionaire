@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout sidebar >
       {/* <div>
   <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{width: 280}}>
     <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -163,26 +163,7 @@ export default function Home() {
   </div>
 </div> */}
 
-      <Container fluid>
-        <Row>
-          <Col md={2} className="slidebar">
-            <ul>
-              <li>
-                <NavLink  to={`/`}>Home</NavLink>
-              </li>
-              <li>
-                <NavLink to={`/products`}>Products</NavLink>
-              </li>
-              <li>
-                <NavLink to={`/orders`}>Orders</NavLink>
-              </li>
-            </ul>
-          </Col>
-          <Col md={10} style={{ marginLeft: "auto" }}>
-            Container
-          </Col>
-        </Row>
-      </Container>
+     
 
       {/* <Jumbotron className="text-center" style={{ margin: "5rem" }}>
         <h1>Welcome to Admin Dashboard</h1>
