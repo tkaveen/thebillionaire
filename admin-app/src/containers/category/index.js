@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import Layout from "../../components/Layout/index";
-import SaveIcon from "@material-ui/icons/Save";
-import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory, addCategory } from "../../actions";
-import AddCategoryModal from "../../components/Modal/AddCategoryModal";
 import Input from "../../components/Ui/Input";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
   const [categoryName, setCategoryName] = useState("");
-  //   const [parentCategoryId, setParentCategoryId] = useState("");
+  // const [parentCategoryId, setParentCategoryId] = useState("");
   //   const [categoryImage, setCategoryImage] = useState("");
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllCategory());
   }, []);
@@ -22,8 +20,8 @@ export default function Category() {
   const handleClose = () => {
     const form = new FormData();
     form.append("name", categoryName);
+    // form.append('parentId', parentCategoryId)
     dispatch(addCategory(form));
-
     setShow(false);
   };
   const handleShow = () => setShow(true);
@@ -36,9 +34,14 @@ export default function Category() {
     return myCategories;
   };
 
-  //   const handleCategoryImage = (e) => {
-  //     setCategoryImage(e.target.files[0]);
-  //   };
+  // const createCategoryList = (categories, options = []) => {
+  //   for (let category of categories) {
+  //     options.push({ value: category._id, name: category.name });
+  //     if (category.children.length > 0) {
+  //       createCategoryList(category.children, options);
+  //     }
+  //   }
+  // };
 
   return (
     <Layout sidebar>
@@ -48,7 +51,11 @@ export default function Category() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Category</h3>
 
-              <button type="button" class="btn btn-dark" onClick={handleShow}>
+              <button
+                type="button"
+                className="btn btn-dark"
+                onClick={handleShow}
+              >
                 Add Category
               </button>
             </div>
@@ -56,8 +63,9 @@ export default function Category() {
         </Row>
         <Row>
           <Col md={12}>
-            <ul>{renderCategories(category.categories)}
-            
+            <ul>
+              {renderCategories(category.categories)}
+              {/* {JSON.stringify(createCategoryList(category.categories))} */}
             </ul>
           </Col>
         </Row>
@@ -72,6 +80,14 @@ export default function Category() {
             placeholder={`Category Name`}
             onChange={(e) => setCategoryName(e.target.value)}
           />
+          {/* <select className="form-control">
+            <option>select category</option>
+            {createCategoryList(category.categories).map((option) => (
+              <option key={option.value} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select> */}
           {/* <Input
             type="file"
             name="categoryImage"

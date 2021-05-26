@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import Layout from "./components/Layout";
 import Home from "./containers/Home/Home";
 import Signin from "./containers/Signin/Signin";
 import Signup from "./containers/Signup/Signup";

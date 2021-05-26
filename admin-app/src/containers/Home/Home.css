@@ -1,9 +1,10 @@
-.slidebar{
+.sidebar{
     position: fixed;
     top:0;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(to right, rgb(49,49,50), rgb(23,23,25));
+    background-color: rgb(41, 43, 44);
+    /* background-image: linear-gradient(to right, rgb(49,49,50), rgb(23,23,25)); */
     padding-top: 60px;
-    box-shadow: inset 0 0 5px gray;
+    /* box-shadow: inset 0 0 5px gray; */
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../Navbar/Navbar";
 import { Col, Row, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import "../Layout/Layout.css";
 
 const Layout = (props) => {
   return (
@@ -10,10 +11,12 @@ const Layout = (props) => {
       {props.sidebar ? (
         <Container fluid>
           <Row>
-            <Col md={2} className="slidebar">
+            <Col md={2} className="sidebar ">
               <ul>
                 <li>
-                  <NavLink to={`/`}>Home</NavLink>
+                  <NavLink exact to={`/`}>
+                    Home
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to={`/category`}>Category</NavLink>
