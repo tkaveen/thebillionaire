@@ -9,12 +9,11 @@ export default function Category() {
   const category = useSelector((state) => state.category);
   const [categoryName, setCategoryName] = useState("");
   const [parentCategoryId, setParentCategoryId] = useState("");
-  // const [categoryImage, setCategoryImage] = useState("");
+  const [categoryImage, setCategoryImage] = useState("");
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`Category.js`);
     dispatch(getAllCategory());
   }, []);
 
@@ -22,7 +21,7 @@ export default function Category() {
     const form = new FormData();
     form.append("name", categoryName);
     form.append("parentId", parentCategoryId);
-    // form.append("categoryImage", categoryImage);
+    form.append("categoryImage", categoryImage);
     dispatch(addCategory(form));
     console.log(form);
     setShow(false);
@@ -44,15 +43,15 @@ export default function Category() {
     return myCategories;
   };
 
-  const createCategoryList = (categories, options = []) => {
-    for (let category of categories) {
-      options.push({ value: category._id, name: category.name });
-      if (category.children.length > 0) {
-        createCategoryList(category.children, options);
-      }
-    }
-    return options;
-  };
+  // const createCategoryList = (categories, options = []) => {
+  //   for (let category of categories) {
+  //     options.push({ value: category._id, name: category.name });
+  //     if (category.children.length > 0) {
+  //       createCategoryList(category.children, options);
+  //     }
+  //   }
+  //   return options;
+  // };
 
   // const handleCategoryImage = (e) => {
   //   setCategoryImage(e.target.files[0]);
@@ -91,7 +90,7 @@ export default function Category() {
             placeholder={`Category Name`}
             onChange={(e) => setCategoryName(e.target.value)}
           />
-          <select
+          {/* <select
             className="form-control"
             value={parentCategoryId}
             onChange={(e) => setParentCategoryId(e.target.value)}
@@ -102,7 +101,7 @@ export default function Category() {
                 {option.name}
               </option>
             ))}
-          </select>
+          </select> */}
           {/* <Input
             type="file"
             name="categoryImage"

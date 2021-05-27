@@ -29,7 +29,7 @@ exports.addCategory = (req, res) => {
 
   if (req.file) {
     categoryObj.categoryImage =
-      "http://localhost:5000/public" + req.file.filename;
+      process.env.API + "/public/" + req.file.filename;
   }
 
   if (req.body.parentId) {
