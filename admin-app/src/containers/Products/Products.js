@@ -32,12 +32,14 @@ export default function Products() {
     setShow(false);
   };
 
-  const renderCategories = (categories) => {
-    let myCategories = [];
+  const createCategoryList = (categories, options = []) => {
     for (let category of categories) {
-      myCategories.push( <option key={category.name} value={category.name}></option>);
+      options.push({ value: category._id, name: category.name });
+      if (category.children.length > 0) {
+        createCategoryList(category.children, options);
+      }
     }
-    return myCategories;
+    return options;
   };
 
   const handleProductPictures = (e) => {
@@ -100,14 +102,12 @@ export default function Products() {
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
           >
-            <option>Select Category</option>
-            {renderCategories(category.categories).map((option) => (
+            <option>select category</option>
+            {createCategoryList(category.categories).map((option) => (
               <option key={option.value} value={option.name}>
                 {option.name}
               </option>
             ))}
-
-            {/* {renderCategories(category.categories)} */}
           </select>
           {productPictures.length > 0
             ? productPictures.map((pic, index) => (
