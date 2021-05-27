@@ -26,9 +26,7 @@ export default function Products() {
     for (let pic of productPictures) {
       form.append("productPicture", pic);
     }
-
     dispatch(addProduct(form));
-
     setShow(false);
   };
 
@@ -109,11 +107,6 @@ export default function Products() {
               </option>
             ))}
           </select>
-          {productPictures.length > 0
-            ? productPictures.map((pic, index) => (
-                <div key={index}>{pic.name}</div>
-              ))
-            : null}
           <Input
             type="file"
             name="productPicture"
