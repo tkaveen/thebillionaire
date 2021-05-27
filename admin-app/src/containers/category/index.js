@@ -8,8 +8,8 @@ import Input from "../../components/Ui/Input";
 export default function Category() {
   const category = useSelector((state) => state.category);
   const [categoryName, setCategoryName] = useState("");
-  // const [parentCategoryId, setParentCategoryId] = useState("");
-  //   const [categoryImage, setCategoryImage] = useState("");
+  const [parentCategoryId, setParentCategoryId] = useState("");
+  const [categoryImage, setCategoryImage] = useState("");
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export default function Category() {
   const handleClose = () => {
     const form = new FormData();
     form.append("name", categoryName);
-    // form.append('parentId', parentCategoryId)
+    form.append("parentId", parentCategoryId);
     dispatch(addCategory(form));
     setShow(false);
   };
@@ -29,7 +29,14 @@ export default function Category() {
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      myCategories.push(<li key={category.name}>{category.name}</li>);
+      myCategories.push(
+        <li key={category.name}>
+          {category.name}
+          {category.children.length > 0 ? (
+            <ul>{renderCategories(category.children)}</ul>
+          ) : null}
+        </li>
+      );
     }
     return myCategories;
   };
