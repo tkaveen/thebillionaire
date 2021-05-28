@@ -68,7 +68,7 @@ export default function Products() {
       </Container>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Category</Modal.Title>
+          <Modal.Title>Add New Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Input
