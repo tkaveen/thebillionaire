@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/index";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import Input from "../../components/Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../actions/product.action";
@@ -15,6 +15,7 @@ export default function Products() {
   const [productPictures, setProductPictures] = useState([]);
   const [show, setShow] = useState(false);
   const category = useSelector((state) => state.category);
+  const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -48,6 +49,37 @@ export default function Products() {
   console.log(productPictures);
   const handleShow = () => setShow(true);
 
+  const renderProducts = () => {
+    return (
+      <Table responsive="sm">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {product.products.length > 0
+            ? product.products.map((product) => (
+                <tr key={product._id}>
+                  <td>1</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
+                  <td>{product.description}</td>
+                  <td>--</td>
+                </tr>
+              ))
+            : null}
+        </tbody>
+      </Table>
+    );
+  };
+
   return (
     <Layout sidebar>
       <Container fluid>
@@ -66,11 +98,15 @@ export default function Products() {
             </div>
           </Col>
         </Row>
+        <br></br>
+        <Row>
+          <Col>{renderProducts()}</Col>
+        </Row>
       </Container>
       <Modal
-      show={show}
-      handleClose={handleClose}
-      modalTitle = {'Add New Product'}
+        show={show}
+        handleClose={handleClose}
+        modalTitle={"Add New Product"}
       >
         <Input
           label="Name"
