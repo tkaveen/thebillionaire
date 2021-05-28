@@ -42,19 +42,19 @@ export default function Category() {
     return myCategories;
   };
 
-  // const createCategoryList = (categories, options = []) => {
-  //   for (let category of categories) {
-  //     options.push({ value: category._id, name: category.value });
-  //     if (category.children.length > 0) {
-  //       createCategoryList(category.children, options);
-  //     }
-  //   }
-  //   return options;
-  // };
+  const createCategoryList = (categories, options = []) => {
+    for (let category of categories) {
+      options.push({ value: category._id, name: category.name });
+      if (category.children.length > 0) {
+        createCategoryList(category.children, options);
+      }
+    }
+    return options;
+  };
 
-  // const handleCategoryImage = (e) => {
-  //   setCategoryImage(e.target.files[0]);
-  // };
+  const handleCategoryImage = (e) => {
+    setCategoryImage(e.target.files[0]);
+  };
 
   return (
     <Layout sidebar>
@@ -89,18 +89,18 @@ export default function Category() {
           placeholder={`Category Name`}
           onChange={(e) => setCategoryName(e.target.value)}
         />
-        {/* <select
-            className="form-control"
-            value={parentCategoryId}
-            onChange={(e) => setParentCategoryId(e.target.value)}
-          >
-            <option>select category</option>
-            {createCategoryList(category.categories).map((option) => (
-              <option key={option.value} value={option.name}>
-                {option.name}
-              </option>
-            ))}
-          </select> */}
+        <select
+          className="form-control"
+          value={parentCategoryId}
+          onChange={(e) => setParentCategoryId(e.target.value)}
+        >
+          <option>select category</option>
+          {createCategoryList(category.categories).map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.name}
+            </option>
+          ))}
+        </select>
         {/* <Input
             type="file"
             name="categoryImage"
