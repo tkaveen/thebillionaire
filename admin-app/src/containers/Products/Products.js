@@ -60,7 +60,7 @@ export default function Products() {
                 className="btn btn-dark"
                 onClick={handleShow}
               >
-                Add Category
+                Add Product
               </button>
             </div>
           </Col>
@@ -102,7 +102,7 @@ export default function Products() {
           >
             <option>select category</option>
             {createCategoryList(category.categories).map((option) => (
-              <option key={option.value} value={option.name}>
+              <option key={option.value} value={option.value}>
                 {option.name}
               </option>
             ))}
