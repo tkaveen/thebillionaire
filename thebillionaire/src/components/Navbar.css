@@ -65,8 +65,6 @@ navbar ul li a {
   transition: 0.2s ease-in-out;
 }
 
-
-
 navbar ul li a:hover {
   background-color: #ff1414;
   color: #ffffff;
@@ -123,6 +121,30 @@ navbar ul li a:hover {
   cursor: pointer;
 }
 
+.nav-menu ul {
+  list-style: none;
+  margin: 0%;
+  padding: 0;
+  display: flex;
+  margin-right: 25px;
+  line-height: 80px;
+}
+
+.nav-menu li ul a {
+  display: block;
+  padding: 0 30px;
+  color: #fff;
+  text-decoration: none;
+  
+}
+
+.nav-menu li ul a:hover{
+  color: #fff;
+  border-bottom: 2px solid #f00946;
+}
+
+
+
 .nav-shopp {
   justify-self: start;
   cursor: pointer;
@@ -133,9 +155,9 @@ navbar ul li a:hover {
   display: flex;
 }
 
-.nav-item:hover {
+/* .nav-item:hover {
   border-bottom: 2px solid #f00946;
-}
+} */
 
 .nav-links {
   color: #fff;

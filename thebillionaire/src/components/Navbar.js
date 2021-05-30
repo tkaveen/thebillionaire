@@ -78,11 +78,6 @@ function Navbar() {
       <IconContext.Provider value={{ color: "#fff" }}>
         <nav className={navbar ? "navbar active" : "navbar"}>
           <div className="navbar-container container">
-            <ul>
-              {category.categories.length > 0
-                ? renderCategories(category.categories)
-                : null}
-            </ul>
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
               The billionaire.
               {/* <img src={logo} style={{ width: "75%", height: "120%", }} ></img> */}
@@ -92,8 +87,15 @@ function Navbar() {
             </div>
             <ul className={click ? "nav-menu active" : "nav-menu"} style={{}}>
               <li className="nav-item">
+                <ul className="nav-item">
+                  {category.categories.length > 0
+                    ? renderCategories(category.categories)
+                    : null}
+                </ul>
+              </li>
+              {/* <li className="nav-item">
                 <Link
-                  to="/Mens"
+                  to={category.name}
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
@@ -117,7 +119,7 @@ function Navbar() {
                 >
                   New Releases
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-btn">
                 {button ? (
                   <Link to="/Log-in" className="btn-link">
