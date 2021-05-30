@@ -10,7 +10,6 @@ import Navbar from "./components/Navbar";
 // import nav from './components/NavbarNew'
 import Footer from "./components/Pages/Footer/Footer";
 import Mens from "./components/Pages/MensProducts";
-import Womens from "./components/Pages/WomensProducts";
 import Prodover from "./components/Pages/ProductOverview";
 import Form from "./components/Pages/SignUp/Form";
 import MensProducts from "./components/Pages/MensProducts";

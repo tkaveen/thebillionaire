@@ -126,13 +126,13 @@ navbar ul li a:hover {
   margin: 0%;
   padding: 0;
   display: flex;
-  margin-right: 25px;
+  margin-right: 6px;
   line-height: 80px;
 }
 
 .nav-menu li ul a {
   display: block;
-  padding: 0 30px;
+  padding: 0 20px;
   color: #fff;
   text-decoration: none;
   
