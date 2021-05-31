@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import S1 from "../../images/S1.png";
 import S2 from "../../images/S2.png";
 import T1 from "../../images/T1.png";
+import { generatePublicUrl } from "../../../urlConfig";
+import "./ProductListPage.css";
 
 const ProductListPage = (props) => {
   const product = useSelector((state) => state.product);
@@ -22,26 +24,106 @@ const ProductListPage = (props) => {
 
   return (
     <Layout>
+      {/* {Object.keys(product.products).map(() => {
+        return (
+          <div className="card">
+            <div className="card-header">
+              <div> Mens Collection </div>
+              <div className="product-container">
+                <div className="product-img-container">
+                  <img
+                    src={generatePublicUrl(product.productPictures[0].img)}
+                    alt=""
+                  />
+                </div>
+                <div className="product-info">
+                  <div>{product.name}</div>
+                  <div>{product.price}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })} */}
+
       <IconContext.Provider value={{ color: "#fff", size: 64 }}>
-        <div className="pricing__sectionMens">
-          <div className="pricing__wrapper">
-            <h1 className="pricing__heading">Mens Collection</h1>
+        <div className="pricing__section_Product_List_Page">
+          <div className="pricing__wrapper_Product_List_Page">
+            <h1 className="pricing__heading_Product_List_Page">
+              Mens Collection
+            </h1>
+            <div className="pricing__container_Product_List_Page">
+              {product.products.map((product) => {
+                return (
+                  <div>
+                    <div
+                      to=""
+                      className="pricing__container-card_Product_List_Page"
+                      style={{ display: "flex" }}
+                    >
+                      <div className="pricing__container-cardInfo_Product_List_Page">
+                        <img
+                          src={generatePublicUrl(
+                            product.productPictures[0].img
+                          )}
+                          alt=""
+                        />
+                        <h3>{product.name}</h3>
+                        <h4>{product.price}</h4>
+                        <ul className="pricing__container-features_Product_List_Page"></ul>
+                        <Button buttonSize="btn--wide" buttonColor="blue">
+                          Buy Now
+                        </Button>
+                      </div>
+                    </div>
+                    {/* {product.products.map((product) => (
+                      <div
+                        to=""
+                        className="pricing__container-card"
+                        style={{ display: "flex" }}
+                      >
+                        <div className="pricing__container-cardInfo">
+                          <img
+                            src={generatePublicUrl(
+                              product.productPictures[0].img
+                            )}
+                            alt=""
+                          />
+                          <h3>{product.name}</h3>
+                          <h4>{product.price}</h4>
+                          <ul className="pricing__container-features"></ul>
+                          <Button buttonSize="btn--wide" buttonColor="primary">
+                            Buy Now
+                          </Button>
+                        </div>
+                      </div>
+                    ))} */}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </IconContext.Provider>
+      {/* <IconContext.Provider value={{ color: "#fff", size: 64 }}>
+        <div className="">
+          <div className="">
+            <h1 className="">Mens Collection</h1>
           </div>
 
           {Object.keys(product.products).map((key, index) => {
             return (
-              <div className="pricing__container">
-                <Link
-                  to=""
-                  className="pricing__container-card"
-                  style={{ display: "flex" }}
-                >
+              <div className="">
+                <Link to="" className="" style={{ display: "flex" }}>
                   {product.products.map((product) => (
-                    <div className="pricing__container-cardInfo">
-                      <img src={product.productPictures[0].img} alt="" />
+                    <div className="">
+                      <img
+                        src={generatePublicUrl(product.productPictures[0].img)}
+                        alt=""
+                      />
                       <h3>{product.name}</h3>
                       <h4>{product.price}</h4>
-                      <ul className="pricing__container-features"></ul>
+                      <ul className=""></ul>
                       <Button buttonSize="btn--wide" buttonColor="primary">
                         Buy Now
                       </Button>
@@ -52,7 +134,7 @@ const ProductListPage = (props) => {
             );
           })}
         </div>
-      </IconContext.Provider>
+      </IconContext.Provider> */}
     </Layout>
   );
 };

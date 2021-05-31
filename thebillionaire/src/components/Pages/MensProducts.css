@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     background-image: linear-gradient(to right, rgb(49,49,50), rgb(23,23,25));
-    /* background: #fafafa; */
+    background: #fafafa;
   }
   
   .pricing__container-card {
@@ -98,7 +98,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      /* height: 1500px; */
+      height: 1500px;
     }
   
     .pricing__container-card {
