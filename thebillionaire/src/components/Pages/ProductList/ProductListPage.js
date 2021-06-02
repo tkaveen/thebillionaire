@@ -47,8 +47,11 @@ const ProductListPage = (props) => {
       })} */}
 
       <IconContext.Provider value={{ color: "#fff", size: 64 }}>
-        <div className="pricing__section_Product_List_Page">
+       
+       <div className="pricing__section_Product_List_Page">
+       <div className='productlis-container'>
           <div className="pricing__wrapper_Product_List_Page">
+            
             <h1 className="pricing__heading_Product_List_Page">
               Mens Collection
             </h1>
@@ -104,6 +107,7 @@ const ProductListPage = (props) => {
             </div>
           </div>
         </div>
+       </div>
       </IconContext.Provider>
       {/* <IconContext.Provider value={{ color: "#fff", size: 64 }}>
         <div className="">
