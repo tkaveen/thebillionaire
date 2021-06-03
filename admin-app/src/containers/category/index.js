@@ -22,8 +22,9 @@ export default function Category() {
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState([]);
   const [expanded, setExpanded] = useState([]);
-  const [checkedArray, setCheckedArray] = [];
-  const [expandedArray, setExpandedArray] = [];
+  const [checkedArray, setCheckedArray] = useState([]);
+  const [expandedArray, setExpandedArray] = useState([]);
+  const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -66,6 +67,10 @@ export default function Category() {
     setCategoryImage(e.target.files[0]);
   };
 
+  const updateCategory = () => {
+    setUpdateCategoryModal(true);
+  };
+
   return (
     <Layout sidebar>
       <Container fluid>
@@ -102,11 +107,60 @@ export default function Category() {
             />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <button
+              type="button"
+              className="btn btn-dark"
+              // onClick={}
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={updateCategory}
+            >
+              Edit
+            </button>
+          </Col>
+        </Row>
       </Container>
       <Modal
         show={show}
         handleClose={handleClose}
         modalTitle={"Add New Category"}
+      >
+        <Input
+          value={categoryName}
+          placeholder={`Category Name`}
+          onChange={(e) => setCategoryName(e.target.value)}
+        />
+        <select
+          className="form-control"
+          value={parentCategoryId}
+          onChange={(e) => setParentCategoryId(e.target.value)}
+        >
+          <option>select category</option>
+          {createCategoryList(category.categories).map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        {/* <Input
+            type="file"
+            name="categoryImage"
+            onChange={handleCategoryImage}
+          /> */}
+      </Modal>
+
+      {/* Edit Categories Modal */}
+
+      <Modal
+        show={updateCategoryModal}
+        handleClose={() => setUpdateCategoryModal(true)}
+        modalTitle={"Update Category"}
       >
         <Input
           value={categoryName}
