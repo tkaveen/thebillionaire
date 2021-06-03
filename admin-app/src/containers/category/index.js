@@ -96,8 +96,8 @@ export default function Category() {
               nodes={renderCategories(category.categories)}
               checked={checked}
               expanded={expanded}
-              onCheck={(checked) => setChecked({ checked })}
-              onExpand={(expanded) => setExpanded({ expanded })}
+              onCheck={(checked) => setChecked(checked)}
+              onExpand={(expanded) => setExpanded(expanded)}
               icons={{
                 check: <IoIosCheckbox />,
                 uncheck: <IoIosCheckboxOutline />,
