@@ -22,6 +22,8 @@ export default function Category() {
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState([]);
   const [expanded, setExpanded] = useState([]);
+  const [checkedArray, setCheckedArray] = [];
+  const [expandedArray, setExpandedArray] = [];
   const dispatch = useDispatch();
 
   const handleClose = () => {
