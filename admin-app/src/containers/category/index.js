@@ -69,6 +69,7 @@ export default function Category() {
 
   const updateCategory = () => {
     setUpdateCategoryModal(true);
+    console.log(checked, expanded);
   };
 
   return (
@@ -159,7 +160,7 @@ export default function Category() {
 
       <Modal
         show={updateCategoryModal}
-        handleClose={() => setUpdateCategoryModal(true)}
+        handleClose={() => setUpdateCategoryModal(false)}
         modalTitle={"Update Category"}
       >
         <Input
