@@ -5,6 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../../actions";
 import Input from "../../components/Ui/Input";
 import Modal from "../../components/Ui/Modal/Modal";
+import CheckboxTree from "react-checkbox-tree";
+import "react-checkbox-tree/lib/react-checkbox-tree.css";
+import {
+  IoIosCheckboxOutline,
+  IoIosCheckbox,
+  IoIosArrowForward,
+  IoIosArrowDown,
+} from "react-icons/io";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
@@ -12,6 +20,8 @@ export default function Category() {
   const [parentCategoryId, setParentCategoryId] = useState("");
   const [categoryImage, setCategoryImage] = useState("");
   const [show, setShow] = useState(false);
+  const [checked, setChecked] = useState([]);
+  const [expanded, setExpanded] = useState([]);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -30,14 +40,12 @@ export default function Category() {
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      myCategories.push(
-        <li key={category.name}>
-          {category.name}
-          {category.children.length > 0 ? (
-            <ul>{renderCategories(category.children)}</ul>
-          ) : null}
-        </li>
-      );
+      myCategories.push({
+        label: category.name,
+        value: category._id,
+        children:
+          category.children.length > 0 && renderCategories(category.children),
+      });
     }
     return myCategories;
   };
@@ -75,7 +83,21 @@ export default function Category() {
         </Row>
         <Row>
           <Col md={12}>
-            <ul>{renderCategories(category.categories)}</ul>
+            {/* <ul>{renderCategories(category.categories)}</ul> */}
+            <CheckboxTree
+              nodes={renderCategories(category.categories)}
+              checked={checked}
+              expanded={expanded}
+              onCheck={(checked) => setChecked({ checked })}
+              onExpand={(expanded) => setExpanded({ expanded })}
+              icons={{
+                check: <IoIosCheckbox />,
+                uncheck: <IoIosCheckboxOutline />,
+                halfCheck: <IoIosCheckboxOutline />,
+                expandClose: <IoIosArrowForward />,
+                expandOpen: <IoIosArrowDown />,
+              }}
+            />
           </Col>
         </Row>
       </Container>

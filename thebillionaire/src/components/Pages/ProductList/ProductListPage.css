@@ -8,8 +8,6 @@
   /* background: #fafafa; */
 }
 
-
-
 .pricing__container-card_Product_List_Page {
   /* background: linear-gradient(45deg, #0660e9 0%, #276afb 100%); */
   background: #242424;
@@ -41,6 +39,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+
 }
 
 .pricing__wrapper_Product_List_Page {
@@ -48,12 +48,12 @@
   flex-direction: column;
   align-items: start;
   margin: 0 auto;
-  margin-right: 500px;
 }
 
 .pricing__heading_Product_List_Page {
   color: #ffffff;
   margin-bottom: 24px;
+  margin-left: 17px;
 }
 
 .pricing__container-cardInfo_Product_List_Page {

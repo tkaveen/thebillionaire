@@ -1,5 +1,5 @@
 {
-  "name": "react-pizza-website-v1",
+  "name": "the-billionaire",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.2",
+    "react-spring": "^9.2.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.3",

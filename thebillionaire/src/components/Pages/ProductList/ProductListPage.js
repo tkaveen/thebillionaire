@@ -11,6 +11,7 @@ import S2 from "../../images/S2.png";
 import T1 from "../../images/T1.png";
 import { generatePublicUrl } from "../../../urlConfig";
 import "./ProductListPage.css";
+import { Container, Row, Col } from "react-bootstrap";
 
 const ProductListPage = (props) => {
   const product = useSelector((state) => state.product);
@@ -47,39 +48,38 @@ const ProductListPage = (props) => {
       })} */}
 
       <IconContext.Provider value={{ color: "#fff", size: 64 }}>
-       
-       <div className="pricing__section_Product_List_Page">
-       <div className='productlis-container'>
-          <div className="pricing__wrapper_Product_List_Page">
-            
-            <h1 className="pricing__heading_Product_List_Page">
-              Mens Collection
-            </h1>
-            <div className="pricing__container_Product_List_Page">
-              {product.products.map((product) => {
-                return (
-                  <div>
-                    <div
-                      to=""
-                      className="pricing__container-card_Product_List_Page"
-                      style={{ display: "flex" }}
-                    >
-                      <div className="pricing__container-cardInfo_Product_List_Page">
-                        <img
-                          src={generatePublicUrl(
-                            product.productPictures[0].img
-                          )}
-                          alt=""
-                        />
-                        <h3>{product.name}</h3>
-                        <h4>{product.price}</h4>
-                        <ul className="pricing__container-features_Product_List_Page"></ul>
-                        <Button buttonSize="btn--wide" buttonColor="blue">
-                          Buy Now
-                        </Button>
-                      </div>
-                    </div>
-                    {/* {product.products.map((product) => (
+        <div className="pricing__section_Product_List_Page">
+          <Container>
+            <div className="productlis-container">
+              <div className="pricing__wrapper_Product_List_Page">
+                <h1 className="pricing__heading_Product_List_Page">
+                  Mens Collection
+                </h1>
+
+                <div className="pricing__container_Product_List_Page">
+                  {product.products.map((product) => {
+                    return (
+                      <div>
+                        <div
+                          to=""
+                          className="pricing__container-card_Product_List_Page"
+                        >
+                          <div className="pricing__container-cardInfo_Product_List_Page">
+                            <img
+                              src={generatePublicUrl(
+                                product.productPictures[0].img
+                              )}
+                              alt=""
+                            />
+                            <h3>{product.name}</h3>
+                            <h4>{product.price}</h4>
+                            <ul className="pricing__container-features_Product_List_Page"></ul>
+                            <Button buttonSize="btn--wide" buttonColor="blue">
+                              Buy Now
+                            </Button>
+                          </div>
+                        </div>
+                        {/* {product.products.map((product) => (
                       <div
                         to=""
                         className="pricing__container-card"
@@ -101,13 +101,14 @@ const ProductListPage = (props) => {
                         </div>
                       </div>
                     ))} */}
-                  </div>
-                );
-              })}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
+          </Container>
         </div>
-       </div>
       </IconContext.Provider>
       {/* <IconContext.Provider value={{ color: "#fff", size: 64 }}>
         <div className="">
