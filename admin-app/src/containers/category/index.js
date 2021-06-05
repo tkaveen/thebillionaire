@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Layout from "../../components/Layout/index";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, getAllCategory, updateCategories } from "../../actions";
+import {
+  addCategory,
+  getAllCategory,
+  updateCategories,
+  deleteCategories as deleteCategoriesAction,
+} from "../../actions";
 import Input from "../../components/Ui/Input";
 import Modal from "../../components/Ui/Modal/Modal";
 import CheckboxTree from "react-checkbox-tree";
@@ -269,6 +274,17 @@ export default function Category() {
     setDeleteCategoryModal(true);
   };
 
+  const deleteCategories = () => {
+    const chechedIdsArray = checkedArray.map((item, index) => ({
+      _id: item.value,
+    }));
+    const expandedIdsArray = expandedArray.map((item, index) => ({
+      _id: item.value,
+    }));
+    const idsArray = expandedIdsArray.concat(chechedIdsArray);
+    dispatch(deleteCategoriesAction(idsArray));
+  };
+
   const renderDeleteCategoryModal = () => {
     return (
       <Modal
@@ -286,9 +302,7 @@ export default function Category() {
           {
             label: "Yes",
             color: "danger",
-            onClick: () => {
-              alert("yes");
-            },
+            onClick: deleteCategories,
           },
         ]}
       >
