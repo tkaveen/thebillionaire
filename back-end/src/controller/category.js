@@ -54,3 +54,38 @@ exports.getCategories = (req, res) => {
     }
   });
 };
+
+exports.updateCategories = async (req, res) => {
+  const { _id, name, parentId } = req.body;
+  const updatedCategories = [];
+  if (name instanceof Array) {
+    for (let i = 0; i < name.length; i++) {
+      const category = {
+        name: name[i],
+      };
+      if (parentId !== "") {
+        category.parentId = parentId[i];
+      }
+      const updatedCategory = await Category.findOneAndUpdate(
+        { _id },
+        category,
+        {
+          new: true,
+        }
+      );
+      updatedCategories.push(updatedCategory);
+      return res.status(201).json({ updatedCategories });
+    }
+  } else {
+    const category = {
+      name,
+    };
+    if (parentId !== "") {
+      category.parentId = parentId;
+    }
+    const updatedCategory = await Category.findOneAndUpdate({ _id }, category, {
+      new: true,
+    });
+    return res.status(201).json({ updatedCategory });
+  }
+};
