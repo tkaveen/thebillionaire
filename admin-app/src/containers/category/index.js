@@ -74,7 +74,11 @@ export default function Category() {
   };
 
   const updateCategory = () => {
+    updateCheckedAndExpandedCategories();
     setUpdateCategoryModal(true);
+  };
+
+  const updateCheckedAndExpandedCategories = () => {
     const categories = createCategoryList(category.categories);
     const checkedArray = [];
     const expandedArray = [];
@@ -94,7 +98,6 @@ export default function Category() {
       });
     setCheckedArray(checkedArray);
     setExpandedArray(expandedArray);
-    console.log({ checked, expanded, categories, checkedArray, expandedArray });
   };
 
   const handleCategoryInput = (key, value, index, type) => {
@@ -262,6 +265,7 @@ export default function Category() {
   };
 
   const deleteCategory = () => {
+    updateCheckedAndExpandedCategories();
     setDeleteCategoryModal(true);
   };
 
@@ -288,7 +292,15 @@ export default function Category() {
           },
         ]}
       >
-        Are you Sure?
+        <h5>Expanded</h5>
+        {expandedArray.map((item, index) => (
+          <span key={index}>{item.name}</span>
+        ))}
+        <br />
+        <h5>checked</h5>
+        {checkedArray.map((item, index) => (
+          <span key={index}>{item.name}</span>
+        ))}
       </Modal>
     );
   };
