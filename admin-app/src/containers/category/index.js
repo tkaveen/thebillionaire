@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Layout from "../../components/Layout/index";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, updateCategories } from "../../actions";
+import { addCategory, getAllCategory, updateCategories } from "../../actions";
 import Input from "../../components/Ui/Input";
 import Modal from "../../components/Ui/Modal/Modal";
 import CheckboxTree from "react-checkbox-tree";
@@ -121,7 +121,11 @@ export default function Category() {
       form.append("name", item.name);
       form.append("parentId", item.parentId ? item.parentId : "");
     });
-    dispatch(updateCategories(form));
+    dispatch(updateCategories(form)).then((result) => {
+      if (result) {
+        dispatch(getAllCategory());
+      }
+    });
     setUpdateCategoryModal(false);
   };
 
