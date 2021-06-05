@@ -13,6 +13,7 @@ import {
   IoIosArrowForward,
   IoIosArrowDown,
 } from "react-icons/io";
+import { Alert } from "bootstrap";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
@@ -25,6 +26,7 @@ export default function Category() {
   const [checkedArray, setCheckedArray] = useState([]);
   const [expandedArray, setExpandedArray] = useState([]);
   const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
+  const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -259,6 +261,38 @@ export default function Category() {
     );
   };
 
+  const deleteCategory = () => {
+    setDeleteCategoryModal(true);
+  };
+
+  const renderDeleteCategoryModal = () => {
+    return (
+      <Modal
+        modalTitle="Confirm"
+        show={deleteCategoryModal}
+        handleClose={() => setDeleteCategoryModal(false)}
+        buttons={[
+          {
+            label: "No",
+            color: "primary",
+            onClick: () => {
+              alert("no");
+            },
+          },
+          {
+            label: "Yes",
+            color: "danger",
+            onClick: () => {
+              alert("yes");
+            },
+          },
+        ]}
+      >
+        Are you Sure?
+      </Modal>
+    );
+  };
+
   return (
     <Layout sidebar>
       <Container fluid>
@@ -300,7 +334,7 @@ export default function Category() {
             <button
               type="button"
               className="btn btn-dark"
-              // onClick={}
+              onClick={deleteCategory}
             >
               Delete
             </button>
@@ -316,6 +350,7 @@ export default function Category() {
       </Container>
       {renderAddCategoryModal()}
       {renderUpdatedCategoriesModal()}
+      {renderDeleteCategoryModal()}
     </Layout>
   );
 }
