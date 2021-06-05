@@ -63,7 +63,7 @@ exports.updateCategories = async (req, res) => {
       const category = {
         name: name[i],
       };
-      if (parentId !== "") {
+      if (parentId[i] !== "") {
         category.parentId = parentId[i];
       }
       const updatedCategory = await Category.findOneAndUpdate(
@@ -74,8 +74,8 @@ exports.updateCategories = async (req, res) => {
         }
       );
       updatedCategories.push(updatedCategory);
-      return res.status(201).json({ updatedCategories });
     }
+    return res.status(201).json({ updatedCategories });
   } else {
     const category = {
       name,
