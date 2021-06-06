@@ -19,6 +19,8 @@ import {
   IoIosArrowDown,
 } from "react-icons/io";
 import { Alert } from "bootstrap";
+import UpdatedCategoriesModal from "./compoenets/UpdateCategoriesModal";
+import AddCategoryModal from "./compoenets/AddCategoryModal";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
@@ -139,136 +141,6 @@ export default function Category() {
     setUpdateCategoryModal(false);
   };
 
-  const renderUpdatedCategoriesModal = () => {
-    return (
-      <Modal
-        show={updateCategoryModal}
-        handleClose={updateCategoriesForm}
-        modalTitle={"Update Category"}
-      >
-        <Container>
-          <Row>
-            <Col>
-              <h6>Expanded arry</h6>
-            </Col>
-          </Row>
-          {expandedArray.length > 0 &&
-            expandedArray.map((item, index) => (
-              <Row key={index}>
-                <Input
-                  value={item.name}
-                  placeholder={`Category Name`}
-                  onChange={(e) =>
-                    handleCategoryInput(
-                      "name",
-                      e.target.value,
-                      index,
-                      "expanded"
-                    )
-                  }
-                />
-                <select
-                  className="form-control"
-                  value={parentCategoryId}
-                  onChange={(e) =>
-                    handleCategoryInput(
-                      "parentId",
-                      e.target.value,
-                      index,
-                      "expanded"
-                    )
-                  }
-                >
-                  <option>select category</option>
-                  {createCategoryList(category.categories).map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.name}
-                    </option>
-                  ))}
-                </select>
-              </Row>
-            ))}
-          <h6>checked categories</h6>
-          {checkedArray.length > 0 &&
-            checkedArray.map((item, index) => (
-              <Row key={index}>
-                <Input
-                  value={item.name}
-                  placeholder={`Category Name`}
-                  onChange={(e) =>
-                    handleCategoryInput(
-                      "name",
-                      e.target.value,
-                      index,
-                      "checked"
-                    )
-                  }
-                />
-                <select
-                  className="form-control"
-                  value={parentCategoryId}
-                  onChange={(e) =>
-                    handleCategoryInput(
-                      "parentId",
-                      e.target.value,
-                      index,
-                      "checked"
-                    )
-                  }
-                >
-                  <option>select category</option>
-                  {createCategoryList(category.categories).map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.name}
-                    </option>
-                  ))}
-                </select>
-              </Row>
-            ))}
-        </Container>
-
-        {/* <Input
-          type="file"
-          name="categoryImage"
-          onChange={handleCategoryImage}
-        /> */}
-      </Modal>
-    );
-  };
-
-  const renderAddCategoryModal = () => {
-    return (
-      <Modal
-        show={show}
-        handleClose={handleClose}
-        modalTitle={"Add New Category"}
-      >
-        <Input
-          value={categoryName}
-          placeholder={`Category Name`}
-          onChange={(e) => setCategoryName(e.target.value)}
-        />
-        <select
-          className="form-control"
-          value={parentCategoryId}
-          onChange={(e) => setParentCategoryId(e.target.value)}
-        >
-          <option>select category</option>
-          {createCategoryList(category.categories).map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-        {/* <Input
-          type="file"
-          name="categoryImage"
-          onChange={handleCategoryImage}
-        /> */}
-      </Modal>
-    );
-  };
-
   const deleteCategory = () => {
     updateCheckedAndExpandedCategories();
     setDeleteCategoryModal(true);
@@ -323,6 +195,8 @@ export default function Category() {
       </Modal>
     );
   };
+
+  const categoryList = createCategoryList(category.categories);
 
   return (
     <Layout sidebar>
@@ -379,8 +253,26 @@ export default function Category() {
           </Col>
         </Row>
       </Container>
-      {renderAddCategoryModal()}
-      {renderUpdatedCategoriesModal()}
+      <AddCategoryModal
+        show={show}
+        handleClose={handleClose}
+        modalTitle={"Add New Category"}
+        categoryName={categoryName}
+        setCategoryName={setCategoryName}
+        parentCategoryId={parentCategoryId}
+        setParentCategoryId={setParentCategoryId}
+        categoryList={categoryList}
+      />
+      <UpdatedCategoriesModal
+        show={updateCategoryModal}
+        handleClose={updateCategoriesForm}
+        modalTitle={"Update Category"}
+        expandedArray={expandedArray}
+        checkedArray={checkedArray}
+        handleCategoryInput={handleCategoryInput}
+        categoryList={categoryList}
+      />
+      {/* {renderAddCategoryModal()} */}
       {renderDeleteCategoryModal()}
     </Layout>
   );
