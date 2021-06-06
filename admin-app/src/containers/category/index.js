@@ -282,7 +282,12 @@ export default function Category() {
       _id: item.value,
     }));
     const idsArray = expandedIdsArray.concat(chechedIdsArray);
-    dispatch(deleteCategoriesAction(idsArray));
+    dispatch(deleteCategoriesAction(idsArray)).then((result) => {
+      if (result) {
+        dispatch(getAllCategory());
+        setDeleteCategoryModal(false);
+      }
+    });
   };
 
   const renderDeleteCategoryModal = () => {

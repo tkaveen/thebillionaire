@@ -59,6 +59,10 @@ export const deleteCategories = (ids) => {
         ids,
       },
     });
-    console.log(res);
+    if (res.status == 201) {
+      return true;
+    } else {
+      return false;
+    }
   };
 };
