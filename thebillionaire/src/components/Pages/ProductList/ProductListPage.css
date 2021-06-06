@@ -5,6 +5,8 @@
   justify-content: center;
   background-image: linear-gradient(to right, rgb(49, 49, 50), rgb(23, 23, 25));
   height: auto;
+  padding-bottom: 300px;
+
   /* background: #fafafa; */
 }
 
@@ -18,6 +20,7 @@
   text-decoration: none;
   border-radius: 4px;
   margin: 0 24px;
+  margin-top: 60px;
 }
 
 /* .pricing__container-card:nth-child(2) {
@@ -38,9 +41,7 @@
 .pricing__container_Product_List_Page {
   display: flex;
   justify-content: center;
-  align-items: center;
-
-
+  flex-wrap: wrap;
 }
 
 .pricing__wrapper_Product_List_Page {

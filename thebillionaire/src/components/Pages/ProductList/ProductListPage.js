@@ -53,18 +53,21 @@ const ProductListPage = (props) => {
             <div className="productlis-container">
               <div className="pricing__wrapper_Product_List_Page">
                 <h1 className="pricing__heading_Product_List_Page">
-                  Mens Collection
+                  {product.slug + " Collection"}
                 </h1>
 
                 <div className="pricing__container_Product_List_Page">
-                  {product.products.map((product) => {
+                  {product.products && product.products.map((product, index) => {
                     return (
                       <div>
                         <div
                           to=""
                           className="pricing__container-card_Product_List_Page"
                         >
-                          <div className="pricing__container-cardInfo_Product_List_Page">
+                          <div
+                            className="pricing__container-cardInfo_Product_List_Page"
+                            key={index}
+                          >
                             <img
                               src={generatePublicUrl(
                                 product.productPictures[0].img
