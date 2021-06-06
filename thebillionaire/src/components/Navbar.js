@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { Button } from "./Button";
-import logo from "../components/images/TB3.png";
-// import { Link } from 'react-router-dom';
 import "./Navbar.css";
-import { MdFingerprint } from "react-icons/md";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { Link } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../actions/category.action";
-// import {MensProducts} from './MensProducts';
 
 function Navbar() {
   const category = useSelector((state) => state.category);
@@ -80,12 +75,11 @@ function Navbar() {
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
               The billionaire.
-              {/* <img src={logo} style={{ width: "75%", height: "120%", }} ></img> */}
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
-            <ul className={click ? "nav-menu active" : "nav-menu"} style={{}}>
+            <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
                 <ul className="nav-item">
                   {category.categories.length > 0
@@ -93,57 +87,30 @@ function Navbar() {
                     : null}
                 </ul>
               </li>
-              {/* <li className="nav-item">
-                <Link
-                  to={category.name}
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Men
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/services"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Women
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/products"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  New Releases
-                </Link>
-              </li> */}
               <li className="nav-btn">
                 {button ? (
-                  <Link to="/Log-in" className="btn-link">
+                  <Link to="/signin" className="btn-link">
                     <Button buttonStyle="btn--outline">LOG IN</Button>
                   </Link>
                 ) : (
-                  <Link to="/Log-in" className="btn-link">
+                  <Link to="/signin" className="btn-link">
                     <Button
                       buttonStyle="btn--outline"
                       buttonSize="btn--mobile"
                       onClick={closeMobileMenu}
                     >
-                      SIGN UP
+                      LOG IN
                     </Button>
                   </Link>
                 )}
               </li>
               <li className="nav-btn">
                 {button ? (
-                  <Link to="/sign-up" className="btn-link">
+                  <Link to="/signup" className="btn-link">
                     <Button buttonStyle="btn--outline">SIGN UP</Button>
                   </Link>
                 ) : (
-                  <Link to="/sign-up" className="btn-link">
+                  <Link to="/signup" className="btn-link">
                     <Button
                       buttonStyle="btn--outline"
                       buttonSize="btn--mobile"
