@@ -18,8 +18,7 @@ import {
   IoIosArrowDown,
   IoIosAdd,
   IoIosTrash,
-  RiEditBoxLine,
-  IoIosCloudUpload,
+  IoIosBuild,
 } from "react-icons/io";
 import { Alert } from "bootstrap";
 import UpdatedCategoriesModal from "./compoenets/UpdateCategoriesModal";
@@ -225,7 +224,7 @@ export default function Category() {
                   <span>Delete</span>
                 </button>
                 <button onClick={updateCategory}>
-                  <IoIosCloudUpload />
+                  <IoIosBuild />
                   <span>Edit</span>
                 </button>
               </div>
