@@ -14,32 +14,34 @@ import Prodover from "./components/Pages/ProductOverview";
 import Form from "./components/Pages/SignUp/Form";
 import MensProducts from "./components/Pages/MensProducts";
 import ProductListPage from "./components/Pages/ProductList/ProductListPage";
+import SignIn from './components/Pages/SignIn/Signin'
 
 function App() {
   return (
-    // <Router>
+    <Router>
     // {/* <Mens></Mens> */}
     // {/* <Womens></Womens> */}
     // {/* <Prodover></Prodover> */}
 
     // {/* <SignUp></SignUp> */}
-    // {/* <Form></Form> */}
+     {/* <Form></Form> */}
+     <SignIn></SignIn>
     // {/* <Admin></Admin> */}
-    // </Router>
+     </Router>
 
-    <Router>
-      {/* <Navbar></Navbar> */}
-      {/* <nav></nav> */}
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/:slug" component={ProductListPage} />
-        {/* <Route path="/:slug" component={ProductListPage} /> */}
-        {/* <Route path='/services' component={Services} /> */}
-        {/* <Route path='/products' component={Products} /> */}
-        {/* <Route path='/sign-up' component={SignUp} /> */}
-      </Switch>
-      <Footer />
-    </Router>
+    // <Router>
+    //   <Navbar></Navbar>
+    //   <nav></nav>
+    //   <Switch>
+    //     <Route path="/" exact component={Home} />
+    //     <Route path="/:slug" component={ProductListPage} />
+    //     <Route path="/:slug" component={ProductListPage} />
+    //     <Route path='/services' component={Services} />
+    //     <Route path='/products' component={Products} />
+    //     <Route path='/sign-up' component={SignUp} />
+    //   </Switch>
+    //   <Footer />
+    // </Router>
   );
 }
 

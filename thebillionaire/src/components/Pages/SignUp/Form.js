@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Form.css";
 import FormSignup from "./FormSignup";
 import FormSuccess from "./FormSuccess";
+import T1 from "../../../components/images/TB1.png";
 
 const Form = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -11,12 +12,11 @@ const Form = () => {
   }
   return (
     <>
-      <div className='formbackground'>
-        <div className='FOcontainer'></div>
+      <div className="formbackground">
+        <div className="FOcontainer"></div>
         <div className="form-container">
-          <span className="close-btn">×</span>
           <div className="form-content-left">
-            <img className="form-img" src="img/img-2.svg" alt="spaceship" />
+            <img className="form-img" src={T1} alt="spaceship" />
           </div>
           {!isSubmitted ? (
             <FormSignup submitForm={submitForm} />
@@ -24,9 +24,6 @@ const Form = () => {
             <FormSuccess />
           )}
         </div>
-        
-
-       
       </div>
     </>
   );

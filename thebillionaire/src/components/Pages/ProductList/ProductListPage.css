@@ -23,6 +23,10 @@
   margin-top: 60px;
 }
 
+.pricing__container-card_Product_List_Page img {
+  width: 300px;
+  height: 250px;
+}
 /* .pricing__container-card:nth-child(2) {
     transform: scale(1.05);
     background: #242424;

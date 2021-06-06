@@ -1,14 +1,14 @@
-.formbackground {
+.formbackground-signin {
   background-image: linear-gradient(to right, rgb(49, 49, 50), rgb(23, 23, 25));
   height: 1200px;
   margin-top: -90px;
 }
 
-.FOcontainer{
-    height: 12%;
+.FOcontainer-signin {
+  height: 12%;
 }
 
-.form-container {
+.form-container-signin {
   margin: 100px auto;
   width: 1000px;
   /* height: 500px; */
@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.form-content-left {
+.form-content-left-signin {
   background: linear-gradient(
     90deg,
     rgb(39, 176, 255) 0%,
@@ -40,9 +40,9 @@
   position: relative;
 }
 
-.form-img {
+.form-img-signin {
   width: 400px;
-  height: 145px;
+  height: 130px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,15 +65,15 @@
   color: #fff;
 }
 
-.form-content-right {
+.form-content-right-signin {
   border-radius: 0 10px 10px 0;
   position: relative;
   background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
 }
 
-.form {
+.form-signin {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -84,7 +84,7 @@
   align-items: center;
 }
 
-.form h1 {
+.form-signin h1 {
   font-size: 1rem;
   text-align: start;
   width: 80%;
@@ -92,25 +92,25 @@
   color: #fff;
 }
 
-.form-inputs {
+.form-inputs-signin {
   margin-bottom: 0.5rem;
   width: 80%;
 }
 
-.form-inputs p {
+.form-inputs-signin p {
   font-size: 0.8rem;
   margin-top: 0.5rem;
   color: #f00e0e;
 }
 
-.form-label {
+.form-label-signin {
   display: inline-block;
   font-size: 0.8rem;
   margin-bottom: 6px;
   color: #fff;
 }
 
-.form-input {
+.form-input-signin {
   display: block;
   padding-left: 10px;
   outline: none;
