@@ -4,7 +4,7 @@ import React from "react";
 import "./Signin.css";
 import T1 from "../../../components/images/TB1.png";
 
-const FormSignup = ({ submitForm }) => {
+const SignIn = () => {
   //   const { handleChange, handleSubmit, values, errors } = useForm(
   //     submitForm,
   //     validate
@@ -85,4 +85,4 @@ const FormSignup = ({ submitForm }) => {
   );
 };
 
-export default FormSignup;
+export default SignIn;
