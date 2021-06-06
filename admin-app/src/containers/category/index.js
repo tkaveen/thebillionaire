@@ -140,11 +140,7 @@ export default function Category() {
       form.append("name", item.name);
       form.append("parentId", item.parentId ? item.parentId : "");
     });
-    dispatch(updateCategories(form)).then((result) => {
-      if (result) {
-        dispatch(getAllCategory());
-      }
-    });
+    dispatch(updateCategories(form));
     setUpdateCategoryModal(false);
   };
 
