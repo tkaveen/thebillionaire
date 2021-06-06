@@ -12,8 +12,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar></Navbar>
-        <nav></nav>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/:slug" component={ProductListPage} />
