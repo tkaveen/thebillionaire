@@ -8,7 +8,6 @@ import {
   updateCategories,
   deleteCategories as deleteCategoriesAction,
 } from "../../actions";
-import Input from "../../components/Ui/Input";
 import Modal from "../../components/Ui/Modal/Modal";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
@@ -17,10 +16,15 @@ import {
   IoIosCheckbox,
   IoIosArrowForward,
   IoIosArrowDown,
+  IoIosAdd,
+  IoIosTrash,
+  RiEditBoxLine,
+  IoIosCloudUpload,
 } from "react-icons/io";
 import { Alert } from "bootstrap";
 import UpdatedCategoriesModal from "./compoenets/UpdateCategoriesModal";
 import AddCategoryModal from "./compoenets/AddCategoryModal";
+import "./style.css";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
@@ -38,6 +42,10 @@ export default function Category() {
 
   const handleClose = () => {
     const form = new FormData();
+    // if (categoryName === "") {
+    //   alert("Name is Required");
+    //   return;
+    // }
     form.append("name", categoryName);
     form.append("parentId", parentCategoryId);
     form.append("categoryImage", categoryImage);
@@ -205,19 +213,28 @@ export default function Category() {
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Category</h3>
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleShow}
-              >
-                Add Category
-              </button>
+
+              <div className="actionBtnContainer">
+                <span>Actions:</span>
+                <button onClick={handleShow}>
+                  <IoIosAdd />
+                  <span>Add</span>
+                </button>
+                <button onClick={deleteCategory}>
+                  <IoIosTrash />
+                  <span>Delete</span>
+                </button>
+                <button onClick={updateCategory}>
+                  <IoIosCloudUpload />
+                  <span>Edit</span>
+                </button>
+              </div>
             </div>
           </Col>
         </Row>
+        <br />
         <Row>
           <Col md={12}>
-            {/* <ul>{renderCategories(category.categories)}</ul> */}
             <CheckboxTree
               nodes={renderCategories(category.categories)}
               checked={checked}
@@ -232,24 +249,6 @@ export default function Category() {
                 expandOpen: <IoIosArrowDown />,
               }}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <button
-              type="button"
-              className="btn btn-dark"
-              onClick={deleteCategory}
-            >
-              Delete
-            </button>
-            <button
-              type="button"
-              className="btn btn-dark"
-              onClick={updateCategory}
-            >
-              Edit
-            </button>
           </Col>
         </Row>
       </Container>
