@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import './Pricing.css';
 import "./ProductOverview.css";
 import { FaFire } from "react-icons/fa";
@@ -11,9 +11,25 @@ import { Link } from "react-router-dom";
 // import S2 from "../components/images/S2.png";
 import S1 from "../../images/S1.png";
 import { ButtonGroup, Button, Divider } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDetailsById } from "../../../actions";
 // import IncrementButton from '../IncrementButton/IncrementButton';
 
-function ProductOverview() {
+const ProductOverview = (props) => {
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product);
+
+  useEffect(() => {
+    const { productId } = props.match.params;
+    console.log(props);
+    const payload = {
+      params: {
+        productId,
+      },
+    };
+    dispatch(getProductDetailsById(payload));
+  }, []);
+
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__sectionPO">
@@ -121,5 +137,5 @@ function ProductOverview() {
       </div>
     </IconContext.Provider>
   );
-}
+};
 export default ProductOverview;
