@@ -10,7 +10,6 @@ import Form from "./components/Pages/SignUp/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./actions";
 import ProductOverview from "./components/Pages/ProductList/ProductOverview";
-// import Caraousel from './components/Carousel/Caraousel'
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        {/* <Caraousel/> */}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signin" component={Signin} />

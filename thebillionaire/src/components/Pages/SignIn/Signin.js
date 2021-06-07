@@ -6,7 +6,6 @@ import T1 from "../../../components/images/TB1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../actions";
 import Navbar from "../../Navbar";
-import LoggedNavbar from "../../LoggedNavbar";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -27,21 +26,12 @@ const Signin = () => {
 
   useEffect(() => {
     if (auth.authenticate) {
-      return renderNonLoggedInNavbar(true);
+      // return renderNonLoggedInNavbar(true);
     }
   }, [auth.authenticate]);
 
-  const renderLoggedInNavbar = () => {
-    return <LoggedNavbar />;
-  };
-
-  const renderNonLoggedInNavbar = () => {
-    return <Navbar />;
-  };
-
   return (
     <div>
-      {auth.authenticate ? renderLoggedInNavbar() : renderNonLoggedInNavbar()}
       <div className="formbackground-signin">
         <div className="FOcontainer-signin"></div>
         <div className="form-container-signin">

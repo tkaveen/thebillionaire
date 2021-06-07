@@ -8,6 +8,7 @@ import { IconContext } from "react-icons/lib";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../actions/category.action";
 import { CgProfile } from "react-icons/cg";
+import { signout } from "../actions";
 
 function Navbar() {
   const auth = useSelector((state) => state.auth);
@@ -70,6 +71,10 @@ function Navbar() {
     return myCategories;
   };
 
+  const logout = () => {
+    dispatch(signout());
+  };
+
   const renderLoggedInLinks = () => {
     return (
       <nav className={navbar ? "navbar active" : "navbar"}>
@@ -93,7 +98,7 @@ function Navbar() {
                 <RiShoppingCartLine className="nav-shopp" />
               </Link>
             </li>
-            <li className='rightside' >
+            <li className="rightside">
               <Link>
                 <CgProfile className="nav-shopp" />
               </Link>
@@ -101,15 +106,17 @@ function Navbar() {
 
             <li className="nav-btn">
               {button ? (
-                <Link to="/" className="btn-link">
-                  <Button buttonStyle="btn--outline">LOG OUT</Button>
+                <Link className="btn-link">
+                  <Button buttonStyle="btn--outline" onClick={logout}>
+                    LOG OUT
+                  </Button>
                 </Link>
               ) : (
-                <Link to="/" className="btn-link">
+                <Link className="btn-link">
                   <Button
                     buttonStyle="btn--outline"
                     buttonSize="btn--mobile"
-                    onClick={closeMobileMenu}
+                    onClick={logout}
                   >
                     LOG OUT
                   </Button>
