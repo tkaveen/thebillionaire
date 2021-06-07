@@ -18,8 +18,8 @@ import {
   IoIosArrowDown,
   IoIosAdd,
   IoIosTrash,
-  IoIosBuild,
 } from "react-icons/io";
+import { FaRegEdit } from "react-icons/fa";
 import { Alert } from "bootstrap";
 import UpdatedCategoriesModal from "./compoenets/UpdateCategoriesModal";
 import AddCategoryModal from "./compoenets/AddCategoryModal";
@@ -220,7 +220,7 @@ export default function Category() {
                   <span>Delete</span>
                 </button>
                 <button onClick={updateCategory}>
-                  <IoIosBuild />
+                  <FaRegEdit />
                   <span>Edit</span>
                 </button>
               </div>
