@@ -173,6 +173,9 @@ navbar ul li a:hover {
 .menu-icon {
   display: none;
 }
+.rightside{
+  margin: 30px 30px;
+}
 
 @media screen and (max-width: 960px) {
   .NavbarItems {

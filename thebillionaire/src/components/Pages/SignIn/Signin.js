@@ -26,8 +26,9 @@ const Signin = () => {
   };
 
   useEffect(() => {
-    // if(auth.authenticate){
-    // }
+    if (auth.authenticate) {
+      return renderNonLoggedInNavbar(true);
+    }
   }, [auth.authenticate]);
 
   const renderLoggedInNavbar = () => {

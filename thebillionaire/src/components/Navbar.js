@@ -7,8 +7,10 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../actions/category.action";
+import { CgProfile } from "react-icons/cg";
 
 function Navbar() {
+  const auth = useSelector((state) => state.auth);
   const category = useSelector((state) => state.category);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -68,67 +70,125 @@ function Navbar() {
     return myCategories;
   };
 
+  const renderLoggedInLinks = () => {
+    return (
+      <nav className={navbar ? "navbar active" : "navbar"}>
+        <div className="navbar-container container">
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            The billionaire.
+          </Link>
+          <div className="menu-icon" onClick={handleClick}>
+            {click ? <FaTimes /> : <FaBars />}
+          </div>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <ul className="nav-item">
+                {category.categories.length > 0
+                  ? renderCategories(category.categories)
+                  : null}
+              </ul>
+            </li>
+            <li>
+              <Link>
+                <RiShoppingCartLine className="nav-shopp" />
+              </Link>
+            </li>
+            <li className='rightside' >
+              <Link>
+                <CgProfile className="nav-shopp" />
+              </Link>
+            </li>
+
+            <li className="nav-btn">
+              {button ? (
+                <Link to="/" className="btn-link">
+                  <Button buttonStyle="btn--outline">LOG OUT</Button>
+                </Link>
+              ) : (
+                <Link to="/" className="btn-link">
+                  <Button
+                    buttonStyle="btn--outline"
+                    buttonSize="btn--mobile"
+                    onClick={closeMobileMenu}
+                  >
+                    LOG OUT
+                  </Button>
+                </Link>
+              )}
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  };
+
+  const renderNonLoggedInLinks = () => {
+    return (
+      <nav className={navbar ? "navbar active" : "navbar"}>
+        <div className="navbar-container container">
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            The billionaire.
+          </Link>
+          <div className="menu-icon" onClick={handleClick}>
+            {click ? <FaTimes /> : <FaBars />}
+          </div>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <ul className="nav-item">
+                {category.categories.length > 0
+                  ? renderCategories(category.categories)
+                  : null}
+              </ul>
+            </li>
+            <li className="nav-btn">
+              {button ? (
+                <Link to="/signin" className="btn-link">
+                  <Button buttonStyle="btn--outline">LOG IN</Button>
+                </Link>
+              ) : (
+                <Link to="/signin" className="btn-link">
+                  <Button
+                    buttonStyle="btn--outline"
+                    buttonSize="btn--mobile"
+                    onClick={closeMobileMenu}
+                  >
+                    LOG IN
+                  </Button>
+                </Link>
+              )}
+            </li>
+            <li className="nav-btn">
+              {button ? (
+                <Link to="/signup" className="btn-link">
+                  <Button buttonStyle="btn--outline">SIGN UP</Button>
+                </Link>
+              ) : (
+                <Link to="/signup" className="btn-link">
+                  <Button
+                    buttonStyle="btn--outline"
+                    buttonSize="btn--mobile"
+                    onClick={closeMobileMenu}
+                  >
+                    SIGN UP
+                  </Button>
+                </Link>
+              )}
+            </li>
+            <li>
+              <Link>
+                <RiShoppingCartLine className="nav-shopp" />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  };
+
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
-        <nav className={navbar ? "navbar active" : "navbar"}>
-          <div className="navbar-container container">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              The billionaire.
-            </Link>
-            <div className="menu-icon" onClick={handleClick}>
-              {click ? <FaTimes /> : <FaBars />}
-            </div>
-            <ul className={click ? "nav-menu active" : "nav-menu"}>
-              <li className="nav-item">
-                <ul className="nav-item">
-                  {category.categories.length > 0
-                    ? renderCategories(category.categories)
-                    : null}
-                </ul>
-              </li>
-              <li className="nav-btn">
-                {button ? (
-                  <Link to="/signin" className="btn-link">
-                    <Button buttonStyle="btn--outline">LOG IN</Button>
-                  </Link>
-                ) : (
-                  <Link to="/signin" className="btn-link">
-                    <Button
-                      buttonStyle="btn--outline"
-                      buttonSize="btn--mobile"
-                      onClick={closeMobileMenu}
-                    >
-                      LOG IN
-                    </Button>
-                  </Link>
-                )}
-              </li>
-              <li className="nav-btn">
-                {button ? (
-                  <Link to="/signup" className="btn-link">
-                    <Button buttonStyle="btn--outline">SIGN UP</Button>
-                  </Link>
-                ) : (
-                  <Link to="/signup" className="btn-link">
-                    <Button
-                      buttonStyle="btn--outline"
-                      buttonSize="btn--mobile"
-                      onClick={closeMobileMenu}
-                    >
-                      SIGN UP
-                    </Button>
-                  </Link>
-                )}
-              </li>
-              <li>
-                <Link>
-                  <RiShoppingCartLine className="nav-shopp" />
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
       </IconContext.Provider>
     </>
   );

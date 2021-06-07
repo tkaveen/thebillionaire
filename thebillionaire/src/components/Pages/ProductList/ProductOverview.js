@@ -41,7 +41,7 @@ const ProductOverview = (props) => {
               <div className="pricing__container-cardInfo">
                 <br></br>
                 <br></br>
-                <h1>Flower Shirt</h1>
+                <h1>{product.productDetails.name}</h1>
                 <br></br>
                 <br></br>
                 <br></br>
@@ -56,15 +56,9 @@ const ProductOverview = (props) => {
                     <div className="column">
                       <div className="overview">
                         <div className="overview-content">
-                          <h1>8.88 $</h1>
+                          <h1>Rs. {product.productDetails.price}</h1>
                           <br></br>
-                          <p>
-                            New Flower Shirt with cotton material New Flower
-                            Shirt with cotton material New Flower Shirt with
-                            cotton material New Flower Shirt with cotton
-                            material New Flower Shirt with cotton material New
-                            Flower Shirt with cotton material
-                          </p>
+                          <p>{product.productDetails.description}</p>
                           <hr></hr>
                           {/* <Divider color="light" variant="middle" /> */}
                           <br></br>
