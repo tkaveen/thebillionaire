@@ -14,7 +14,8 @@ function Home() {
       {/* <Layout>
         <div style ={{marginTop:"75px"}}>HomePage</div>
       </Layout> */}
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
+      {/* <Layout></Layout> */}
       <HeroSection {...homeObjOne} />
       <Pricing />
       <Herotwo></Herotwo>

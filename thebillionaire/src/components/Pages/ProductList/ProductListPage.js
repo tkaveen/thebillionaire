@@ -53,36 +53,37 @@ const ProductListPage = (props) => {
             <div className="productlis-container">
               <div className="pricing__wrapper_Product_List_Page">
                 <h1 className="pricing__heading_Product_List_Page">
-                  {product.slug + " Collection"}
+                  Mens
                 </h1>
 
                 <div className="pricing__container_Product_List_Page">
-                  {product.products && product.products.map((product, index) => {
-                    return (
-                      <div>
-                        <div
-                          to=""
-                          className="pricing__container-card_Product_List_Page"
-                        >
+                  {product.products &&
+                    product.products.map((product, index) => {
+                      return (
+                        <div>
                           <div
-                            className="pricing__container-cardInfo_Product_List_Page"
-                            key={index}
+                            to=""
+                            className="pricing__container-card_Product_List_Page"
                           >
-                            <img
-                              src={generatePublicUrl(
-                                product.productPictures[0].img
-                              )}
-                              alt=""
-                            />
-                            <h3>{product.name}</h3>
-                            <h4>{product.price}</h4>
-                            <ul className="pricing__container-features_Product_List_Page"></ul>
-                            <Button buttonSize="btn--wide" buttonColor="blue">
-                              Buy Now
-                            </Button>
+                            <div
+                              className="pricing__container-cardInfo_Product_List_Page"
+                              key={index}
+                            >
+                              <img
+                                src={generatePublicUrl(
+                                  product.productPictures[0].img
+                                )}
+                                alt=""
+                              />
+                              <h3>{product.name}</h3>
+                              <h4>{product.price}</h4>
+                              <ul className="pricing__container-features_Product_List_Page"></ul>
+                              <Button buttonSize="btn--wide" buttonColor="blue">
+                                Buy Now
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                        {/* {product.products.map((product) => (
+                          {/* {product.products.map((product) => (
                       <div
                         to=""
                         className="pricing__container-card"
@@ -104,9 +105,9 @@ const ProductListPage = (props) => {
                         </div>
                       </div>
                     ))} */}
-                      </div>
-                    );
-                  })}
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>

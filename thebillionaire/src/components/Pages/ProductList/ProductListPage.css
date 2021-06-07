@@ -23,9 +23,13 @@
   margin-top: 60px;
 }
 
-.pricing__container-card_Product_List_Page img {
+
+.pricing__container-card_Product_List_Page  img {
   width: 300px;
-  height: 250px;
+  height: 230px;
+  object-fit: contain;
+  overflow: hidden;
+  text-align: center;
 }
 /* .pricing__container-card:nth-child(2) {
     transform: scale(1.05);
@@ -58,7 +62,7 @@
 .pricing__heading_Product_List_Page {
   color: #ffffff;
   margin-bottom: 24px;
-  margin-left: 17px;
+  margin-left: 30px;
 }
 
 .pricing__container-cardInfo_Product_List_Page {
