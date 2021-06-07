@@ -1,5 +1,5 @@
 import Home from "../../components/images/home.jpg";
-import S2 from "../../components/images/home2.jpg";
+import S2 from "../../components/images/main6.jpg";
 import T1 from "../../components/images/home3.jpg";
 import React, { Component } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

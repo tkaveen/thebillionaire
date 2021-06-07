@@ -52,9 +52,7 @@ const ProductListPage = (props) => {
           <Container>
             <div className="productlis-container">
               <div className="pricing__wrapper_Product_List_Page">
-                <h1 className="pricing__heading_Product_List_Page">
-                  Mens
-                </h1>
+                <h1 className="pricing__heading_Product_List_Page">Mens</h1>
 
                 <div className="pricing__container_Product_List_Page">
                   {product.products &&
@@ -78,9 +76,14 @@ const ProductListPage = (props) => {
                               <h3>{product.name}</h3>
                               <h4>{product.price}</h4>
                               <ul className="pricing__container-features_Product_List_Page"></ul>
-                              <Button buttonSize="btn--wide" buttonColor="blue">
-                                Buy Now
-                              </Button>
+                              <Link to={`/${product.slug}/${product._id}/p`}>
+                                <Button
+                                  buttonSize="btn--wide"
+                                  buttonColor="blue"
+                                >
+                                  Buy Now
+                                </Button>
+                              </Link>
                             </div>
                           </div>
                           {/* {product.products.map((product) => (

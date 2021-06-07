@@ -2,9 +2,10 @@ export const homeObjOne = {
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
-  topLine: "Latest Collection Out now",
+  topLine: "NEW COMER? JOIN WITH US &",
   headline: "Be the Billionaire.",
-  description: "Get everything set up and ready in under 10 minutes. All you need to do is add your information and you're ready to go.",
+  description:
+    "Get everything set up and ready in under 10 minutes. All you need to do is add your information and you're ready to go.",
   buttonLabel: "Sign Up",
   imgStart: "",
   img: "images/svg-1.svg",
