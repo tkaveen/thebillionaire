@@ -7,6 +7,7 @@ import NewTrends from "../../NewTrends";
 import Herothree from "../../Herothree";
 import Layout from "../../Layout/Layout";
 import Navbar from "../../Navbar";
+import Caraousel from "../../Carousel/Caraousel";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       </Layout> */}
       {/* <Navbar></Navbar> */}
       {/* <Layout></Layout> */}
+      <Caraousel />
       <HeroSection {...homeObjOne} />
       <Pricing />
       <Herotwo></Herotwo>

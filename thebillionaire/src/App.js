@@ -7,12 +7,15 @@ import Footer from "./components/Pages/Footer/Footer";
 import ProductListPage from "./components/Pages/ProductList/ProductListPage";
 import Signin from "./components/Pages/Signin/Signin";
 import Form from "./components/Pages/SignUp/Form";
+// import Caraousel from './components/Carousel/Caraousel'
+
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
+      {/* <Caraousel/> */}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signin" component={Signin} />
