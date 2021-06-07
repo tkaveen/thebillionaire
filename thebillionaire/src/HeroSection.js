@@ -1,8 +1,8 @@
 import React from "react";
 import "./HeroSection.css";
-import { Button } from "../src/components/Button";
+import { Button } from "./components/Button";
 import { Link } from "react-router-dom";
-import Animation from "./components/Layout/Animation";
+// import Animation from "./Layout/Animation";
 
 function HeroSection({
   lightBg,

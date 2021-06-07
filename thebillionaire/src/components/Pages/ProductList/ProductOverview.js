@@ -13,6 +13,7 @@ import S1 from "../../images/S1.png";
 import { ButtonGroup, Button, Divider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsById } from "../../../actions";
+import { generatePublicUrl } from "../../../urlConfig";
 // import IncrementButton from '../IncrementButton/IncrementButton';
 
 const ProductOverview = (props) => {
@@ -29,6 +30,10 @@ const ProductOverview = (props) => {
     };
     dispatch(getProductDetailsById(payload));
   }, []);
+
+  if (Object.keys(product.productDetails).length === 0) {
+    return null;
+  }
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
@@ -50,7 +55,12 @@ const ProductOverview = (props) => {
                     <div className="column">
                       {/* <div className='left'>fgdfgzfdg</div> */}
                       <div className="imageholder">
-                        <img src={S1}></img>
+                        <img
+                          src={generatePublicUrl(
+                            product.productDetails.productPictures[0].img
+                          )}
+                          alt=""
+                        />
                       </div>
                     </div>
                     <div className="column">
