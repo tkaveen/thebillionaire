@@ -7,6 +7,9 @@ import { NavLink } from "react-router-dom";
 export default function Home() {
   return (
     <Layout sidebar >
+      <Jumbotron>
+        <h3 className='text-center'>Welcome to The Billionaire Clothing <br/> Admin Dashboard</h3>
+      </Jumbotron>
       {/* <div>
   <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{width: 280}}>
     <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
