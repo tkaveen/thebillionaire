@@ -12,6 +12,7 @@ import T1 from "../../images/T1.png";
 import { generatePublicUrl } from "../../../urlConfig";
 import "./ProductListPage.css";
 import { Container, Row, Col } from "react-bootstrap";
+// import CarouselProductlist from "../../Carousel/CaraouselProductlist";
 
 const ProductListPage = (props) => {
   const product = useSelector((state) => state.product);
@@ -48,20 +49,20 @@ const ProductListPage = (props) => {
       })} */}
 
       <IconContext.Provider value={{ color: "#fff", size: 64 }}>
+        {/* <CarouselProductlist /> */}
         <div className="pricing__section_Product_List_Page">
           <Container>
             <div className="productlis-container">
               <div className="pricing__wrapper_Product_List_Page">
                 <h1 className="pricing__heading_Product_List_Page">
                   Mens {product.slug}
-                  </h1>
+                </h1>
 
                 <div className="pricing__container_Product_List_Page">
                   {product.products &&
                     product.products.map((product, index) => {
                       return (
                         <div>
-                          
                           <div
                             to=""
                             className="pricing__container-card_Product_List_Page"

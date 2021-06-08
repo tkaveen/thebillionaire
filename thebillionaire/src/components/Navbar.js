@@ -94,12 +94,12 @@ function Navbar() {
               </ul>
             </li>
             <li>
-              <Link>
+              <Link to="/cart">
                 <RiShoppingCartLine className="nav-shopp" />
               </Link>
             </li>
             <li className="rightside">
-              <Link>
+              <Link to="/profile" >
                 <CgProfile className="nav-shopp" />
               </Link>
             </li>
@@ -182,7 +182,7 @@ function Navbar() {
               )}
             </li>
             <li>
-              <Link>
+              <Link to="/cart"  >
                 <RiShoppingCartLine className="nav-shopp" />
               </Link>
             </li>

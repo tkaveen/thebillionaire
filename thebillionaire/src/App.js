@@ -10,6 +10,8 @@ import Form from "./components/Pages/SignUp/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./actions";
 import ProductOverview from "./components/Pages/ProductList/ProductOverview";
+import Cart from "./components/Pages/Shoppingcart/Cart";
+import Profile from "./components/Pages/Profile/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Form} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/profile" component={Profile} />
           <Route
             path="/:productSlug/:productId/p"
             component={ProductOverview}
