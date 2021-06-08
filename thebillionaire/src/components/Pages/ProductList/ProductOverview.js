@@ -34,8 +34,8 @@ const ProductOverview = (props) => {
         <div className="pricing__wrapper">
           {/* <h1 className='pricing__heading'>BEST SELLING</h1> */}
           <div className="pricing__container">
-            <Link to="/sign-up" className="pricing__container-cardpo"></Link>
-            <Link to="/sign-up" className="pricing__container-cardProdOver">
+            <Link className="pricing__container-cardpo"></Link>
+            <Link className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">
                 <br></br>
                 <br></br>
@@ -113,6 +113,7 @@ const ProductOverview = (props) => {
                               const img =
                                 product.productDetails.productPictures[0].img;
                               dispatch(addToCart({ _id, name, price, img }));
+                              props.history.push(`/cart`);
                             }}
                           >
                             Add to Cart
@@ -139,7 +140,7 @@ const ProductOverview = (props) => {
                 </Button> */}
               </div>
             </Link>
-            <Link to="/sign-up" className="pricing__container-cardpo"></Link>
+            <Link className="pricing__container-cardpo"></Link>
           </div>
         </div>
       </div>

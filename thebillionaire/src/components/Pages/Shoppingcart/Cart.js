@@ -23,7 +23,7 @@ const Cart = (props) => {
             <Link className="pricing__container-cardProdOver">
               <div className="pricing__container-cardInfo">Cart</div>
             </Link>
-            <Link to="/sign-up" className="pricing__container-cardpo"></Link>
+            <Link  className="pricing__container-cardpo"></Link>
           </div>
         </div>
       </div>

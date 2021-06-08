@@ -8,7 +8,7 @@ import ProductListPage from "./components/Pages/ProductList/ProductListPage";
 import Signin from "./components/Pages/Signin/Signin";
 import Form from "./components/Pages/SignUp/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { isUserLoggedIn } from "./actions";
+import { isUserLoggedIn, updateCart } from "./actions";
 import ProductOverview from "./components/Pages/ProductList/ProductOverview";
 import Cart from "./components/Pages/Shoppingcart/Cart";
 import Profile from "./components/Pages/Profile/Profile";
@@ -21,6 +21,10 @@ function App() {
       dispatch(isUserLoggedIn());
     }
   }, [auth.authenticate]);
+
+  useEffect(() => {
+    dispatch(updateCart);
+  }, []);
 
   return (
     <div className="App">
