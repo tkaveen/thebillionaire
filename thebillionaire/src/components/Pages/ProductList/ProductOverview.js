@@ -83,24 +83,7 @@ const ProductOverview = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="column">
-                              <div className="quantity">
-                                <h3>Quantity :</h3>
-                                <br></br>
-                                {/* <IncrementButton></IncrementButton> */}
-                                <div>
-                                  <ButtonGroup
-                                    color="Secondary"
-                                    aria-label="outlined primary button group"
-                                  >
-                                    <Button>S</Button>
-                                    <Button>M</Button>
-                                    <Button>L</Button>
-                                    <Button>XL</Button>
-                                  </ButtonGroup>
-                                </div>
-                              </div>
-                            </div>
+                            <div className="column"></div>
                           </div>
                           <br></br>
                           <br></br>

@@ -23,7 +23,7 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    dispatch(updateCart);
+    dispatch(updateCart());
   }, []);
 
   return (

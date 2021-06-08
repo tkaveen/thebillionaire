@@ -30,6 +30,7 @@
   object-fit: contain;
   overflow: hidden;
   text-align: center;
+
 }
 /* .pricing__container-card:nth-child(2) {
     transform: scale(1.05);

@@ -28,7 +28,7 @@ export const updateCart = () => {
       ? JSON.parse(localStorage.getItem("cart"))
       : null;
 
-    if (cart) {
+    if (cartItems) {
       dispatch({
         type: cartConstants.ADD_TO_CART,
         payload: { cartItems },
