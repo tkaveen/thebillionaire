@@ -7,6 +7,8 @@ import { addProduct, deleteProductById } from "../../actions/product.action";
 import Modal from "../../components/Ui/Modal/Modal";
 import "../Products/Product.css";
 import { generatePublicUrl } from "../../urlConfig";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BsFileEarmark } from "react-icons/bs";
 
 export default function Products() {
   const [name, setName] = useState("");
@@ -76,10 +78,14 @@ export default function Products() {
                   <td>{product.quantity}</td>
                   <td>{product.category.name}</td>
                   <td>
-                    <button onClick={() => showProductDetailModal(product)}>
-                      info
+                    <button
+                      className="act-btn"
+                      onClick={() => showProductDetailModal(product)}
+                    >
+                      info <BsFileEarmark />
                     </button>
                     <button
+                      className="act-btn"
                       onClick={() => {
                         const payload = {
                           productId: product._id,
@@ -87,7 +93,7 @@ export default function Products() {
                         dispatch(deleteProductById(payload));
                       }}
                     >
-                      del
+                      Del <AiOutlineDelete />
                     </button>
                   </td>
                 </tr>
