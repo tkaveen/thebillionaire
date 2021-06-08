@@ -1,20 +1,13 @@
 import React, { useEffect } from "react";
-// import './Pricing.css';
 import "./ProductOverview.css";
-import { FaFire } from "react-icons/fa";
-import { BsXDiamondFill } from "react-icons/bs";
-import { GiCrystalize } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-// import logo from "../components/images/TB3.png";
-// import S1 from "../components/images/S1.png";
-// import S2 from "../components/images/S2.png";
-import S1 from "../../images/S1.png";
 import { ButtonGroup, Button, Divider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 // import IncrementButton from '../IncrementButton/IncrementButton';
+import { addToCart } from "../../../actions/cart.action";
 
 const ProductOverview = (props) => {
   const dispatch = useDispatch();
@@ -112,7 +105,18 @@ const ProductOverview = (props) => {
                           <br></br>
                           <br></br>
                           {/* <Button variant="outlined" color='secondary'>Add to Cart</Button> */}
-                          <Button variant="contained">Add to Cart</Button>
+                          <Button
+                            variant="contained"
+                            onClick={() => {
+                              const { _id, name, price } =
+                                product.productDetails;
+                              const img =
+                                product.productDetails.productPictures[0].img;
+                              dispatch(addToCart({ _id, name, price, img }));
+                            }}
+                          >
+                            Add to Cart
+                          </Button>
                           &nbsp;&nbsp;&nbsp;&nbsp;
                           {/* <Button variant="outlined">Buy Now</Button> */}
                           <Button variant="contained">Buy Now</Button>
