@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/index";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Input from "../../components/Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../actions/product.action";
+import { addProduct, deleteProductById } from "../../actions/product.action";
 import Modal from "../../components/Ui/Modal/Modal";
 import "../Products/Product.css";
 import { generatePublicUrl } from "../../urlConfig";
@@ -63,20 +63,33 @@ export default function Products() {
             <th>Price</th>
             <th>Quantity</th>
             <th>Category</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {product.products.length > 0
             ? product.products.map((product) => (
-                <tr
-                  onClick={() => showProductDetailModal(product)}
-                  key={product._id}
-                >
-                  <td>1</td>
+                <tr key={product._id}>
+                  <td>2</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td>{product.category.name}</td>
+                  <td>
+                    <button onClick={() => showProductDetailModal(product)}>
+                      info
+                    </button>
+                    <button
+                      onClick={() => {
+                        const payload = {
+                          productId: product._id,
+                        };
+                        dispatch(deleteProductById(payload));
+                      }}
+                    >
+                      del
+                    </button>
+                  </td>
                 </tr>
               ))
             : null}

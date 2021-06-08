@@ -1,37 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.css";
-
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import S1 from "../../images/S1.png";
-import { ButtonGroup, Button, Divider, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductDetailsById } from "../../../actions";
-import { generatePublicUrl } from "../../../urlConfig";
 import { RiShoppingCartLine } from "react-icons/ri";
-// import Card from "../../card/Card";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-// import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import CartItem from "./CartItem";
-
-
-// import IncrementButton from '../IncrementButton/IncrementButton';
-const useStyles = makeStyles({
-  root: {},
-
-  title: {
-    fontSize: 14,
-  },
-});
+import { addToCart } from "../../../actions";
 
 const Cart = (props) => {
-  const classes = useStyles();
   const cart = useSelector((state) => state.cart);
-  const cartItems = cart.cartItems;
+  // const cartItems = cart.cartItems;
+  const [cartItems, setCartItems] = useState(cart.cartItems);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+
+  const onQuantityIncrement = (_id, qty) => {
+    // console.log({ _id, qty });
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img }, 1));
+  };
+
+  const onQuantityDecrement = (_id, qty) => {
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img }, -1));
+  };
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
@@ -51,12 +46,17 @@ const Cart = (props) => {
                 <br />
                 <br />
 
-                <div className="cart-Item-Container" style={{marginLeft:"30px"}}>
+                <div
+                  className="cart-Item-Container"
+                  style={{ marginLeft: "30px" }}
+                >
                   {Object.keys(cartItems).map((key, index) => (
                     <Container>
                       <CartItem
                         key={index}
                         cartItem={cartItems[key]}
+                        onQuantityInc={onQuantityIncrement}
+                        onQuantityDec={onQuantityDecrement}
                       ></CartItem>
                     </Container>
                     // <div key={index}>

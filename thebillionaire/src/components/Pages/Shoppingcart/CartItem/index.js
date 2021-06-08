@@ -9,7 +9,19 @@ import { Button } from "../../../Button";
  **/
 
 const CartItem = (props) => {
-  const { _id, name, price, qty, img } = props.cartItem;
+  const [qty, setQty] = useState(props.cartItem.qty);
+  const { _id, name, price, img } = props.cartItem;
+
+  const onQuantityIncrement = () => {
+    setQty(qty + 1);
+    props.onQuantityInc(_id, qty + 1);
+  };
+
+  const onQuantityDecrement = () => {
+    if (qty <= 1) return;
+    setQty(qty - 1);
+    props.onQuantityDec(_id, qty - 1);
+  };
 
   return (
     <div className="cartItemContainer ">
@@ -31,9 +43,13 @@ const CartItem = (props) => {
             }}
           >
             <div className="quantityControl">
-              <button style={{ color: "white" }}>-</button>
+              <button onClick={onQuantityDecrement} style={{ color: "white" }}>
+                -
+              </button>
               <input value={qty} readOnly />
-              <button style={{ color: "white" }}>+</button>
+              <button onClick={onQuantityIncrement} style={{ color: "white" }}>
+                +
+              </button>
             </div>
             <div style={{ marginTop: "32px", marginLeft: "70px" }}>
               <Button buttonStyle="btn--outline">Save</Button>
