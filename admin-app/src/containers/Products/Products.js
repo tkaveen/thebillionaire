@@ -9,6 +9,7 @@ import "../Products/Product.css";
 import { generatePublicUrl } from "../../urlConfig";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsFileEarmark } from "react-icons/bs";
+import { IoShirtOutline } from "react-icons/io5";
 
 export default function Products() {
   const [name, setName] = useState("");
@@ -72,7 +73,9 @@ export default function Products() {
           {product.products.length > 0
             ? product.products.map((product) => (
                 <tr key={product._id}>
-                  <td>2</td>
+                  <td>
+                    <IoShirtOutline />
+                  </td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>

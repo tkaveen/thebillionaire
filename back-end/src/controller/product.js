@@ -80,3 +80,4 @@ exports.deleteProductById = (req, res) => {
     res.status(400).json({ error: "Params Required" });
   }
 };
+

@@ -2,7 +2,6 @@ import React from "react";
 import "./HeroSection.css";
 import { Button } from "./components/Button";
 import { Link } from "react-router-dom";
-// import Animation from "./components/Layout/Animation";
 
 function HeroSection({
   lightBg,
@@ -12,8 +11,6 @@ function HeroSection({
   headline,
   description,
   buttonLabel,
-  img,
-  alt,
   imgStart,
 }) {
   return (
@@ -33,7 +30,6 @@ function HeroSection({
               <div className="home__hero-text-wrapper">
                 <div className="top-line">{topLine}</div>
                 <h1 className={lightText ? "heading" : "heading dark"}>
-                  {/* <Animation text="adasd" /> */}
                   {headline}
                 </h1>
                 <p

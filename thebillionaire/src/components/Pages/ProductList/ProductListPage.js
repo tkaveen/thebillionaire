@@ -6,9 +6,6 @@ import "./ProductListPage.css";
 import { Button } from "../../Button";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import S1 from "../../images/S1.png";
-import S2 from "../../images/S2.png";
-import T1 from "../../images/T1.png";
 import { generatePublicUrl } from "../../../urlConfig";
 import "./ProductListPage.css";
 import { Container, Row, Col } from "react-bootstrap";
@@ -54,9 +51,7 @@ const ProductListPage = (props) => {
           <Container>
             <div className="productlis-container">
               <div className="pricing__wrapper_Product_List_Page">
-                <h1 className="pricing__heading_Product_List_Page">
-                  Mens {product.slug}
-                </h1>
+                {/* <h1 className="pricing__heading_Product_List_Page">Mens</h1> */}
 
                 <div className="pricing__container_Product_List_Page">
                   {product.products &&
