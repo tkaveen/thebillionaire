@@ -63,7 +63,7 @@ export default function Products() {
           <tr>
             <th></th>
             <th>Product Name</th>
-            <th>Price</th>
+            <th>Price(Rs.)</th>
             <th>Quantity</th>
             <th>Category</th>
             <th>Actions</th>
@@ -86,6 +86,12 @@ export default function Products() {
                       onClick={() => showProductDetailModal(product)}
                     >
                       info <BsFileEarmark />
+                    </button>
+                    <button
+                      className="act-btn"
+                      // onClick={() => showProductDetailModal(product)}
+                    >
+                      Update <BsFileEarmark />
                     </button>
                     <button
                       className="act-btn"
