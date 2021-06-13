@@ -23,15 +23,15 @@ const getCartItems = () => {
   };
 };
 
-export const addToCart = (product, newQty = null) => {
+export const addToCart = (product, newQty = 1) => {
   return async (dispatch) => {
     const {
       cart: { cartItems },
       auth,
     } = store.getState();
-    // console.log("action: :products", products);
-    // const product = action.payload.product;
-    // const products = state.products;
+    //console.log('action::products', products);
+    //const product = action.payload.product;
+    //const products = state.products;
     const qty = cartItems[product._id]
       ? parseInt(cartItems[product._id].qty + newQty)
       : 1;
@@ -39,9 +39,16 @@ export const addToCart = (product, newQty = null) => {
       ...product,
       qty,
     };
+
     if (auth.authenticate) {
       dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
       const payload = {
+        // cartItems: Object.keys(cartItems).map((key, index) => {
+        //     return {
+        //         quantity: cartItems[key].qty,
+        //         product: cartItems[key]._id
+        //     }
+        // })
         cartItems: [
           {
             product: product._id,
@@ -58,7 +65,9 @@ export const addToCart = (product, newQty = null) => {
     } else {
       localStorage.setItem("cart", JSON.stringify(cartItems));
     }
+
     console.log("addToCart::", cartItems);
+
     dispatch({
       type: cartConstants.ADD_TO_CART_SUCCESS,
       payload: { cartItems },

@@ -37,6 +37,14 @@ exports.addItemToCart = (req, res) => {
           };
         }
         promiseArray.push(runUpdate(condition, update));
+        //Cart.findOneAndUpdate(condition, update, { new: true }).exec();
+        // .exec((error, _cart) => {
+        //     if(error) return res.status(400).json({ error });
+        //     if(_cart){
+        //         //return res.status(201).json({ cart: _cart });
+        //         updateCount++;
+        //     }
+        // })
       });
       Promise.all(promiseArray)
         .then((response) => res.status(201).json({ response }))
@@ -58,6 +66,8 @@ exports.addItemToCart = (req, res) => {
 };
 
 exports.getCartItems = (req, res) => {
+  //const { user } = req.body.payload;
+  //if(user){
   Cart.findOne({ user: req.user._id })
     .populate("cartItems.product", "_id name price productPictures")
     .exec((error, cart) => {
@@ -76,6 +86,7 @@ exports.getCartItems = (req, res) => {
         res.status(200).json({ cartItems });
       }
     });
+  //}
 };
 
 // exports.addItemToCart = (req, res) => {
