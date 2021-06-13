@@ -11,9 +11,14 @@ import Card from "../../card/Card";
 
 const Cart = (props) => {
   const cart = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
   // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+
   useEffect(() => {
     setCartItems(cart.cartItems);
   }, [cart.cartItems]);
