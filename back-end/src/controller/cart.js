@@ -2,8 +2,6 @@ const Cart = require("../models/cart");
 
 function runUpdate(condition, updateData) {
   return new Promise((resolve, reject) => {
-    //you update code here
-
     Cart.findOneAndUpdate(condition, updateData, { upsert: true })
       .then((result) => resolve())
       .catch((err) => reject(err));
@@ -16,7 +14,6 @@ exports.addItemToCart = (req, res) => {
     if (cart) {
       //if cart already exists then update cart by quantity
       let promiseArray = [];
-
       req.body.cartItems.forEach((cartItem) => {
         const product = cartItem.product;
         const item = cart.cartItems.find((c) => c.product == product);
@@ -37,14 +34,6 @@ exports.addItemToCart = (req, res) => {
           };
         }
         promiseArray.push(runUpdate(condition, update));
-        //Cart.findOneAndUpdate(condition, update, { new: true }).exec();
-        // .exec((error, _cart) => {
-        //     if(error) return res.status(400).json({ error });
-        //     if(_cart){
-        //         //return res.status(201).json({ cart: _cart });
-        //         updateCount++;
-        //     }
-        // })
       });
       Promise.all(promiseArray)
         .then((response) => res.status(201).json({ response }))
@@ -66,8 +55,6 @@ exports.addItemToCart = (req, res) => {
 };
 
 exports.getCartItems = (req, res) => {
-  //const { user } = req.body.payload;
-  //if(user){
   Cart.findOne({ user: req.user._id })
     .populate("cartItems.product", "_id name price productPictures")
     .exec((error, cart) => {
@@ -88,60 +75,3 @@ exports.getCartItems = (req, res) => {
     });
   //}
 };
-
-// exports.addItemToCart = (req, res) => {
-//   Cart.findOne({ user: req.user._id }).exec((error, cart) => {
-//     if (error) return res.status(400).json({ error });
-//     if (cart) {
-//       // if cart already exist then update cart by quantity
-//       const product = req.body.cartItems.product;
-//       const item = cart.cartItems.find((c) => c.product == product);
-//       if (item) {
-//         Cart.findOneAndUpdate(
-//           { user: req.user._id, "cartItems.product": product },
-//           {
-//             $set: {
-//               "cartItems.$": {
-//                 ...req.body.cartItems,
-//                 quantity: item.quantity + req.body.cartItems.quantity,
-//               },
-//             },
-//           }
-//         ).exec((error, _cart) => {
-//           if (error) return res.status(400).json({ error });
-//           if (_cart) {
-//             return res.status(201).json({ _cart });
-//           }
-//         });
-//       } else {
-//         Cart.findOneAndUpdate(
-//           { user: req.user._id },
-//           {
-//             $push: {
-//               cartItems: [req.body.cartItems],
-//             },
-//           }
-//         ).exec((error, _cart) => {
-//           if (error) return res.status(400).json({ error });
-//           if (_cart) {
-//             return res.status(201).json({ _cart });
-//           }
-//         });
-//       }
-
-//       //   res.status(200).json({ message: cart });
-//     } else {
-//       // if cart not exist then create a new cart
-//       const cart = new Cart({
-//         user: req.user._id,
-//         cartItems: req.body.cartItems,
-//       });
-//       cart.save((error, cart) => {
-//         if (error) return res.status(400).json({ error });
-//         if (cart) {
-//           return res.status(201).json({ cart });
-//         }
-//       });
-//     }
-//   });
-// };

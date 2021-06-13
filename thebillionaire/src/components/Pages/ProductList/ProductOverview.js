@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import "./ProductOverview.css";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import { ButtonGroup, Button, Divider } from "@material-ui/core";
+import { ButtonGroup, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
-// import IncrementButton from '../IncrementButton/IncrementButton';
 import { addToCart } from "../../../actions/cart.action";
 
 const ProductOverview = (props) => {

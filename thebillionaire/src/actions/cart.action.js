@@ -82,8 +82,6 @@ export const updateCart = () => {
       ? JSON.parse(localStorage.getItem("cart"))
       : null;
 
-    console.log("upppppppppp");
-
     if (auth.authenticate) {
       localStorage.removeItem("cart");
       //dispatch(getCartItems());
@@ -117,16 +115,3 @@ export const updateCart = () => {
 };
 
 export { getCartItems };
-
-// export const removeCartItem = (payload) => {
-//   return async (dispatch) => {
-//     try{
-//       dispatch({type: cartConstants.REMOVE_CART_ITEM_REQUEST});
-//       const res = await axios.post(`user/cart/removeItem`, {payload});
-//       if(res.status === 202){
-//         dispatch({type : cartConstants.REMOVE_CART_ITEM_SUCCESS})
-//         dispatch(getCart)
-//       }
-//     }
-//   };
-// };
