@@ -31,7 +31,6 @@ const ProductOverview = (props) => {
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__sectionPO">
         <div className="pricing__wrapper">
-          {/* <h1 className='pricing__heading'>BEST SELLING</h1> */}
           <div className="pricing__container">
             <Link className="pricing__container-cardpo"></Link>
             <Link className="pricing__container-cardProdOver">
@@ -45,7 +44,6 @@ const ProductOverview = (props) => {
                 <div>
                   <div className="row">
                     <div className="column">
-                      {/* <div className='left'>fgdfgzfdg</div> */}
                       <div className="imageholder">
                         <img
                           src={generatePublicUrl(
@@ -62,7 +60,6 @@ const ProductOverview = (props) => {
                           <br></br>
                           <p>{product.productDetails.description}</p>
                           <hr></hr>
-                          {/* <Divider color="light" variant="middle" /> */}
                           <br></br>
                           <div className="row">
                             <div className="column">
@@ -86,7 +83,6 @@ const ProductOverview = (props) => {
                           </div>
                           <br></br>
                           <br></br>
-                          {/* <Button variant="outlined" color='secondary'>Add to Cart</Button> */}
                           <Button
                             variant="contained"
                             onClick={() => {
@@ -101,25 +97,13 @@ const ProductOverview = (props) => {
                             Add to Cart
                           </Button>
                           &nbsp;&nbsp;&nbsp;&nbsp;
-                          {/* <Button variant="outlined">Buy Now</Button> */}
                           <Button variant="contained">Buy Now</Button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* <h3>Scott T-Shirt</h3>
-                <h4>$29.99</h4> */}
-                {/* <p>per month</p> */}
-                <ul className="pricing__container-features">
-                  {/* <li>1000 Transactions</li> */}
-                  {/* <li>3.5% Cash Back</li> */}
-                  {/* <li>$100,000 Limit</li> */}
-                </ul>
-                {/* <Button buttonSize='btn--wide' buttonColor='blue'>
-                Buy Now
-                </Button> */}
+                <ul className="pricing__container-features"></ul>
               </div>
             </Link>
             <Link className="pricing__container-cardpo"></Link>

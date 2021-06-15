@@ -23,6 +23,7 @@
     "react-spring": "^9.2.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
+    "rsuite": "^4.10.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.3",
     "web-vitals": "^1.0.1"
