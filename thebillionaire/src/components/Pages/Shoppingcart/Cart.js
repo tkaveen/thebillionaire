@@ -39,7 +39,6 @@ const Cart = (props) => {
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section_cart">
         <div>
-          {/* <h1 className='pricing__heading'>BEST SELLING</h1> */}
           <div className="pricing__container_cart">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardProdOver_cart">
@@ -66,36 +65,17 @@ const Cart = (props) => {
                       onQuantityDec={onQuantityDecrement}
                     ></CartItem>
                   </Container>
-
-                  // <div key={index}>
-                  //   <div>{cartItems[key].name}</div>
-                  // <CardContent key={index}>
-                  //   <Typography
-                  //     variant="h5"
-                  //     component="h2"
-                  //     style={{ color: "white" }}
-                  //   >
-                  //     {cartItems[key].name} - qty - {cartItems[key].qty}
-                  //     <br />
-                  //     __________________________________________________________________________________________
-                  //   </Typography>
-
-                  //   <Typography
-                  //     variant="body2"
-                  //     component="p"
-                  //     style={{ color: "white" }}
-                  //   ></Typography>
-                  // </CardContent>
-                  // </div>
                 ))}
               </div>
               <Card style={{ width: "500px", color: "black" }}>Price</Card>
               <br />
-              <Link>
-                <Button buttonSize="btn--wide" buttonColor="blue">
-                  Place Order
-                </Button>
-              </Link>
+              <Button
+                buttonSize="btn--wide"
+                buttonColor="blue"
+                onClick={() => props.history.push(`/checkout`)}
+              >
+                Place Order
+              </Button>
             </Link>
             <Link className="pricing__container-cardpo"></Link>
           </div>
