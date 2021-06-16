@@ -8,6 +8,7 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import CartItem from "./CartItem";
 import { addToCart } from "../../../actions";
 import Card from "../../card/Card";
+import { Button } from "../../Button";
 
 const Cart = (props) => {
   const cart = useSelector((state) => state.cart);
@@ -89,6 +90,12 @@ const Cart = (props) => {
                 ))}
               </div>
               <Card style={{ width: "500px", color: "black" }}>Price</Card>
+              <br />
+              <Link>
+                <Button buttonSize="btn--wide" buttonColor="blue">
+                  Place Order
+                </Button>
+              </Link>
             </Link>
             <Link className="pricing__container-cardpo"></Link>
           </div>

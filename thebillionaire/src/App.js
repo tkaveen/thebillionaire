@@ -12,6 +12,7 @@ import { isUserLoggedIn, updateCart } from "./actions";
 import ProductOverview from "./components/Pages/ProductList/ProductOverview";
 import Cart from "./components/Pages/Shoppingcart/Cart";
 import Profile from "./components/Pages/Profile/Profile";
+import CheckoutPage from "./components/Pages/Checkout/CheckoutPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signup" component={Form} />
           <Route path="/cart" component={Cart} />
           <Route path="/profile" component={Profile} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route
             path="/:productSlug/:productId/p"
             component={ProductOverview}
