@@ -1,9 +1,6 @@
-import React from 'react'
+import React from "react";
+import "./CheckoutPage.css";
 
 export default function CheckoutPage() {
-    return (
-        <div>
-            CheckoutPage
-        </div>
-    )
+  return <div>CheckoutPage</div>;
 }
