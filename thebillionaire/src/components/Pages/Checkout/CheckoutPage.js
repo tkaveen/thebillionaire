@@ -7,7 +7,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { getAddress } from "../../../actions";
 import { Button } from "../../Button";
 import AddressForm from "./AddressForm";
-import { MaterialInput } from "../../MaterialUi";
+import { Anchor, MaterialInput } from "../../MaterialUi";
+import PriceDetails from "../../PriceDetails";
 
 const CheckoutStep = (props) => {
   return (
@@ -29,6 +30,7 @@ const CheckoutStep = (props) => {
 const CheckoutPage = (props) => {
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
   const [newAddress, setNewAddress] = useState(false);
   const [address, setAddress] = useState([]);
   const [confirmAddress, setConfirmAddress] = useState(false);
@@ -50,6 +52,13 @@ const CheckoutPage = (props) => {
   const confirmDeliveryAddress = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
+  };
+
+  const enableAddressEditForm = (addr) => {
+    const updatedAddress = address.map((adr) =>
+      adr._id === addr._id ? { ...adr, edit: true } : { ...adr, edit: false }
+    );
+    setAddress(updatedAddress);
   };
 
   useEffect(() => {
@@ -83,7 +92,7 @@ const CheckoutPage = (props) => {
               {/* <Container style={{width:"900px", background:"white"}}> */}
               <div
                 className="check-Item-Container"
-                style={{ marginLeft: "140px" }}
+                style={{ marginLeft: "140px", display: "flex" }}
               >
                 <div className="cartContainer" style={{ display: "block" }}>
                   {/* <div className="checkoutContainer"> */}
@@ -93,11 +102,23 @@ const CheckoutPage = (props) => {
                     active={!auth.authenticate}
                     body={
                       auth.authenticate ? (
-                        <div className="loggedInId">
-                          <span style={{ color: "black" }}>
-                            <b>{auth.user.fullName}</b>
+                        <div
+                          className="loggedInId"
+                          style={{ paddingBottom: "15px" }}
+                        >
+                          <span>
+                            <b style={{ fontSize: "15px" }}>
+                              {auth.user.fullName}
+                            </b>
                           </span>
-                          <span style={{ margin: "0 5px", color: "black" }}>
+                          <span
+                            style={{
+                              margin: "0 5px",
+                              marginLeft: "10px",
+                              paddingBottom: "20px",
+                              fontSize: "15px",
+                            }}
+                          >
                             {auth.user.email}
                           </span>
                         </div>
@@ -111,58 +132,106 @@ const CheckoutPage = (props) => {
                   <CheckoutStep
                     stepNumber={"2"}
                     title={"DILIVERY ADDRESS"}
-                    active={!confirmAddress}
+                    active={!confirmAddress && auth.authenticate}
                     body={
                       <>
-                        {confirmAddress
-                          ? JSON.stringify(selectedAddress)
-                          : address.map((adr) => (
-                              <div className="flexRow addressContaner">
-                                <div>
-                                  <input
-                                    name="address"
-                                    type="radio"
-                                    onClick={() => selectAddress(adr)}
-                                    style={{ marginLeft: "25px" }}
-                                  />
-                                </div>
-                                <div
-                                  className="flexRow sb addressinfo"
-                                  style={{ color: "black" }}
-                                >
+                        {confirmAddress ? (
+                          <div>{`${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                        ) : (
+                          address.map((adr) => (
+                            <div
+                              className="flexRow addressContaner"
+                              style={{
+                                marginTop: "15px",
+                                paddingBottom: "20px",
+                              }}
+                            >
+                              <div>
+                                <input
+                                  name="address"
+                                  type="radio"
+                                  onClick={() => selectAddress(adr)}
+                                  style={{
+                                    marginLeft: "25px",
+                                    marginBottom: "23px",
+                                  }}
+                                />
+                              </div>
+                              <div className="flexRow sb addressinfo">
+                                {!adr.edit ? (
                                   <div>
                                     <div>
-                                      <span>{adr.name}</span>
-                                      <span>{adr.addressType}</span>
-                                      <span>{adr.mobileNumber}</span>
+                                      {adr.selected && (
+                                        <Anchor
+                                          name="EDIT"
+                                          style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            marginLeft: "600px",
+                                          }}
+                                          onClick={() =>
+                                            enableAddressEditForm(adr)
+                                          }
+                                        />
+                                      )}
+                                      <span className="addressName">
+                                        {adr.name}
+                                      </span>
+                                      <span
+                                        className="addressType"
+                                        style={{ marginLeft: "25px" }}
+                                      >
+                                        {adr.addressType}
+                                      </span>
+                                      <span style={{ marginLeft: "25px" }}>
+                                        {adr.mobileNumber}
+                                      </span>
                                     </div>
-                                    <div style={{ color: "black" }}>
-                                      {adr.address}
+
+                                    <div
+                                      className="fullAddress"
+                                      style={{ marginTop: "5px" }}
+                                    >
+                                      {adr.address} <br />{" "}
+                                      {`${adr.state} - ${adr.pinCode}`}
                                     </div>
                                     {adr.selected && (
-                                      <Button
-                                        buttonSize="btn--wide"
-                                        buttonColor="blue"
-                                        onClick={() =>
-                                          confirmDeliveryAddress(adr)
-                                        }
-                                      >
-                                        DELIVERY HERE
-                                      </Button>
+                                      <div style={{ marginTop: "10px" }}>
+                                        <Button
+                                          buttonSize="btn--wide"
+                                          buttonColor="blue"
+                                          onClick={() =>
+                                            confirmDeliveryAddress(adr)
+                                          }
+                                        >
+                                          DELIVERY HERE
+                                        </Button>
+                                      </div>
                                     )}
                                   </div>
+                                ) : (
+                                  <AddressForm
+                                    withoutLayout={true}
+                                    onSubmitForm={onAddressSubmit}
+                                    onSubmitForm={onAddressSubmit}
+                                    onCancel={() => {}}
+                                  />
+                                )}
+                                {/* <div>
                                   {adr.selected && (
                                     <div style={{ marginRight: "10px" }}>
                                       edit
                                     </div>
                                   )}
-                                </div>
+                                </div> */}
                               </div>
-                            ))}
+                            </div>
+                          ))
+                        )}
                       </>
                     }
                   />
-                  {confirmAddress ? null : newAddress ? (
+                  {/* {confirmAddress ? null : newAddress ? (
                     <AddressForm
                       onSubmitForm={onAddressSubmit}
                       onCancel={() => {}}
@@ -176,9 +245,33 @@ const CheckoutPage = (props) => {
                         setNewAddress(true);
                       }}
                     />
-                  )}
+                  )} */}
                   <CheckoutStep stepNumber={3} title={"ORDER SUMMARY"} />
                   <CheckoutStep stepNumber={4} title={"PAYMENT OPTIONS"} />
+                </div>
+                <div
+                  style={{
+                    marginLeft: "50px",
+                    marginTop: "12px",
+                    width: "350px",
+                  }}
+                >
+                  <PriceDetails
+                    totalItem={Object.keys(cart.cartItems).reduce(function (
+                      qty,
+                      key
+                    ) {
+                      return qty + cart.cartItems[key].qty;
+                    },
+                    0)}
+                    totalPrice={Object.keys(cart.cartItems).reduce(
+                      (totalPrice, key) => {
+                        const { price, qty } = cart.cartItems[key];
+                        return totalPrice + price * qty;
+                      },
+                      0
+                    )}
+                  />
                 </div>
                 {/* </div> */}
               </div>

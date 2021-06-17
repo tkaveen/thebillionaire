@@ -46,7 +46,7 @@ navbar ul {
 .active:hover {
   background-color: #000000;
   color: #ffffff;
-  box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411);
+  /* box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411); */
   transition: all ease 0.2s;
 }
 navbar ul li a {
