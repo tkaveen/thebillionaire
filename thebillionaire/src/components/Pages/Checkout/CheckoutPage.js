@@ -37,10 +37,12 @@ const CheckoutPage = (props) => {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const dispatch = useDispatch();
 
-  const onAddressSubmit = () => {};
+  const onAddressSubmit = (addr) => {
+    setSelectedAddress(addr);
+    setConfirmAddress(true);
+  };
 
   const selectAddress = (addr) => {
-    // console.log(addr);
     const updatedAddress = address.map((adr) =>
       adr._id === addr._id
         ? { ...adr, selected: true }
@@ -231,7 +233,7 @@ const CheckoutPage = (props) => {
                       </>
                     }
                   />
-                  {/* {confirmAddress ? null : newAddress ? (
+                  {confirmAddress ? null : newAddress ? (
                     <AddressForm
                       onSubmitForm={onAddressSubmit}
                       onCancel={() => {}}
@@ -245,7 +247,7 @@ const CheckoutPage = (props) => {
                         setNewAddress(true);
                       }}
                     />
-                  )} */}
+                  )}
                   <CheckoutStep stepNumber={3} title={"ORDER SUMMARY"} />
                   <CheckoutStep stepNumber={4} title={"PAYMENT OPTIONS"} />
                 </div>
