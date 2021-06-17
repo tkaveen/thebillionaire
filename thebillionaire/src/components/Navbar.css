@@ -40,7 +40,7 @@ navbar ul {
 .active {
   background-color: #000000;
   color: #ffffff;
-  box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411);
+  /* box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411); */
   transition: all ease 0.2s;
 }
 .active:hover {
@@ -135,7 +135,6 @@ navbar ul li a:hover {
   padding: 0 20px;
   color: #fff;
   text-decoration: none;
-  
 }
 
 .nav-menu li ul a:hover {
@@ -173,7 +172,7 @@ navbar ul li a:hover {
 .menu-icon {
   display: none;
 }
-.rightside{
+.rightside {
   margin: 30px 30px;
 }
 
