@@ -161,40 +161,41 @@ const CheckoutPage = (props) => {
                               </div>
                               <div className="flexRow sb addressinfo">
                                 {!adr.edit ? (
-                                  <div>
-                                    <div>
+                                  <div style={{ width: "100%" }}>
+                                    <div className="addressDetail">
+                                      <div>
+                                        <span className="addressName">
+                                          {adr.name}
+                                        </span>
+                                        <span
+                                          className="addressType"
+                                          style={{ marginLeft: "25px" }}
+                                        >
+                                          {adr.addressType}
+                                        </span>
+                                        <span style={{ marginLeft: "25px" }}>
+                                          {adr.mobileNumber}
+                                        </span>
+                                      </div>
                                       {adr.selected && (
                                         <Anchor
                                           name="EDIT"
-                                          style={{
-                                            color: "white",
-                                            fontWeight: "500",
-                                            marginLeft: "600px",
-                                          }}
                                           onClick={() =>
                                             enableAddressEditForm(adr)
                                           }
+                                          style={{
+                                            fontWeight: "500",
+                                            color: "#2874f0",
+                                          }}
                                         />
                                       )}
-                                      <span className="addressName">
-                                        {adr.name}
-                                      </span>
-                                      <span
-                                        className="addressType"
-                                        style={{ marginLeft: "25px" }}
-                                      >
-                                        {adr.addressType}
-                                      </span>
-                                      <span style={{ marginLeft: "25px" }}>
-                                        {adr.mobileNumber}
-                                      </span>
                                     </div>
 
                                     <div
                                       className="fullAddress"
                                       style={{ marginTop: "5px" }}
                                     >
-                                      {adr.address} <br />{" "}
+                                      {adr.address} <br />
                                       {`${adr.state} - ${adr.pinCode}`}
                                     </div>
                                     {adr.selected && (
@@ -215,7 +216,7 @@ const CheckoutPage = (props) => {
                                   <AddressForm
                                     withoutLayout={true}
                                     onSubmitForm={onAddressSubmit}
-                                    onSubmitForm={onAddressSubmit}
+                                    initialData={adr}
                                     onCancel={() => {}}
                                   />
                                 )}

@@ -213,7 +213,7 @@
   font-weight: 600;
   font-family: "Roboto";
   font-size: 12px;
-  color: #333;
+  color: rgb(255, 255, 255);
 }
 .addressType {
   display: inline-block;
