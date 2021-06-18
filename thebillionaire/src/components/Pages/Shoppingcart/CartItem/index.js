@@ -10,7 +10,7 @@ import { Button } from "../../../Button";
 
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
-  const { _id, name, price, img } = props.cartItem;
+  const { _id, name, price, img, size } = props.cartItem;
 
   const onQuantityIncrement = () => {
     setQty(qty + 1);
@@ -34,6 +34,7 @@ const CartItem = (props) => {
             <h3 style={{ marginLeft: "120px", marginTop: "25px" }}>{name}</h3>
             <p style={{ marginLeft: "120px", fontSize: "16px" }}>
               Rs. {price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size:
+              {size}
             </p>
           </div>
           <div

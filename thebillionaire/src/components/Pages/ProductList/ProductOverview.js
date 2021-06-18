@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductOverview.css";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
@@ -7,10 +7,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 import { addToCart } from "../../../actions/cart.action";
+import { Select, FormControl, MenuItem, InputLabel } from "@material-ui/core/";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const ProductOverview = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
+  const [size, setSize] = useState("");
+  const classes = useStyles();
+  // const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setSize(event.target.value);
+  };
 
   useEffect(() => {
     const { productId } = props.match.params;
@@ -67,15 +86,27 @@ const ProductOverview = (props) => {
                                 <h3>Size :</h3>
                                 <br></br>
                                 <div>
-                                  <ButtonGroup
-                                    color="Secondary"
-                                    aria-label="outlined primary button group"
-                                  >
-                                    <Button>S</Button>
-                                    <Button>M</Button>
-                                    <Button>L</Button>
-                                    <Button>XL</Button>
-                                  </ButtonGroup>
+                                  <FormControl className={classes.formControl}>
+                                    <InputLabel
+                                      id="demo-simple-select-label"
+                                      style={{ color: "white" }}
+                                    >
+                                      Size
+                                    </InputLabel>
+                                    <Select
+                                      labelId="demo-simple-select-label"
+                                      id="demo-simple-select"
+                                      value={size}
+                                      onChange={handleChange}
+                                      style={{ color: "white" }}
+                                    >
+                                      <MenuItem value={"Small"}>Small</MenuItem>
+                                      <MenuItem value={"Medium"}>
+                                        Medium
+                                      </MenuItem>
+                                      <MenuItem value={"Large"}>Large</MenuItem>
+                                    </Select>
+                                  </FormControl>
                                 </div>
                               </div>
                             </div>
@@ -90,7 +121,9 @@ const ProductOverview = (props) => {
                                 product.productDetails;
                               const img =
                                 product.productDetails.productPictures[0].img;
-                              dispatch(addToCart({ _id, name, price, img }));
+                              dispatch(
+                                addToCart({ _id, name, price, img, size })
+                              );
                               props.history.push(`/cart`);
                             }}
                           >

@@ -72,12 +72,9 @@
   /* background-color: #1c2237; */
 }
 
-
-.lightbg{
+.lightbg {
   color: rgb(0, 0, 0);
 }
-
-
 
 .home__hero-subtitle {
   max-width: 440px;
@@ -121,7 +118,7 @@ img {
     max-width: 150%;
     flex-basis: 100%;
   }
-  .home__hero-row{
+  .home__hero-row {
     width: 350px;
   }
 }
