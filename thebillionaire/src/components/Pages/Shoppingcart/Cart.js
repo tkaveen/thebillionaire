@@ -36,6 +36,23 @@ const Cart = (props) => {
     dispatch(addToCart({ _id, name, price, img }, -1));
   };
 
+  if (props.onlyCartItems) {
+    return (
+      <>
+        {Object.keys(cartItems).map((key, index) => (
+          <Container>
+            <CartItem
+              key={index}
+              cartItem={cartItems[key]}
+              onQuantityInc={onQuantityIncrement}
+              onQuantityDec={onQuantityDecrement}
+            ></CartItem>
+          </Container>
+        ))}
+      </>
+    );
+  }
+
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section_cart">

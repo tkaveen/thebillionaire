@@ -4,11 +4,12 @@ import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { getAddress } from "../../../actions";
+import { getAddress, getCartItems } from "../../../actions";
 import { Button } from "../../Button";
 import AddressForm from "./AddressForm";
 import { Anchor, MaterialInput } from "../../MaterialUi";
 import PriceDetails from "../../PriceDetails";
+import CartPage from "../Shoppingcart/Cart.js";
 
 const CheckoutStep = (props) => {
   return (
@@ -35,11 +36,13 @@ const CheckoutPage = (props) => {
   const [address, setAddress] = useState([]);
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [orderSummary, setOrderSummary] = useState(false);
   const dispatch = useDispatch();
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
+    setOrderSummary(true);
   };
 
   const selectAddress = (addr) => {
@@ -54,6 +57,7 @@ const CheckoutPage = (props) => {
   const confirmDeliveryAddress = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
+    setOrderSummary(true);
   };
 
   const enableAddressEditForm = (addr) => {
@@ -65,6 +69,7 @@ const CheckoutPage = (props) => {
 
   useEffect(() => {
     auth.authenticate && dispatch(getAddress());
+    auth.authenticate && dispatch(getCartItems());
   }, [auth.authenticate]);
 
   useEffect(() => {
@@ -249,7 +254,14 @@ const CheckoutPage = (props) => {
                       }}
                     />
                   )}
-                  <CheckoutStep stepNumber={3} title={"ORDER SUMMARY"} />
+                  <CheckoutStep
+                    stepNumber={3}
+                    title={"ORDER SUMMARY"}
+                    active={orderSummary}
+                    body={
+                      orderSummary ? <CartPage onlyCartItems={true} /> : null
+                    }
+                  />
                   <CheckoutStep stepNumber={4} title={"PAYMENT OPTIONS"} />
                 </div>
                 <div
