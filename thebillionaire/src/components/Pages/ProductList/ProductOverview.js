@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductOverview.css";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import { ButtonGroup, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    color: "white",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -23,12 +24,11 @@ const useStyles = makeStyles((theme) => ({
 const ProductOverview = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState();
   const classes = useStyles();
-  // const [age, setAge] = React.useState('');
 
-  const handleChange = (event) => {
-    setSize(event.target.value);
+  const handleChange = (e) => {
+    setSize(e.target.value);
   };
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const ProductOverview = (props) => {
                                     <Select
                                       labelId="demo-simple-select-label"
                                       id="demo-simple-select"
-                                      value={size}
+                                      value={product.productDetails.size}
                                       onChange={handleChange}
                                       style={{ color: "white" }}
                                     >

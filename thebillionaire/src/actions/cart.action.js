@@ -23,7 +23,7 @@ const getCartItems = () => {
   };
 };
 
-export const addToCart = (product, newQty = 1) => {
+export const addToCart = (product, newQty = 1, size) => {
   return async (dispatch) => {
     const {
       cart: { cartItems },
@@ -38,6 +38,7 @@ export const addToCart = (product, newQty = 1) => {
     cartItems[product._id] = {
       ...product,
       qty,
+      size,
     };
 
     if (auth.authenticate) {
@@ -53,6 +54,7 @@ export const addToCart = (product, newQty = 1) => {
           {
             product: product._id,
             quantity: qty,
+            size: product.size,
           },
         ],
       };
@@ -91,6 +93,7 @@ export const updateCart = () => {
             return {
               quantity: cartItems[key].qty,
               product: cartItems[key]._id,
+              size: cartItems[key].size,
             };
           }),
         };

@@ -33,7 +33,8 @@ const CartItem = (props) => {
           <div>
             <h3 style={{ marginLeft: "120px", marginTop: "25px" }}>{name}</h3>
             <p style={{ marginLeft: "120px", fontSize: "16px" }}>
-              Rs. {price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size:
+              Rs. {price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size
+              :&nbsp;
               {size}
             </p>
           </div>
@@ -61,7 +62,6 @@ const CartItem = (props) => {
           </div>
         </div>
       </div>
-
       <br />
       <br />
     </div>

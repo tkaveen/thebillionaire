@@ -27,13 +27,13 @@ const Cart = (props) => {
 
   const onQuantityIncrement = (_id, qty) => {
     // console.log({ _id, qty });
-    const { name, price, img } = cartItems[_id];
-    dispatch(addToCart({ _id, name, price, img }, 1));
+    const { name, price, img, size } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img, size }, 1));
   };
 
   const onQuantityDecrement = (_id, qty) => {
-    const { name, price, img } = cartItems[_id];
-    dispatch(addToCart({ _id, name, price, img }, -1));
+    const { name, price, img, size } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img, size }, -1));
   };
 
   if (props.onlyCartItems) {

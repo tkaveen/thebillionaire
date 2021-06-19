@@ -68,6 +68,7 @@ exports.getCartItems = (req, res) => {
             img: item.product.productPictures[0].img,
             price: item.product.price,
             qty: item.quantity,
+            size: item.size,
           };
         });
         res.status(200).json({ cartItems });
