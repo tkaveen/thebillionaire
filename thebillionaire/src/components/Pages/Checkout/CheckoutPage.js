@@ -10,6 +10,18 @@ import AddressForm from "./AddressForm";
 import { Anchor, MaterialInput } from "../../MaterialUi";
 import PriceDetails from "../../PriceDetails";
 import CartPage from "../Shoppingcart/Cart.js";
+import Card from "../../card/Card";
+import { makeStyles } from "@material-ui/core/styles";
+import Buttonn from "@material-ui/core/Button";
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 const CheckoutStep = (props) => {
   return (
@@ -29,6 +41,7 @@ const CheckoutStep = (props) => {
 };
 
 const CheckoutPage = (props) => {
+  const classes = useStyles();
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
@@ -37,6 +50,9 @@ const CheckoutPage = (props) => {
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
+  const [orderConfirmation, setOrderConfirmation] = useState(false);
+  const [paymentOption, setPaymentOption] = useState(false);
+  const [confirmOrder, setConfirmOrder] = useState(false);
   const dispatch = useDispatch();
 
   const onAddressSubmit = (addr) => {
@@ -67,6 +83,16 @@ const CheckoutPage = (props) => {
     setAddress(updatedAddress);
   };
 
+  const userOrderConfirmation = () => {
+    setOrderConfirmation(true);
+    setOrderSummary(false);
+    setPaymentOption(true);
+  };
+
+  const onConfirmOrder = () => {
+    setConfirmOrder(true);
+  };
+
   useEffect(() => {
     auth.authenticate && dispatch(getAddress());
     auth.authenticate && dispatch(getCartItems());
@@ -80,6 +106,14 @@ const CheckoutPage = (props) => {
     }));
     setAddress(address);
   }, [user.address]);
+
+  if (confirmOrder) {
+    return (
+      <Card>
+        <div>Thank you</div>
+      </Card>
+    );
+  }
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
@@ -143,7 +177,12 @@ const CheckoutPage = (props) => {
                     body={
                       <>
                         {confirmAddress ? (
-                          <div>{`${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                          <div
+                            style={{
+                              marginLeft: "59px",
+                              paddingBottom: "20px",
+                            }}
+                          >{`${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                         ) : (
                           address.map((adr) => (
                             <div
@@ -259,10 +298,91 @@ const CheckoutPage = (props) => {
                     title={"ORDER SUMMARY"}
                     active={orderSummary}
                     body={
-                      orderSummary ? <CartPage onlyCartItems={true} /> : null
+                      orderSummary ? (
+                        <CartPage onlyCartItems={true} />
+                      ) : orderConfirmation ? (
+                        <div
+                          style={{ marginLeft: "59px", paddingBottom: "20px" }}
+                        >
+                          {Object.keys(cart.cartItems).length} items
+                        </div>
+                      ) : null
                     }
                   />
-                  <CheckoutStep stepNumber={4} title={"PAYMENT OPTIONS"} />
+                  {orderSummary && (
+                    <Card style={{ margin: "10px 0 " }}>
+                      <div className="flexRow sb" style={{ padding: "0 20px" }}>
+                        <p
+                          style={{
+                            color: "white",
+                            margin: "10px 10px 10px 10px",
+                            padding: "10px 10px 10px 10px",
+                          }}
+                        >
+                          Order Confirmation email will be sent to{" "}
+                          <b>{auth.user.email}</b>
+                        </p>
+                        <Buttonn
+                          variant="contained"
+                          size="small"
+                          color="primary"
+                          className={classes.margin}
+                          onClick={userOrderConfirmation}
+                        >
+                          Continue
+                        </Buttonn>
+                      </div>
+                    </Card>
+                  )}
+
+                  <CheckoutStep
+                    stepNumber={4}
+                    title={"PAYMENT OPTIONS"}
+                    active={paymentOption}
+                    body={
+                      paymentOption && (
+                        <div
+                          className=""
+                          style={{
+                            // display: "flex",
+                            alignItems: "center",
+                            marginLeft: "25px",
+                            marginTop: "20px",
+                            paddingBottom: "20px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                            }}
+                          >
+                            <input
+                              type="radio"
+                              name="paymentOption"
+                              value="cod"
+                              style={{ marginTop: "3px" }}
+                            />
+                            <div style={{ marginLeft: "18px" }}>
+                              Cash on Delivery
+                            </div>
+                          </div>
+                          <div
+                            style={{ marginLeft: "21px", marginTop: "10px" }}
+                          >
+                            <Buttonn
+                              variant="contained"
+                              size="small"
+                              color="primary"
+                              className={classes.margin}
+                              onClick={onConfirmOrder}
+                            >
+                              Confirm order
+                            </Buttonn>
+                          </div>
+                        </div>
+                      )
+                    }
+                  />
                 </div>
                 <div
                   style={{
@@ -288,9 +408,7 @@ const CheckoutPage = (props) => {
                     )}
                   />
                 </div>
-                {/* </div> */}
               </div>
-              {/* </Container> */}
               <br />
             </Link>
             <Link className="pricing__container-cardpo"></Link>
