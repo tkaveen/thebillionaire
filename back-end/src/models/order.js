@@ -29,6 +29,9 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+        purchasedSize: {
+          type: String,
+        },
       },
     ],
     paymentStatus: {

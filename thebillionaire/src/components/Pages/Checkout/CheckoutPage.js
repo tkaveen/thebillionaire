@@ -4,7 +4,7 @@ import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { getAddress, getCartItems } from "../../../actions";
+import { getAddress, getCartItems, addOrder } from "../../../actions";
 import { Button } from "../../Button";
 import AddressForm from "./AddressForm";
 import { Anchor, MaterialInput } from "../../MaterialUi";
@@ -90,6 +90,29 @@ const CheckoutPage = (props) => {
   };
 
   const onConfirmOrder = () => {
+    const totalAmount = Object.keys(cart.cartItems).reduce(
+      (totalPrice, key) => {
+        const { price, qty } = cart.cartItems[key];
+        return totalPrice + price * qty;
+      },
+      0
+    );
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+      purchasedSize: cart.cartItems[key].size,
+    }));
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: "pending",
+      paymentType: "cod",
+    };
+
+    console.log(payload);
+    dispatch(addOrder(payload));
     setConfirmOrder(true);
   };
 
