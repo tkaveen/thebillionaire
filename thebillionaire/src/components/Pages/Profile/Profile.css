@@ -114,6 +114,12 @@
 .icon {
   margin: 24px 0;
 }
+.orderItemContainer {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
 
 @media screen and (max-width: 960px) {
   .pricing__container {

@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Profile.css";
-import { FaFire } from "react-icons/fa";
-import { BsXDiamondFill } from "react-icons/bs";
-import { GiCrystalize } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import S1 from "../../images/S1.png";
-import { ButtonGroup, Button, Divider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductDetailsById } from "../../../actions";
+import { getOrders, getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
-// import IncrementButton from '../IncrementButton/IncrementButton';
+import Card from "../../card/Card";
 
-const Cart = (props) => {
+const Profile = (props) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section_profile">
@@ -21,7 +21,57 @@ const Cart = (props) => {
           <div className="pricing__container_profile">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardprofile">
-              <div className="pricing__container-cardInfo">Profile</div>
+              <div className="pricing__container-cardInfo">
+                <h3>My Profile</h3>
+                <br />
+                <div>
+                  {user.orders.map((order) => {
+                    return order.items.map((item) => (
+                      <Card style={{ maxWidth: "1200px", margin: "5px auto" }}>
+                        <div className="orderItemContainer">
+                          <div
+                            style={{
+                              width: 80,
+                              height: 80,
+                              overflow: "hidden",
+                            }}
+                          >
+                            <img
+                              style={{
+                                width: 80,
+                                height: 80,
+                              }}
+                              src={generatePublicUrl(
+                                item.productId.productPictures[0].img
+                              )}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flex: 1,
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div style={{ width: 300, marginLeft: "20px" }}>
+                              {item.productId.name}
+                            </div>
+                            <div style={{ width: 100, marginLeft: "20px" }}>
+                              {item.purchasedSize}
+                            </div>
+                            <div style={{ width: 120 }}>
+                              Rs. {item.payablePrice}
+                            </div>
+                            <div style={{ marginRight: "20px" }}>
+                              {order.paymentStatus}
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    ));
+                  })}
+                </div>
+              </div>
             </Link>
             <Link to="/sign-up" className="pricing__container-cardpo"></Link>
           </div>
@@ -30,4 +80,4 @@ const Cart = (props) => {
     </IconContext.Provider>
   );
 };
-export default Cart;
+export default Profile;
