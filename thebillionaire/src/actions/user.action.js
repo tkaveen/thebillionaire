@@ -1,5 +1,5 @@
 import axios from "../helpers/axios";
-import { userConstants } from "./constants";
+import { cartConstants, userConstants } from "./constants";
 
 export const getAddress = () => {
   return async (dispatch) => {
@@ -61,10 +61,9 @@ export const addOrder = (payload) => {
       dispatch({ type: userConstants.ADD_USER_ORDER_REQUEST });
       if (res.status === 201) {
         console.log(res);
-        // const { order } = res.data;
-        // dispatch({
-        //   type: cartConstants.RESET_CART,
-        // });
+        dispatch({
+          type: cartConstants.RESET_CART,
+        });
         // dispatch({
         //   type: userConstants.ADD_USER_ORDER_SUCCESS,
         //   payload: { order },
