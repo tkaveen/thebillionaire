@@ -36,10 +36,11 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  User.findOne({ email: req.body.email }).exec((error, user) => {
+  User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (error) return res.status(400).json({ error });
+    const passwordValidation = await user.authenticate(req.body.password);
     if (user) {
-      if (user.authenticate(req.body.password) && user.role === "admin") {
+      if (passwordValidation && user.role === "admin") {
         const token = jwt.sign(
           { _id: user._id, role: user.role },
           process.env.JWT_SECRET,
@@ -48,7 +49,7 @@ exports.signin = (req, res) => {
           }
         );
         const { _id, firstName, lastName, email, role, fullName } = user;
-        res.cookie("token", token, { expiresIn: "1d" });
+        res.cookie("token", token, { expiresIn: "365d" });
         res.status(200).json({
           token,
           user: {
