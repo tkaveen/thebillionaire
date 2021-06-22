@@ -2,10 +2,12 @@ const Order = require("../../models/order");
 
 exports.updateOrder = (req, res) => {
   Order.updateOne(
-    { user: req.body.userId, "orderStatus.type": req.body.type },
+    { _id: req.body.orderId, "orderStatus.type": req.body.type },
     {
       $set: {
-        "orderStatus.$": [{ date: new Date(), isCompleted: true }],
+        "orderStatus.$": [
+          { type: req.body.type, date: new Date(), isCompleted: true },
+        ],
       },
     }
   ).exec((error, order) => {
