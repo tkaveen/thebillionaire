@@ -13,11 +13,11 @@ const Profile = (props) => {
   useEffect(() => {
     dispatch(getOrders());
   }, []);
+
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section_profile">
         <div className="pricing__wrapper_profile">
-          {/* <h1 className='pricing__heading'>BEST SELLING</h1> */}
           <div className="pricing__container_profile">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardprofile">
