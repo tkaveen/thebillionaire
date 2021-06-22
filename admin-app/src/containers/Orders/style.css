@@ -1,5 +1,5 @@
 .orderTrack {
-  width: 700px;
+  width: 500px;
   display: flex;
 }
 .orderStatus {
@@ -37,14 +37,19 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
 }
 .value {
-  font-size: 12px;
+  font-size: 14px;
   text-transform: capitalize;
 }
 
 .date {
-  width: 50px;
+  width: 100px;
+  font-size: 14px;
+}
+
+.status {
+  font-size: 14px;
 }

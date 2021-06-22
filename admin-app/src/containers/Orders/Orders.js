@@ -19,13 +19,55 @@ export default function Orders() {
     dispatch(updateOrder(payload));
   };
 
+  const formatDate = (date) => {
+    if (date) {
+      const d = new Date(date);
+      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    }
+    return "";
+  };
+
   return (
     <Layout sidebar>
       <Container fluid>
         <h3>Orders</h3>
         <br />
         {order.orders.map((orderItem, index) => (
-          <Card key={index} headerLeft={orderItem._id}>
+          <Card
+            key={index}
+            headerLeft={"ORDER ID : " + orderItem._id}
+            style={{ marginBottom: "15px" }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "50px 50px",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <div className="title">Items</div>
+                {orderItem.items.map((item, index) => (
+                  <div className="value" key={index}>
+                    {item.productId.name}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <span className="title">Total Price</span>
+                <br />
+                <span className="value">{orderItem.totalAmount}</span>
+              </div>
+              <div>
+                <span className="title">Payment Type</span> <br />
+                <span className="value">{orderItem.paymentType}</span>
+              </div>
+              <div>
+                <span className="title">Payment Status</span> <br />
+                <span className="value">{orderItem.paymentStatus}</span>
+              </div>
+            </div>
             <div
               style={{
                 boxSizing: "border-box",
@@ -35,34 +77,21 @@ export default function Orders() {
               }}
             >
               <div className="orderTrack">
-                <div className="orderStatus">
-                  <div className="point"></div>
-                  <div className="orderInfo">
-                    <div className="status">Ordered</div>
-                    <div className="date">Fri, 2021</div>
+                {orderItem.orderStatus.map((status) => (
+                  <div
+                    className={`orderStatus ${
+                      status.isCompleted ? "active" : ""
+                    }`}
+                  >
+                    <div
+                      className={`point ${status.isCompleted ? "active" : ""}`}
+                    ></div>
+                    <div className="orderInfo">
+                      <div className="status">{status.type}</div>
+                      <div className="date">{formatDate(status.date)}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="orderStatus">
-                  <div className="point"></div>
-                  <div className="orderInfo">
-                    <div className="status">Packed</div>
-                    <div className="date">Fri, 2021</div>
-                  </div>
-                </div>
-                <div className="orderStatus">
-                  <div className="point"></div>
-                  <div className="orderInfo">
-                    <div className="status">Shipped</div>
-                    <div className="date">Fri, 2021</div>
-                  </div>
-                </div>
-                <div className="orderStatus">
-                  <div className="point"></div>
-                  <div className="orderInfo">
-                    <div className="status">Deleivered</div>
-                    <div className="date">Fri, 2021</div>
-                  </div>
-                </div>
+                ))}
               </div>
               {/* select input  */}
               <div style={{ marginLeft: "100px" }}>

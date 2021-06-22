@@ -4,6 +4,7 @@
   bottom: 0;
   /* left: 0; */
   background-color: rgb(41, 43, 44);
+  width: 321.5px;
   /* background-image: linear-gradient(to right, rgb(49,49,50), rgb(23,23,25)); */
   padding-top: 51px;
 
@@ -50,7 +51,7 @@
   margin: 5px 0 5px 0px;
   /* border-radius: 5px 5px 5px 5px; */
   text-decoration: none;
-  width: 305px;
+  width: 301.5px;
 }
 
 .sidebar ul li a.active {
