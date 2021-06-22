@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/index";
 import { Container } from "react-bootstrap";
 import Card from "../../components/Ui/Card";
@@ -6,7 +6,7 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrder } from "../../actions/order.action";
 
-export default function Orders() {
+const Orders = () => {
   const order = useSelector((state) => state.order);
   const [type, setType] = useState("");
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export default function Orders() {
                 <div className="title">Items</div>
                 {orderItem.items.map((item, index) => (
                   <div className="value" key={index}>
-                    {item.productId.name}
+                    {item.productId.name} - {item.purchasedSize}
                   </div>
                 ))}
               </div>
@@ -66,6 +66,10 @@ export default function Orders() {
               <div>
                 <span className="title">Payment Status</span> <br />
                 <span className="value">{orderItem.paymentStatus}</span>
+              </div>
+              <div>
+                <span className="title">Dilivery Address</span> <br />
+                <span className="value">{orderItem.addressId}</span>
               </div>
             </div>
             <div
@@ -128,4 +132,6 @@ export default function Orders() {
       </Container>
     </Layout>
   );
-}
+};
+
+export default Orders;
