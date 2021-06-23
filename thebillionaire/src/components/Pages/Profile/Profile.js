@@ -24,6 +24,7 @@ const Profile = (props) => {
               <div className="pricing__container-cardInfo">
                 <h3>My Profile</h3>
                 <br />
+                <h4>My Orders</h4>
                 <div>
                   {user.orders.map((order) => {
                     return order.items.map((item) => (
