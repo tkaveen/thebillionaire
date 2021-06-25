@@ -140,12 +140,20 @@ export default function Products() {
           placeholder={`Price`}
           onChange={(e) => setPrice(e.target.value)}
         />
-        <Input
-          label="Description"
+        <label>Description</label>
+        <textarea
+          class="form-control"
           value={description}
           placeholder={`Description`}
           onChange={(e) => setDescription(e.target.value)}
         />
+        {/* <Input
+          label="Description"
+          value={description}
+          placeholder={`Description`}
+          onChange={(e) => setDescription(e.target.value)}
+        /> */}
+        <label style={{ marginTop: "15px" }}>Category</label>
         <select
           className="form-control"
           value={categoryId}
@@ -158,6 +166,7 @@ export default function Products() {
             </option>
           ))}
         </select>
+        <label style={{ marginTop: "15px" }}>Product Pictures</label>
         <Input
           type="file"
           name="productPicture"
@@ -251,30 +260,41 @@ export default function Products() {
         <Row>
           <Col md={6}>
             <label className="key">Name</label>
-            <p className="value">{productDetails.name}</p>
+            <Input value={productDetails.name} />
           </Col>
           <Col md={6}>
             <label className="key">Price</label>
-            <p className="value">{productDetails.price}</p>
+            <Input value={productDetails.price} />
           </Col>
         </Row>
         <Row>
           <Col md={6}>
             <label className="key">Quantity</label>
-            <p className="value">{productDetails.quantity}</p>
+            <Input value={productDetails.quantity} />
           </Col>
           <Col md={6}>
             <label className="key">Category</label>
-            <p className="value">{productDetails.category.name}</p>
+            <select
+              className="form-control"
+              value={categoryId}
+              onChange={(e) => setCategoryId(e.target.value)}
+            >
+              <option>select category</option>
+              {createCategoryList(category.categories).map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
           </Col>
         </Row>
         <Row>
           <Col md={12}>
             <label className="key">Description</label>
-            <p className="value">{productDetails.description}</p>
+            <textarea class="form-control" value={productDetails.description} />
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col>
             <label className="key">Product Pictures</label>
             <div style={{ display: "flex" }}>
@@ -285,7 +305,7 @@ export default function Products() {
               ))}
             </div>
           </Col>
-        </Row>
+        </Row> */}
       </Modal>
     );
   };
