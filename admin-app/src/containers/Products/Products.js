@@ -10,6 +10,7 @@ import { generatePublicUrl } from "../../urlConfig";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsFileEarmark } from "react-icons/bs";
 import { IoShirtOutline } from "react-icons/io5";
+import { FaRegEdit } from "react-icons/fa";
 
 export default function Products() {
   const [name, setName] = useState("");
@@ -21,6 +22,7 @@ export default function Products() {
   const [show, setShow] = useState(false);
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
+  const [productUpdateModal, setProductUpdateModal] = useState(false);
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -89,9 +91,9 @@ export default function Products() {
                     </button>
                     <button
                       className="act-btn"
-                      // onClick={() => showProductDetailModal(product)}
+                      onClick={() => showProductUpdateModal(product)}
                     >
-                      Update <BsFileEarmark />
+                      Update <FaRegEdit />
                     </button>
                     <button
                       className="act-btn"
@@ -168,10 +170,18 @@ export default function Products() {
   const handleCloseProductDetailsModal = () => {
     setProductDetailModal(false);
   };
+  const handleCloseProductUpdateModal = () => {
+    setProductUpdateModal(false);
+  };
 
   const showProductDetailModal = (product) => {
     setProductDetails(product);
     setProductDetailModal(true);
+  };
+
+  const showProductUpdateModal = (product) => {
+    // setProductDetails(product);
+    setProductUpdateModal(true);
   };
 
   const renderProductDetailsModal = () => {
@@ -183,6 +193,59 @@ export default function Products() {
         show={productDetailModal}
         handleClose={handleCloseProductDetailsModal}
         modalTitle={"Product Details"}
+        size="lg"
+      >
+        <Row>
+          <Col md={6}>
+            <label className="key">Name</label>
+            <p className="value">{productDetails.name}</p>
+          </Col>
+          <Col md={6}>
+            <label className="key">Price</label>
+            <p className="value">{productDetails.price}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <label className="key">Quantity</label>
+            <p className="value">{productDetails.quantity}</p>
+          </Col>
+          <Col md={6}>
+            <label className="key">Category</label>
+            <p className="value">{productDetails.category.name}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <label className="key">Description</label>
+            <p className="value">{productDetails.description}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <label className="key">Product Pictures</label>
+            <div style={{ display: "flex" }}>
+              {productDetails.productPictures.map((picture) => (
+                <div className="productImgContainer">
+                  <img src={generatePublicUrl(picture.img)} />
+                </div>
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </Modal>
+    );
+  };
+
+  const updateProductDetailsModal = () => {
+    if (!productDetails) {
+      return null;
+    }
+    return (
+      <Modal
+        show={productUpdateModal}
+        handleClose={handleCloseProductUpdateModal}
+        modalTitle={"Product Update"}
         size="lg"
       >
         <Row>
@@ -251,6 +314,7 @@ export default function Products() {
       </Container>
       {renderAddProductModal()}
       {renderProductDetailsModal()}
+      {updateProductDetailsModal()}
     </Layout>
   );
 }
