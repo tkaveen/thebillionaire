@@ -215,13 +215,13 @@ export default function Category() {
                   <IoIosAdd />
                   <span>Add</span>
                 </button>
-                <button onClick={deleteCategory}>
-                  <IoIosTrash />
-                  <span>Delete</span>
-                </button>
                 <button onClick={updateCategory}>
                   <FaRegEdit />
                   <span>Edit</span>
+                </button>
+                <button onClick={deleteCategory}>
+                  <IoIosTrash />
+                  <span>Delete</span>
                 </button>
               </div>
             </div>

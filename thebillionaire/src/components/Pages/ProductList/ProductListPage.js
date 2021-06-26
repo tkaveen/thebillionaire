@@ -13,7 +13,6 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const ProductListPage = (props) => {
   const product = useSelector((state) => state.product);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

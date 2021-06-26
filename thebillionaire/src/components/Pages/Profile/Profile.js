@@ -29,7 +29,10 @@ const Profile = (props) => {
                   {user.orders.map((order) => {
                     return order.items.map((item) => (
                       <Card style={{ maxWidth: "1200px", margin: "5px auto" }}>
-                        <div className="orderItemContainer">
+                        <Link
+                          to={`/order_details/${order._id}`}
+                          className="orderItemContainer"
+                        >
                           <div
                             style={{
                               width: 80,
@@ -67,7 +70,7 @@ const Profile = (props) => {
                               {order.paymentStatus}
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       </Card>
                     ));
                   })}
