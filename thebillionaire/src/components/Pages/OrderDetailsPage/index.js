@@ -110,6 +110,7 @@ const OrderDetailsPage = (props) => {
                           <div className="delItemName">
                             {item.productId.name}
                           </div>
+                          {/* <Price value={item.payablePrice} /> */}
                         </div>
                       </div>
                       <div style={{ padding: "25px 50px" }}>
