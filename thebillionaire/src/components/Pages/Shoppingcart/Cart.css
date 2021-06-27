@@ -16,7 +16,7 @@
   border-radius: 4px;
   transform: scale(1.05);
   background: #242424;
-    display: flex;
+  display: flex;
   flex-direction: column;
   padding: 24px;
   align-items: center;
@@ -37,7 +37,6 @@
   font-size: 14px;
   margin-bottom: 24px;
 }
-
 
 .cart-header {
   display: flex;
