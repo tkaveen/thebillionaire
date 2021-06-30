@@ -10,6 +10,7 @@ import { isUserLoggedIn, getAllCategory } from "./actions/";
 import Products from "./containers/Products/Products";
 import Orders from "./containers/Orders/Orders";
 import Category from "./containers/category/index";
+import Customer from "./containers/customers/index";
 import { getInitialData } from "./actions/initialData.action";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <PrivateRoute path="/category" component={Category} />
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
+        <PrivateRoute path="/customers" component={Customer} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
       </Switch>

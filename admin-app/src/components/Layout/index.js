@@ -9,6 +9,7 @@ import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
 import { VscMultipleWindows } from "react-icons/vsc";
 import { GoListOrdered } from "react-icons/go";
+import { BsFillPeopleFill } from "react-icons//bs";
 
 const Layout = (props) => {
   return (
@@ -42,6 +43,12 @@ const Layout = (props) => {
                   <NavLink to={`/orders`}>
                     <GoListOrdered />
                     <span> Orders</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/customers`}>
+                    <BsFillPeopleFill />
+                    <span> Customers</span>
                   </NavLink>
                 </li>
               </ul>

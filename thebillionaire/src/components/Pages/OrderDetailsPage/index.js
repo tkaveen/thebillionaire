@@ -55,8 +55,7 @@ const OrderDetailsPage = (props) => {
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section_OrderDetails">
         <div className="pricing__wrapper_OrderDetails">
-          <div className="pricing__container_OrderDetails">
-            <Link className="pricing__container-card_cart"></Link>
+          <div className="pricing__container-card_cart">
             <Link className="pricing__container_OrderDetails">
               <div className="pricing__container-cardInfo">
                 <br />
