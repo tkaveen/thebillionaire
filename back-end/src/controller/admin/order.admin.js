@@ -22,6 +22,31 @@ exports.updateOrder = (req, res) => {
 exports.getCustomerOrders = async (req, res) => {
   const orders = await Order.find({})
     .populate("items.productId", "name")
+    .populate("addressId.address", "name")
     .exec();
   res.status(200).json({ orders });
 };
+
+// exports.getCustomerOrders = async (req, res) => {
+//   const orders = await Order.find({})
+//     .populate("items.productId", "name")
+//     .populate("UserAddress.address", "address")
+//     .lean()
+//     .exec((error, order) => {
+//       if (error) return res.status(400).json({ error });
+//       if (order) {
+//         Address.findOne({
+//           order: req.body.orderId,
+//         }).exec((error, address) => {
+//           if (error) return res.status(400).json({ error });
+//           order.address = address.address.find(
+//             (adr) => adr._id.toString() == order.addressId.toString()
+//           );
+//           res.status(200).json({
+//             order,
+//           });
+//         });
+//       }
+//     });
+//   res.status(200).json({ orders });
+// };

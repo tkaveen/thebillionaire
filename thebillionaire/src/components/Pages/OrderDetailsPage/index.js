@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrder } from "../../../actions";
 import Card from "../../card/Card";
+import { generatePublicUrl } from "../../../urlConfig";
 
 const OrderDetailsPage = (props) => {
   const dispatch = useDispatch();
@@ -101,11 +102,16 @@ const OrderDetailsPage = (props) => {
                       <div className="flexRow">
                         <div className="delItemImgContainer">
                           <img
-                            src={item.productId.productPictures[0].img}
-                            alt=""
+                            style={{
+                              width: 80,
+                              height: 80,
+                            }}
+                            src={generatePublicUrl(
+                              item.productId.productPictures[0].img
+                            )}
                           />
                         </div>
-                        <div style={{ width: "250px" }}>
+                        <div style={{ width: "250px", marginLeft: "50px" }}>
                           <div className="delItemName">
                             {item.productId.name}
                           </div>

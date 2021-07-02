@@ -144,6 +144,7 @@
   height: 75px;
   overflow: hidden;
   text-align: center;
+  margin-left: 50px;
 }
 .delItemImgContainer > img {
   max-width: 100%;

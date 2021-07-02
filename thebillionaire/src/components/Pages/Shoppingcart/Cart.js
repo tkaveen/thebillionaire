@@ -6,7 +6,7 @@ import { Container } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { RiShoppingCartLine } from "react-icons/ri";
 import CartItem from "./CartItem";
-import { addToCart } from "../../../actions";
+import { addToCart, removeCartItem, getCartItems } from "../../../actions";
 import Card from "../../card/Card";
 import { Button } from "../../Button";
 import PriceDetails from "../../PriceDetails";
@@ -22,8 +22,10 @@ const Cart = (props) => {
   }, [cart.cartItems]);
 
   useEffect(() => {
-    setCartItems(cart.cartItems);
-  }, [cart.cartItems]);
+    if (auth.authenticate) {
+      dispatch(getCartItems());
+    }
+  }, [auth.authenticate]);
 
   const onQuantityIncrement = (_id, qty) => {
     // console.log({ _id, qty });
@@ -34,6 +36,10 @@ const Cart = (props) => {
   const onQuantityDecrement = (_id, qty) => {
     const { name, price, img, size } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img, size }, -1));
+  };
+
+  const onRemoveCartItem = (_id) => {
+    dispatch(removeCartItem({ productId: _id }));
   };
 
   if (props.onlyCartItems) {
@@ -81,6 +87,7 @@ const Cart = (props) => {
                       cartItem={cartItems[key]}
                       onQuantityInc={onQuantityIncrement}
                       onQuantityDec={onQuantityDecrement}
+                      onRemoveCartItem={onRemoveCartItem}
                     ></CartItem>
                   </Container>
                 ))}

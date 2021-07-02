@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../actions/category.action";
 import { CgProfile } from "react-icons/cg";
 import { signout } from "../actions";
+import CartNav from "./CartIcon/CartNav";
 
 function Navbar() {
   const auth = useSelector((state) => state.auth);
   const category = useSelector((state) => state.category);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategory());
@@ -93,14 +95,18 @@ function Navbar() {
                   : null}
               </ul>
             </li>
-            <li>
+            <li style={{ marginLeft: "12px" }}>
               <Link to="/cart">
-                <RiShoppingCartLine className="nav-shopp" />
+                {/* <RiShoppingCartLine className="nav-shopp" /> */}
+                <CartNav count={Object.keys(cart.cartItems).length} />
               </Link>
             </li>
             <li className="rightside">
-              <Link to="/profile" >
-                <CgProfile className="nav-shopp" />
+              <Link to="/profile">
+                <CgProfile
+                  className="nav-shopp"
+                  style={{ fontSize: "35px", marginTop: "3px" }}
+                />
               </Link>
             </li>
 
@@ -147,6 +153,12 @@ function Navbar() {
                   : null}
               </ul>
             </li>
+            <li style={{ marginRight: "20px", marginLeft: "8px" }}>
+              <Link to="/cart">
+                <CartNav cout={Object.keys(cart.cartItems).length} />
+                {/* <RiShoppingCartLine className="nav-shopp" /> */}
+              </Link>
+            </li>
             <li className="nav-btn">
               {button ? (
                 <Link to="/signin" className="btn-link">
@@ -180,11 +192,6 @@ function Navbar() {
                   </Button>
                 </Link>
               )}
-            </li>
-            <li>
-              <Link to="/cart"  >
-                <RiShoppingCartLine className="nav-shopp" />
-              </Link>
             </li>
           </ul>
         </div>

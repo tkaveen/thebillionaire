@@ -2,6 +2,8 @@ import { cartConstants } from "../actions/constants";
 
 const initState = {
   cartItems: {},
+  updatingCart: false,
+  error: null,
 };
 
 export default (state = initState, action) => {

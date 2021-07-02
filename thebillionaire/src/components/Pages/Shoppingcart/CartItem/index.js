@@ -56,7 +56,12 @@ const CartItem = (props) => {
             <div style={{ marginTop: "32px", marginLeft: "70px" }}>
               {/* <Button buttonStyle="btn--outline">Save</Button> */}
               <span>
-                <Button buttonStyle="btn--outline">Remove</Button>
+                <Button
+                  buttonStyle="btn--outline"
+                  onClick={() => props.onRemoveCartItem(_id)}
+                >
+                  Remove
+                </Button>
               </span>
             </div>
           </div>
