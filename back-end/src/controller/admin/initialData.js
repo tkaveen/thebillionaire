@@ -30,7 +30,7 @@ exports.initialData = async (req, res) => {
     .exec();
   const orders = await Order.find({})
     .populate("items.productId", "name")
-    .populate("addressId.address", "name")
+    .populate("User", "name")
     .exec();
   res.status(200).json({
     categories: createCategories(categories),

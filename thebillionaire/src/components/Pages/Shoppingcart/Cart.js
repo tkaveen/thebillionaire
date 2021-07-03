@@ -14,7 +14,6 @@ import PriceDetails from "../../PriceDetails";
 const Cart = (props) => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
-  // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,7 +27,6 @@ const Cart = (props) => {
   }, [auth.authenticate]);
 
   const onQuantityIncrement = (_id, qty) => {
-    // console.log({ _id, qty });
     const { name, price, img, size } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img, size }, 1));
   };
@@ -66,7 +64,6 @@ const Cart = (props) => {
           <div className="pricing__container_cart">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardProdOver_cart">
-              {/* <div className="pricing__container-cardInfo_cart"> */}
               <div className="cart-header">
                 <span>
                   <h3>My Cart&nbsp; | &nbsp; </h3>

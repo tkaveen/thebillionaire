@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrders, getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 import Card from "../../card/Card";
+import { CgProfile } from "react-icons/cg";
 
 const Profile = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(getOrders());
   }, []);
@@ -21,10 +24,36 @@ const Profile = (props) => {
           <div className="pricing__container_profile">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardprofile">
-              <div className="pricing__container-cardInfo">
+              <div>
                 <h3>My Profile</h3>
                 <br />
-                <h4>My Orders</h4>
+                <div style={{ textAlign: "center" }}>
+                  <CgProfile size={130} />
+                </div>
+                <div>
+                  <br />
+                  {auth.authenticate ? (
+                    <div style={{ paddingBottom: "15px", textAlign: "center" }}>
+                      <span>
+                        <b style={{ fontSize: "40px" }}>{auth.user.fullName}</b>
+                      </span>
+                      <br></br>
+                      <span
+                        style={{
+                          fontSize: "20px",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {auth.user.email}
+                      </span>
+                    </div>
+                  ) : null}
+                </div>
+                <br />
+                <br />
+                <br />
+                <h3>Orders Placed</h3>
+                <br />
                 <div>
                   {user.orders.map((order) => {
                     return order.items.map((item) => (

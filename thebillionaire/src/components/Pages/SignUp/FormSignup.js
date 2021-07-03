@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import validate from "./validateinfo";
 import useForm from "./useForm";
 import "./Form.css";
+import { useDispatch } from "react-redux";
 
 const FormSignup = ({ submitForm }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch;
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate

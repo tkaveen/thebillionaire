@@ -13,7 +13,7 @@ const Cart = (props) => {
         style={{
           position: "absolute",
           background: "red",
-          width: "15px",
+          width: "18px",
           height: "15px",
           borderRadius: "5px",
           fontSize: "10px",
