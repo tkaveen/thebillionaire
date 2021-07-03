@@ -3,22 +3,39 @@ import validate from "./validateinfo";
 import useForm from "./useForm";
 import "./Form.css";
 import { useDispatch } from "react-redux";
+import { signup as _signup } from "../../../actions/auth.action";
 
 const FormSignup = ({ submitForm }) => {
+  // const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch;
+  const [password2, setPassword2] = useState("");
+  const dispatch = useDispatch();
 
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
   );
 
+  const userSignup = () => {
+    const user = { firstName, lastName, email, password };
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      password === ""
+    ) {
+      return;
+    }
+
+    dispatch(_signup(user));
+  };
+
   return (
     <div className="form-content-right">
-      <form onSubmit={handleSubmit} className="form" noValidate>
+      <form onSubmit={userSignup} className="form" noValidate>
         <h1>
           Get started with us today! Create your account by filling out the
           information below.
@@ -30,8 +47,22 @@ const FormSignup = ({ submitForm }) => {
             type="text"
             name="username"
             placeholder="Enter your username"
-            value={values.username}
-            onChange={handleChange}
+            value={firstName}
+            // onChange={handleChange}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          {errors.username && <p>{errors.username}</p>}
+        </div>
+        <div className="form-inputs">
+          <label className="form-label">Username</label>
+          <input
+            className="form-input"
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            value={lastName}
+            // onChange={handleChange}
+            onChange={(e) => setLastName(e.target.value)}
           />
           {errors.username && <p>{errors.username}</p>}
         </div>
@@ -42,23 +73,25 @@ const FormSignup = ({ submitForm }) => {
             type="email"
             name="email"
             placeholder="Enter your email"
-            value={values.email}
-            onChange={handleChange}
+            value={email}
+            // onChange={handleChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
           {errors.email && <p>{errors.email}</p>}
         </div>
-        <div className="form-inputs">
+        {/* <div className="form-inputs">
           <label className="form-label">Password</label>
           <input
             className="form-input"
             type="password"
             name="password"
             placeholder="Enter your password"
-            value={values.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            // onChange={handleChange}
           />
           {errors.password && <p>{errors.password}</p>}
-        </div>
+        </div> */}
         <div className="form-inputs">
           <label className="form-label">Confirm Password</label>
           <input
@@ -66,8 +99,9 @@ const FormSignup = ({ submitForm }) => {
             type="password"
             name="password2"
             placeholder="Confirm your password"
-            value={values.password2}
-            onChange={handleChange}
+            value={password2}
+            // onChange={handleChange}
+            onChange={(e) => setPassword2(e.target.value)}
           />
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
