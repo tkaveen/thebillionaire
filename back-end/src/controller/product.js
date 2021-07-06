@@ -93,27 +93,37 @@ exports.updateProduct = async (req, res) => {
   return res.status(201).json({ updatedProduct}); */
 
   //saving all Productimages uploaded in an array
-  let productImages = [];
+  // let productImages = [];
 
   //if productImages exists then mapping them to a array of objects as needed in the product schema
+  // if (req.files.length > 0) {
+  //   productImages = req.files.map((file) => {
+  //     return { img: file.filename };
+  //   });
+  // }
+
+  const { name, price, description, category, quantity, createdBy } = req.body;
+
+  let productPictures = [];
+
   if (req.files.length > 0) {
-    productImages = req.files.map((file) => {
+    productPictures = req.files.map((file) => {
       return { img: file.filename };
     });
   }
 
   try {
     await Product.findById(req.body._id).then((product) => {
-      product._id = req.body._id;
+      // product._id = req.body._id;
       product.name = req.body.name;
       product.description = req.body.description;
-      product.offer = req.body.offer;
+      // product.offer = req.body.offer;
       product.price = req.body.price;
       product.quantity = req.body.quantity;
       product.category = req.body.category;
 
-      if (productImages.length > 0) {
-        product.productImages = productImages;
+      if (productPictures.length > 0) {
+        product.productPictures = productPictures;
       }
 
       product
@@ -138,4 +148,13 @@ exports.deleteProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+};
+
+exports.getProducts = async (req, res) => {
+  const products = await Product.find({ createdBy: req.user._id })
+    .select("_id name price quantity slug description productPictures category")
+    .populate({ path: "category", select: "_id name" })
+    .exec();
+
+  res.status(200).json({ products });
 };

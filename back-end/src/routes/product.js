@@ -5,10 +5,11 @@ const {
   getProductsBySlug,
   getProductDetailsById,
   deleteProductById,
+  updateProduct,
+  getProducts,
 } = require("../controller/product");
 const multer = require("multer");
 const path = require("path");
-// const { } = require("../controller/category");
 const router = express.Router();
 const shortid = require("shortid");
 
@@ -32,13 +33,28 @@ router.post(
 );
 
 router.get("/products/:slug", getProductsBySlug);
-// router.get("/category/getcategory", getCategories);
+
 router.get("/product/:productId", getProductDetailsById);
+
 router.delete(
   "/product/deleteProductById",
   requireSignin,
   adminMiddleware,
   deleteProductById
+);
+
+router.post(
+  "/product/productUpdate",
+  requireSignin,
+  adminMiddleware,
+  updateProduct
+);
+
+router.post(
+  "/product/getProducts",
+  requireSignin,
+  adminMiddleware,
+  getProducts
 );
 
 module.exports = router;
