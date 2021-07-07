@@ -8,6 +8,26 @@ export const addProduct = (form) => {
   };
 };
 
+const getProducts = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST });
+      const res = await axios.post(`product/getProducts`);
+      if (res.status === 200) {
+        const { products } = res.data;
+        dispatch({
+          type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
+          payload: { products },
+        });
+      } else {
+        dispatch({ type: productConstants.GET_ALL_PRODUCTS_FAILURE });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const deleteProductById = (payload) => {
   return async (dispatch) => {
     try {
@@ -40,7 +60,7 @@ export const updateProduct = (form) => {
     const res = await axios.post("/product/update", form);
     if (res.status === 201) {
       dispatch({ type: productConstants.UPDATE_PRODUCT_SUCCESS });
-      dispatch(getAllProducts());
+      dispatch(getProducts());
     } else {
       const { error } = res.data;
       dispatch({
