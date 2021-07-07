@@ -27,6 +27,15 @@ export default function Products() {
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
+  const [productIdUpdate, setProductIdUpdate] = useState("");
+  const [productNameUpdate, setProductNameUpdate] = useState("");
+  const [productPriceUpdate, setProductPriceUpdate] = useState("");
+  const [productQtyUpdate, setProductQtyUpdate] = useState("");
+  const [productDescriptionUpdate, setProductDescriptionUpdate] = useState("");
+  const [productOfferUpdate, setProductOfferUpdate] = useState("");
+  const [productCategoryUpdate, setProductCategoryUpdate] = useState({});
+  const [productImageUpdate, setProductImageUpdate] = useState([]);
+
   const handleClose = () => {
     const form = new FormData();
     form.append("name", name);
@@ -57,6 +66,43 @@ export default function Products() {
 
   console.log(productPictures);
   const handleShow = () => setShow(true);
+
+  // const updateProductData = (prod) => {
+  //   setUpdateProductModal(true);
+
+  //   console.log(prod._id);
+
+  //   //updating state value according to selected Product
+  //   setProductIdUpdate(prod._id);
+  //   setProductNameUpdate(prod.name);
+  //   setProductDescriptionUpdate(prod.description);
+  //   setProductQtyUpdate(prod.quantity);
+  //   setProductOfferUpdate(prod.offer);
+  //   setProductPriceUpdate(prod.price);
+  //   setProductOfferUpdate(prod.offer);
+  //   setProductCategoryUpdate(prod.category);
+
+  //   prod.productImages.map((picture) => setProductImageUpdate(picture.img));
+  // };
+
+  // const updateProductForm = () => {
+  //   const form = new FormData();
+
+  //   console.log(productNameUpdate);
+  //   console.log(productIdUpdate);
+
+  //   form.append("_id", productIdUpdate);
+  //   form.append("name", productNameUpdate);
+  //   form.append("description", productDescriptionUpdate);
+  //   form.append("productImages", productImageUpdate);
+  //   form.append("offer", productOfferUpdate);
+  //   form.append("quantity", productQtyUpdate);
+  //   form.append("price", productPriceUpdate);
+  //   form.append("category", productCategoryUpdate._id);
+
+  //   //updating the product with new form data and then updating the product list(getting the updated product list)
+  //   dispatch(updateProduct(form));
+  // };
 
   const renderProducts = () => {
     return (
