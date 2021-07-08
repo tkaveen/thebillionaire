@@ -104,20 +104,19 @@ exports.updateProduct = async (req, res) => {
 
   // const { name, price, description, category, quantity, createdBy } = req.body;
 
-  // let productPictures = [];
+  let productPictures = [];
 
-  // if (req.files.length > 0) {
-  //   productPictures = req.files.map((file) => {
-  //     return { img: file.filename };
-  //   });
-  // }
+  if (req.files.length > 0) {
+    productPictures = req.files.map((file) => {
+      return { img: file.filename };
+    });
+  }
 
   try {
     await Product.findById(req.body._id).then((product) => {
       product._id = req.body._id;
       product.name = req.body.name;
       product.description = req.body.description;
-      // product.offer = req.body.offer;
       product.price = req.body.price;
       product.quantity = req.body.quantity;
       product.category = req.body.category;

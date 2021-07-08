@@ -57,7 +57,7 @@ export const updateProduct = (form) => {
   return async (dispatch) => {
     dispatch({ type: productConstants.UPDATE_PRODUCT_REQUEST });
 
-    const res = await axios.post("/product/update", form);
+    const res = await axios.post("/product/productUpdate", form);
     if (res.status === 201) {
       dispatch({ type: productConstants.UPDATE_PRODUCT_SUCCESS });
       dispatch(getProducts());

@@ -47,6 +47,7 @@ router.post(
   "/product/productUpdate",
   requireSignin,
   adminMiddleware,
+  upload.array("productPicture"),
   updateProduct
 );
 
