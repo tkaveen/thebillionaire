@@ -77,7 +77,6 @@ export default function Products() {
   const updateProductData = (prod) => {
     setProductUpdateModal(true);
 
-    //updating state value according to selected Product
     setProductIdUpdate(prod._id);
     setProductNameUpdate(prod.name);
     setProductDescriptionUpdate(prod.description);
@@ -102,8 +101,8 @@ export default function Products() {
     form.append("price", productPriceUpdate);
     form.append("category", productCategoryUpdate._id);
 
-    //updating the product with new form data and then updating the product list(getting the updated product list)
     dispatch(updateProduct(form));
+    setProductUpdateModal(false);
   };
 
   const renderProducts = () => {
