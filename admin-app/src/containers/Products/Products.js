@@ -3,7 +3,11 @@ import Layout from "../../components/Layout/index";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Input from "../../components/Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, deleteProductById } from "../../actions/product.action";
+import {
+  addProduct,
+  deleteProductById,
+  updateProduct,
+} from "../../actions/product.action";
 import Modal from "../../components/Ui/Modal/Modal";
 import "../Products/Product.css";
 import { generatePublicUrl } from "../../urlConfig";
@@ -32,7 +36,6 @@ export default function Products() {
   const [productPriceUpdate, setProductPriceUpdate] = useState("");
   const [productQtyUpdate, setProductQtyUpdate] = useState("");
   const [productDescriptionUpdate, setProductDescriptionUpdate] = useState("");
-  const [productOfferUpdate, setProductOfferUpdate] = useState("");
   const [productCategoryUpdate, setProductCategoryUpdate] = useState({});
   const [productImageUpdate, setProductImageUpdate] = useState([]);
 
@@ -64,45 +67,44 @@ export default function Products() {
     setProductPictures([...productPictures, e.target.files[0]]);
   };
 
+  const handleProductImageUpdate = (e) => {
+    setProductImageUpdate(e.target.files[0]);
+  };
+
   console.log(productPictures);
   const handleShow = () => setShow(true);
 
-  // const updateProductData = (prod) => {
-  //   setUpdateProductModal(true);
+  const updateProductData = (prod) => {
+    setProductUpdateModal(true);
 
-  //   console.log(prod._id);
+    //updating state value according to selected Product
+    setProductIdUpdate(prod._id);
+    setProductNameUpdate(prod.name);
+    setProductDescriptionUpdate(prod.description);
+    setProductQtyUpdate(prod.quantity);
+    setProductPriceUpdate(prod.price);
+    setProductCategoryUpdate(prod.category);
 
-  //   //updating state value according to selected Product
-  //   setProductIdUpdate(prod._id);
-  //   setProductNameUpdate(prod.name);
-  //   setProductDescriptionUpdate(prod.description);
-  //   setProductQtyUpdate(prod.quantity);
-  //   setProductOfferUpdate(prod.offer);
-  //   setProductPriceUpdate(prod.price);
-  //   setProductOfferUpdate(prod.offer);
-  //   setProductCategoryUpdate(prod.category);
+    prod.productPictures.map((picture) => setProductImageUpdate(picture.img));
+  };
 
-  //   prod.productImages.map((picture) => setProductImageUpdate(picture.img));
-  // };
+  const handleCloseProductUpdateModal = () => {
+    const form = new FormData();
 
-  // const updateProductForm = () => {
-  //   const form = new FormData();
+    console.log(productNameUpdate);
+    console.log(productIdUpdate);
 
-  //   console.log(productNameUpdate);
-  //   console.log(productIdUpdate);
+    form.append("_id", productIdUpdate);
+    form.append("name", productNameUpdate);
+    form.append("description", productDescriptionUpdate);
+    form.append("productImages", productImageUpdate);
+    form.append("quantity", productQtyUpdate);
+    form.append("price", productPriceUpdate);
+    form.append("category", productCategoryUpdate._id);
 
-  //   form.append("_id", productIdUpdate);
-  //   form.append("name", productNameUpdate);
-  //   form.append("description", productDescriptionUpdate);
-  //   form.append("productImages", productImageUpdate);
-  //   form.append("offer", productOfferUpdate);
-  //   form.append("quantity", productQtyUpdate);
-  //   form.append("price", productPriceUpdate);
-  //   form.append("category", productCategoryUpdate._id);
-
-  //   //updating the product with new form data and then updating the product list(getting the updated product list)
-  //   dispatch(updateProduct(form));
-  // };
+    //updating the product with new form data and then updating the product list(getting the updated product list)
+    dispatch(updateProduct(form));
+  };
 
   const renderProducts = () => {
     return (
@@ -137,7 +139,10 @@ export default function Products() {
                     </button>
                     <button
                       className="act-btn"
-                      onClick={() => showProductUpdateModal(product)}
+                      // onClick={() => showProductUpdateModal(product)}
+                      onClick={() => {
+                        updateProductData(product);
+                      }}
                     >
                       Update <FaRegEdit />
                     </button>
@@ -225,9 +230,9 @@ export default function Products() {
   const handleCloseProductDetailsModal = () => {
     setProductDetailModal(false);
   };
-  const handleCloseProductUpdateModal = () => {
-    setProductUpdateModal(false);
-  };
+  // const handleCloseProductUpdateModal = () => {
+  //   setProductUpdateModal(false);
+  // };
 
   const showProductDetailModal = (product) => {
     setProductDetails(product);
@@ -293,9 +298,6 @@ export default function Products() {
   };
 
   const updateProductDetailsModal = () => {
-    if (!productDetails) {
-      return null;
-    }
     return (
       <Modal
         show={productUpdateModal}
@@ -303,58 +305,146 @@ export default function Products() {
         modalTitle={"Product Update"}
         size="lg"
       >
-        <Row>
-          <Col md={6}>
-            <label className="key">Name</label>
-            <Input value={productDetails.name} />
-          </Col>
-          <Col md={6}>
-            <label className="key">Price</label>
-            <Input value={productDetails.price} />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <label className="key">Quantity</label>
-            <Input value={productDetails.quantity} />
-          </Col>
-          <Col md={6}>
-            <label className="key">Category</label>
-            <select
-              className="form-control"
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-            >
-              <option>select category</option>
-              {createCategoryList(category.categories).map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <label className="key">Description</label>
-            <textarea class="form-control" value={productDetails.description} />
-          </Col>
-        </Row>
-        {/* <Row>
-          <Col>
-            <label className="key">Product Pictures</label>
-            <div style={{ display: "flex" }}>
-              {productDetails.productPictures.map((picture) => (
-                <div className="productImgContainer">
-                  <img src={generatePublicUrl(picture.img)} />
-                </div>
-              ))}
-            </div>
-          </Col>
-        </Row> */}
+        <Input
+          lable="Product Name"
+          type={"text"}
+          value={productNameUpdate}
+          placeholder={"Product Name"}
+          onChange={(e) => {
+            setProductNameUpdate(e.target.value);
+          }}
+        />
+        <Input
+          lable="Product Price"
+          type={"text"}
+          value={productPriceUpdate}
+          placeholder={"Product Price"}
+          onChange={(e) => {
+            setProductPriceUpdate(e.target.value);
+          }}
+        />
+        <Input
+          lable="Product Quantity"
+          type={"text"}
+          value={productQtyUpdate}
+          placeholder={"Product Quantity"}
+          onChange={(e) => {
+            setProductQtyUpdate(e.target.value);
+          }}
+        />
+        <Input
+          lable="Product Description"
+          as="textarea"
+          rows={3}
+          value={productDescriptionUpdate}
+          placeholder={"Product Description"}
+          onChange={(e) => {
+            setProductDescriptionUpdate(e.target.value);
+          }}
+        />
+
+        <label>Product Category</label>
+        <select
+          className="form-control"
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option>select category</option>
+          {createCategoryList(category.categories).map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        <br></br>
+        <div className="input-group mb-3">
+          <label className="input-group-text" htmlFor="inputGroupFile01">
+            Upload Product Image
+          </label>
+          <input
+            type="file"
+            name="productImageUpdate"
+            className="form-control"
+            id="inputGroupFile01"
+            onChange={handleProductImageUpdate}
+          />
+        </div>
+        <div>
+          {typeof productImageUpdate === "string" ? (
+            <Row>
+              <Col>
+                <label style={{ color: "#333" }}>
+                  Current Image Name: <br></br> {productImageUpdate}
+                </label>
+              </Col>
+              <Col>
+                <label style={{ color: "#333" }}>Current Image Preview:</label>
+                <br></br>
+                <img
+                  style={{ maxWidth: "100px" }}
+                  src={generatePublicUrl(productImageUpdate)}
+                  alt="Category"
+                />
+              </Col>
+            </Row>
+          ) : null}
+        </div>
       </Modal>
     );
   };
+
+  // const updateProductDetailsModal = () => {
+  //   if (!productDetails) {
+  //     return null;
+  //   }
+  //   return (
+  //     <Modal
+  //       show={productUpdateModal}
+  //       handleClose={handleCloseProductUpdateModal}
+  //       modalTitle={"Product Update"}
+  //       size="lg"
+  //     >
+  //       <Row>
+  //         <Col md={6}>
+  //           <label className="key">Name</label>
+  //           <Input value={productDetails.name} />
+  //         </Col>
+  //         <Col md={6}>
+  //           <label className="key">Price</label>
+  //           <Input value={productDetails.price} />
+  //         </Col>
+  //       </Row>
+  //       <Row>
+  //         <Col md={6}>
+  //           <label className="key">Quantity</label>
+  //           <Input value={productDetails.quantity} />
+  //         </Col>
+  //         <Col md={6}>
+  //           <label className="key">Category</label>
+  //           <select
+  //             className="form-control"
+  //             value={categoryId}
+  //             onChange={(e) => setCategoryId(e.target.value)}
+  //           >
+  //             <option>select category</option>
+  //             {createCategoryList(category.categories).map((option) => (
+  //               <option key={option.value} value={option.value}>
+  //                 {option.name}
+  //               </option>
+  //             ))}
+  //           </select>
+  //         </Col>
+  //       </Row>
+  //       <Row>
+  //         <Col md={12}>
+  //           <label className="key">Description</label>
+  //           <textarea class="form-control" value={productDetails.description} />
+  //         </Col>
+  //       </Row>
+
+  //     </Modal>
+  //   );
+  // };
 
   return (
     <Layout sidebar>
