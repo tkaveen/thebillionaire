@@ -83,15 +83,24 @@ const FormSignup = ({ submitForm }) => {
   const userSignup = (e) => {
     e.preventDefault();
 
-    const user = { firstName, lastName, email, password };
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      password === ""
-    ) {
+    if (firstName === "") {
+      alert("First Name can't be empty!");
       return;
     }
+    if (lastName === "") {
+      alert("Last Name can't be empty!");
+      return;
+    }
+    if (email === "") {
+      alert("Email can't be empty!");
+      return;
+    }
+    if (password === "") {
+      alert("Password can't be empty!");
+      return;
+    }
+
+    const user = { firstName, lastName, email, password };
 
     dispatch(signup(user));
   };

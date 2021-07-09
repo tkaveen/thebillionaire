@@ -69,7 +69,7 @@ const Orders = () => {
               </div>
               <div>
                 <span className="title">Dilivery Address</span> <br />
-                <span className="value">{orderItem.addressId}</span>
+                <span className="value">{orderItem.user.firstName}</span>
               </div>
             </div>
             <div

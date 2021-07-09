@@ -22,7 +22,7 @@ exports.updateOrder = (req, res) => {
 exports.getCustomerOrders = async (req, res) => {
   const orders = await Order.find({})
     .populate("items.productId", "name")
-    .populate("User", "name")
+    .populate({ path: "user", select: "_id firstName lastName" })
     .exec();
   res.status(200).json({ orders });
 };
