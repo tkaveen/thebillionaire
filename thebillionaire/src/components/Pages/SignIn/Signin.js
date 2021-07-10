@@ -16,6 +16,16 @@ const Signin = () => {
   const userLogin = (e) => {
     e.preventDefault();
 
+    if (email === "") {
+      alert("Email can't be empty!");
+      return;
+    }
+
+    if (password === "") {
+      alert("Password can't be empty!");
+      return;
+    }
+
     const user = {
       email,
       password,
