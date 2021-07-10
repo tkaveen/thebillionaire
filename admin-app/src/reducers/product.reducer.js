@@ -21,6 +21,15 @@ export default (state = initialState, action) => {
     case productConstants.UPDATE_PRODUCT_FAILURE:
       state = { ...state, error: action.payload.error, loading: false };
       break;
+    case productConstants.DELETE_PRODUCT_BY_ID_REQUEST:
+      state = { ...state, loading: true };
+      break;
+    case productConstants.DELETE_PRODUCT_BY_ID_SUCCESS:
+      state = { ...state, loading: false };
+      break;
+    case productConstants.DELETE_PRODUCT_BY_ID_FAILURE:
+      state = { ...state, error: action.payload.error, loading: false };
+      break;
   }
   return state;
 };
