@@ -210,7 +210,7 @@ export default function Category() {
               <h3>Category</h3>
 
               <div className="actionBtnContainer">
-                <span>Actions:</span>
+                <span>Actions : </span>
                 <button onClick={handleShow}>
                   <IoIosAdd />
                   <span>Add</span>

@@ -31,8 +31,8 @@ exports.initialData = async (req, res) => {
   const orders = await Order.find({})
     .populate("items.productId", "name")
     .populate({ path: "user", select: "_id firstName lastName" })
-    .populate("UserAddress.address", "address")
-    // .populate({ path: "UserAddress.address", select: "name" })
+    .populate({ path: "addressId.userAddress.address", select: "address" })
+    // .populate("addressId.address", "address")
     .exec();
   res.status(200).json({
     categories: createCategories(categories),
