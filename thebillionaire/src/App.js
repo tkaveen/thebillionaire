@@ -15,6 +15,7 @@ import Profile from "./components/Pages/Profile/Profile";
 import CheckoutPage from "./components/Pages/Checkout/CheckoutPage";
 // import OrderDetails from "./components/Pages/OrderDetailsPage";
 import OrderDetailsPage from "./components/Pages/OrderDetailsPage";
+import Thankyou from "./components/Pages/ThankYouPage/Thankyou";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/signup" component={Form} />
           <Route path="/cart" component={Cart} />
           <Route path="/profile" component={Profile} />
+          <Route path="/thankyou" component={Thankyou} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route

@@ -5,7 +5,7 @@ import "./Signin.css";
 import T1 from "../../../components/images/TB1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../actions";
-import Navbar from "../../Navbar";
+import { Redirect } from "react-router-dom";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -39,6 +39,10 @@ const Signin = () => {
       // return renderNonLoggedInNavbar(true);
     }
   }, [auth.authenticate]);
+
+  if (auth.authenticate) {
+    return <Redirect to={`/profile`} />;
+  }
 
   return (
     <div>

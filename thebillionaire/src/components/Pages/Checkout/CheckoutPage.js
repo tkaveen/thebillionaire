@@ -13,6 +13,7 @@ import CartPage from "../Shoppingcart/Cart.js";
 import Card from "../../card/Card";
 import { makeStyles } from "@material-ui/core/styles";
 import Buttonn from "@material-ui/core/Button";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -133,7 +134,7 @@ const CheckoutPage = (props) => {
   if (confirmOrder) {
     return (
       <Card>
-        <div>Thank you</div>
+        return <Redirect to={`/thankyou`} />;
       </Card>
     );
   }

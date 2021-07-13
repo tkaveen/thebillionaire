@@ -94,6 +94,7 @@ export default function Home() {
           </Card>
         </Col>
       </Row>
+      <br />
     </Layout>
   );
 }

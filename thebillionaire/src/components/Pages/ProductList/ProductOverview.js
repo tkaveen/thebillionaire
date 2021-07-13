@@ -9,6 +9,8 @@ import { generatePublicUrl } from "../../../urlConfig";
 import { addToCart } from "../../../actions/cart.action";
 import { Select, FormControl, MenuItem, InputLabel } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
+import Review from "../../Reviews/Review";
+import { Form } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProductOverview = (props) => {
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
   const [size, setSize] = useState();
@@ -83,7 +86,7 @@ const ProductOverview = (props) => {
                           <div className="row">
                             <div className="column">
                               <div className="size">
-                                <h3>Size :</h3>
+                                {/* <h3>Size :</h3> */}
                                 <br></br>
                                 <div>
                                   <FormControl className={classes.formControl}>
@@ -110,7 +113,6 @@ const ProductOverview = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="column"></div>
                           </div>
                           <br></br>
                           <br></br>
@@ -133,6 +135,28 @@ const ProductOverview = (props) => {
                           <Button variant="contained">Buy Now</Button>
                         </div>
                       </div>
+                      <br />
+                      <Review />
+                      <br />
+                      {auth.authenticate ? (
+                        <div
+                          className="loggedInId"
+                          style={{ paddingBottom: "15px" }}
+                        >
+                          <div>Leave a Comment</div>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Control as="textarea" rows={3} cols={50} />
+                          </Form.Group>
+                          {/* <span>
+                            <b style={{ fontSize: "15px" }}>
+                              {auth.user.fullName}
+                            </b>
+                          </span> */}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
