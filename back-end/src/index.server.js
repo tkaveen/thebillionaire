@@ -11,6 +11,7 @@ const adminRoutes = require("./routes/admin/auth");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
+const reviewRoutes = require("./routes/review");
 const initialDataRoutes = require("./routes/admin/initialData");
 const addressRoutes = require("./routes/address");
 const orderRoutes = require("./routes/order");
@@ -44,6 +45,7 @@ app.use("/api", cartRoutes);
 app.use("/api", initialDataRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", reviewRoutes);
 app.use("/api", adminOrderRoutes);
 
 app.listen(process.env.PORT, () => {
