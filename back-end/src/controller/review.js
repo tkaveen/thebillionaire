@@ -19,3 +19,16 @@ exports.addReview = async (req, res) => {
     }
   });
 };
+
+exports.getReview = async (req, res) => {
+  await Review.find({ productId: req.params.id })
+    .populate({ path: "userId", select: "_id firstName lastName" })
+    .exec((err, review) => {
+      if (err) {
+        return res.status(400).json({ err });
+      }
+      if (review) {
+        return res.status(200).json({ review });
+      }
+    });
+};

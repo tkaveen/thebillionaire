@@ -14,6 +14,12 @@ const productSchema = new mongoose.Schema(
         review: String,
       },
     ],
+    ratings: [
+      {
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        rating: Number,
+      },
+    ],
     category: {
       type: mongoose.Types.ObjectId,
       ref: "Category",
