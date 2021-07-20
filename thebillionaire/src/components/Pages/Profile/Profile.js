@@ -7,6 +7,9 @@ import { getOrders, getProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 import Card from "../../card/Card";
 import { CgProfile } from "react-icons/cg";
+import empty from "../../images/undraw_empty_xct9.svg";
+import avatar from "../../images/avatr.svg";
+import { height } from "@material-ui/system";
 
 const Profile = (props) => {
   const dispatch = useDispatch();
@@ -24,18 +27,27 @@ const Profile = (props) => {
           <div className="pricing__container_profile">
             <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container-cardprofile">
+              <br />
               <div>
-                <h3>My Profile</h3>
+                <h1 className="text-center" style={{ fontSize: "35px" }}>
+                  My Profile
+                </h1>
                 <br />
                 <div style={{ textAlign: "center" }}>
-                  <CgProfile size={130} />
+                  <img
+                    src={avatar}
+                    style={{ width: "200px", height: "200px" }}
+                  />
+                  {/* <CgProfile size={130} /> */}
                 </div>
                 <div>
                   <br />
                   {auth.authenticate ? (
                     <div style={{ paddingBottom: "15px", textAlign: "center" }}>
                       <span>
-                        <b style={{ fontSize: "40px" }}>{auth.user.fullName}</b>
+                        <b style={{ fontSize: "30px", textAlign: "center" }}>
+                          {auth.user.fullName}
+                        </b>
                       </span>
                       <br></br>
                       <span
@@ -55,54 +67,65 @@ const Profile = (props) => {
                 <h3>Orders Placed</h3>
                 <br />
                 <div>
-                  {user.orders.map((order) => {
-                    return order.items.map((item) => (
-                      <Card style={{ maxWidth: "1200px", margin: "5px auto" }}>
-                        <Link
-                          to={`/order_details/${order._id}`}
-                          className="orderItemContainer"
+                  {user.orders ? (
+                    user.orders.map((order) => {
+                      return order.items.map((item) => (
+                        <Card
+                          style={{ maxWidth: "1200px", margin: "5px auto" }}
                         >
-                          <div
-                            style={{
-                              width: 80,
-                              height: 80,
-                              overflow: "hidden",
-                            }}
+                          <Link
+                            to={`/order_details/${order._id}`}
+                            className="orderItemContainer"
                           >
-                            <img
+                            <div
                               style={{
                                 width: 80,
                                 height: 80,
+                                overflow: "hidden",
                               }}
-                              src={generatePublicUrl(
-                                item.productId.productPictures[0].img
-                              )}
-                            />
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flex: 1,
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <div style={{ width: 300, marginLeft: "20px" }}>
-                              {item.productId.name}
+                            >
+                              <img
+                                style={{
+                                  width: 80,
+                                  height: 80,
+                                }}
+                                src={generatePublicUrl(
+                                  item.productId.productPictures[0].img
+                                )}
+                              />
                             </div>
-                            <div style={{ width: 100, marginLeft: "20px" }}>
-                              {item.purchasedSize}
+                            <div
+                              style={{
+                                display: "flex",
+                                flex: 1,
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <div style={{ width: 300, marginLeft: "20px" }}>
+                                {item.productId.name}
+                              </div>
+                              <div style={{ width: 100, marginLeft: "20px" }}>
+                                {item.purchasedSize}
+                              </div>
+                              <div style={{ width: 120 }}>
+                                Rs. {item.payablePrice}
+                              </div>
+                              <div style={{ marginRight: "20px" }}>
+                                {order.paymentStatus}
+                              </div>
                             </div>
-                            <div style={{ width: 120 }}>
-                              Rs. {item.payablePrice}
-                            </div>
-                            <div style={{ marginRight: "20px" }}>
-                              {order.paymentStatus}
-                            </div>
-                          </div>
-                        </Link>
-                      </Card>
-                    ));
-                  })}
+                          </Link>
+                        </Card>
+                      ));
+                    })
+                  ) : (
+                    <div>
+                      <img
+                        src={empty}
+                        style={{ width: "200px", height: "200px" }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </Link>

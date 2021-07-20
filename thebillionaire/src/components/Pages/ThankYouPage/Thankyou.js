@@ -3,6 +3,10 @@ import "./Thankyou.css";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 import logo from "../../images/bag.png";
+import avatar from "../../images/undraw_web_shopping_dd4l.svg";
+import avatar2 from "../../images/undraw_deliveries_131a.svg";
+import avatar3 from "../../images/undraw_Successful_purchase_re_mpig.svg";
+import avatar4 from "../../images/undraw_Order_confirmed_re_g0if.svg";
 
 export default function Thankyou() {
   return (
@@ -17,9 +21,17 @@ export default function Thankyou() {
               <br />
               <br />
               <div>
-                <h2>Thank you for being a part of The Billionaire Family </h2>
+                <h2 style={{ fontSize: "30px" }}>
+                  Thank you for being a part of The Billionaire Family{" "}
+                </h2>
               </div>
-              <img src={logo} style={{ width: "400px", height: "400px" }}></img>
+              <br />
+              <br />
+              <br />
+              <img
+                src={avatar}
+                style={{ width: "400px", height: "400px", marginLeft: "150px" }}
+              ></img>
             </Link>
           </div>
         </div>
