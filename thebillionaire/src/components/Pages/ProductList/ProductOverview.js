@@ -11,6 +11,10 @@ import { Select, FormControl, MenuItem, InputLabel } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import Review from "../../Reviews/Review";
 import { Form } from "react-bootstrap";
+import { addReview, getReviews } from "../../../actions/review.action";
+import StarRatings from "react-star-ratings";
+import Card from "../../card/Card";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -29,13 +33,32 @@ const ProductOverview = (props) => {
   const product = useSelector((state) => state.product);
   const [size, setSize] = useState();
   const classes = useStyles();
+  const review = useSelector((state) => state.review);
+  const [rate, setRate] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const { productId } = props.match.params;
+  const [reviewDescription, setreviewDescription] = useState("");
+  const [ratingValue, setRatingValue] = useState(0);
+  // const [currentProduct, setCurrentProduct] = useState("");
+
+  let allRate = 0;
 
   const handleChange = (e) => {
     setSize(e.target.value);
   };
 
+  const getReviews = async () => {
+    console.log("we");
+    await axios
+      .get(`http://localhost:5000/api/review/getreview/${productId}`)
+      .then((res) => {
+        setReviews(res.data);
+      });
+
+    console.log("we2: " + reviews.length);
+  };
+
   useEffect(() => {
-    const { productId } = props.match.params;
     console.log(props);
     const payload = {
       params: {
@@ -43,14 +66,64 @@ const ProductOverview = (props) => {
       },
     };
     dispatch(getProductDetailsById(payload));
+
+    getReviews();
+    console.log("K: " + productId);
   }, []);
+
+  const currentProduct = product.productDetails._id;
+
+  const addNewReview = () => {
+    const reviewObj = {
+      userId: auth.user._id,
+      productId: currentProduct,
+      review: reviewDescription,
+      rating: ratingValue,
+    };
+
+    dispatch(addReview(reviewObj));
+
+    setRatingValue(0);
+    setreviewDescription("");
+  };
+
+  // useEffect(() => {
+  //   if (product._id !== undefined) {
+  //     dispatch(getReviews(product._id));
+  //   }
+  // }, [product._id]);
+
+  console.log(product._id);
+  console.log(review);
 
   if (Object.keys(product.productDetails).length === 0) {
     return null;
   }
 
+  const calcRate = () => {
+    let ratings = [];
+    if (review) {
+      for (let i = 0; i < review.length; i++) {
+        ratings.push(review[i].rating);
+      }
+      let rateO = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+      var rate = Math.round(rateO * 10) / 10;
+      console.log(rate);
+      allRate = rate;
+      return rate;
+    } else {
+      return 0;
+    }
+  };
+
+  const changeRating = (newRating, name) => {
+    setRatingValue(newRating);
+    console.log(ratingValue);
+  };
+
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
+      {console.log(calcRate())}
       <div className="pricing__sectionPO">
         <div className="pricing__wrapper">
           <div className="pricing__container">
@@ -112,6 +185,14 @@ const ProductOverview = (props) => {
                                   </FormControl>
                                 </div>
                               </div>
+                              <h6>Rating: </h6>
+                              <StarRatings
+                                rating={allRate ? allRate : 0}
+                                starDimension="25px"
+                                starSpacing="5px"
+                                starRatedColor="orange"
+                              />
+                              {`(${review.length})`}
                             </div>
                           </div>
                           <br></br>
@@ -136,20 +217,46 @@ const ProductOverview = (props) => {
                         </div>
                       </div>
                       <br />
-                      <Review />
-                      <br />
                       {auth.authenticate ? (
                         <div
                           className="loggedInId"
                           style={{ paddingBottom: "15px" }}
                         >
                           <div>Leave a Comment</div>
-                          <Form.Group
-                            className="mb-3"
-                            controlId="exampleForm.ControlTextarea1"
-                          >
-                            <Form.Control as="textarea" rows={3} cols={50} />
-                          </Form.Group>
+                          <Form>
+                            <Form.Group
+                              className="mb-3"
+                              controlId="exampleForm.ControlTextarea1"
+                            >
+                              <Form.Control
+                                as="textarea"
+                                rows={3}
+                                cols={50}
+                                value={reviewDescription}
+                                onChange={(e) => {
+                                  setreviewDescription(e.target.value);
+                                }}
+                              />
+                            </Form.Group>
+                            <StarRatings
+                              rating={ratingValue}
+                              starDimension="25px"
+                              starSpacing="5px"
+                              starRatedColor="orange"
+                              changeRating={changeRating}
+                              numberOfStars={5}
+                            />
+                            <Button variant="contained" onClick={addNewReview}>
+                              submit
+                            </Button>
+                            {/* <Button
+                              variant="primary"
+                              type="submit"
+                              onSubmit={addNewReview}
+                            >
+                              Submit
+                            </Button> */}
+                          </Form>
                           {/* <span>
                             <b style={{ fontSize: "15px" }}>
                               {auth.user.fullName}
@@ -157,6 +264,33 @@ const ProductOverview = (props) => {
                           </span> */}
                         </div>
                       ) : null}
+
+                      {/* <Review reviews={review} /> */}
+                      {reviews
+                        ? reviews.map((revie, index) => (
+                            <Card key={index}>
+                              <div>
+                                <h3>
+                                  {revie.userId.firstName}{" "}
+                                  {revie.userId.lastName}
+                                </h3>
+                              </div>
+                              <div>
+                                <h4>
+                                  Rating :
+                                  <StarRatings
+                                    rating={revie.rating}
+                                    starDimension="25px"
+                                    starSpacing="5px"
+                                    starRatedColor="orange"
+                                  />
+                                </h4>
+                              </div>
+                              <div>{revie.review}</div>
+                            </Card>
+                          ))
+                        : null}
+                      <br />
                     </div>
                   </div>
                 </div>

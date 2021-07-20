@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./style.css";
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrder } from "../../../actions";
 import Card from "../../card/Card";
 import { generatePublicUrl } from "../../../urlConfig";
+import { useReactToPrint } from "react-to-print";
+import Invoice from "../../Invoice/index";
 
 const OrderDetailsPage = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +20,11 @@ const OrderDetailsPage = (props) => {
     };
     dispatch(getOrder(payload));
   }, []);
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const formatDate = (date) => {
     if (date) {
@@ -87,7 +94,14 @@ const OrderDetailsPage = (props) => {
                       </div>
                       <div className="delMoreActionContainer">
                         <div className="delTitle">More Actions</div>
-                        <div className="delName">Download Invoice</div>
+                        <Invoice
+                          orderId={orderDetails._id}
+                          address={orderDetails.address.address}
+                          items={orderDetails.items}
+                          paymentType={orderDetails.paymentType}
+                          total={orderDetails.totalAmount}
+                        ></Invoice>
+                        {/* <div className="delName">Download Invoice</div> */}
                       </div>
                     </div>
                   </Card>

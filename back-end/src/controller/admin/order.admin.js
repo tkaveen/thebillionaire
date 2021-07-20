@@ -22,8 +22,21 @@ exports.updateOrder = (req, res) => {
 exports.getCustomerOrders = async (req, res) => {
   const orders = await Order.find({})
     .populate("items.productId", "name")
+    .populate("UserAddress.address")
     .populate({ path: "user", select: "_id firstName lastName" })
     .exec();
+  // let addressId = "";
+
+  // orders.forEach((element) => {
+  //   addressId = element.addressId;
+  // });
+
+  // console.log("kk: " + addressId);
+
+  // const getAddress = await Address.find({ address: addressId });
+
+  // console.log(getAddress);
+
   res.status(200).json({ orders });
 };
 

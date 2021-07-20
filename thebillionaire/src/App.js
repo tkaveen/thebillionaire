@@ -43,10 +43,7 @@ function App() {
           <Route path="/thankyou" component={Thankyou} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path="/checkout" component={CheckoutPage} />
-          <Route
-            path="/:productSlug/:productId/p"
-            component={ProductOverview}
-          />
+          <Route path="/:productSlug/:productId" component={ProductOverview} />
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
         <Footer />
