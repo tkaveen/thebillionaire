@@ -64,8 +64,9 @@ const OrderDetailsPage = (props) => {
       <div className="pricing__section_OrderDetails">
         <div className="pricing__wrapper_OrderDetails">
           <div className="pricing__container-card_cart">
+            <Link className="pricing__container-card_cart"></Link>
             <Link className="pricing__container_OrderDetails">
-              <div className="pricing__container-cardInfo">
+              <div>
                 <br />
                 <h4>Orders</h4>
                 <div

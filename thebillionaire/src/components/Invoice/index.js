@@ -30,26 +30,36 @@ export default class Invoice extends Component {
           </button>
         </div>
         <br />
-        <Card id="divToPrint" style={{ width: "800px" }}>
+        <div id="divToPrint" style={{ width: "800px" }}>
           <div>
-            <h1 style={{ textAlign: "center" }}>Invoice</h1>
+            <h1
+              style={{
+                textAlign: "center",
+                color: "black",
+                paddingTop: "40px",
+              }}
+            >
+              INVOICE
+            </h1>
           </div>
           <img
             src={logo}
             alt="logo"
-            // style={{ marginLeft: "150px", marginTop: "50px" }}
+            style={{ marginLeft: "130px", marginTop: "20px" }}
           />
           <div>
             <div>
-              <div style={{ fontSize: "28px", marginLeft: "20px" }}>
-                Order ID : {this.props.orderId}
+              <div
+                style={{ fontSize: "20px", marginLeft: "20px", color: "black" }}
+              >
+                <b>Order ID : {this.props.orderId}</b>
               </div>
               <br />
-              <div style={{ marginLeft: "20px" }}>
+              <div style={{ marginLeft: "20px", color: "black" }}>
                 Address : {this.props.address}
               </div>
               <br />
-              <div style={{ marginLeft: "20px" }}>
+              <div style={{ marginLeft: "20px", color: "black" }}>
                 Payment Type :{" "}
                 {this.props.paymentType === "cod"
                   ? "Cash On Delivery"
@@ -57,30 +67,45 @@ export default class Invoice extends Component {
               </div>
             </div>
           </div>
-          <Table striped bordered hover style={{ marginTop: "50px" }}>
+          <Table
+            striped
+            bordered
+            hover
+            style={{ marginTop: "50px", marginLeft: "20px" }}
+          >
             <thead>
-              <tr style={{ color: "black" }}>
-                <th>Order Items</th>
-                <th>Price</th>
-                <th>Quantity</th>
+              <tr style={{ color: "black", marginBottom: "10px" }}>
+                <th style={{ marginLeft: "20px", paddingBottom: "10px" }}>
+                  Order Items
+                </th>
+                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
+                  Price
+                </th>
+                <th style={{ paddingLeft: "50px", paddingBottom: "10px" }}>
+                  Quantity
+                </th>
               </tr>
             </thead>
             <tbody style={{ color: "black" }}>
               {this.props.items.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.productId.name}</td>
-                  <td>Rs. {item.payablePrice}</td>
-                  <td>{item.purchasedQty}</td>
+                  <td style={{ paddingBottom: "10px" }}>
+                    {item.productId.name}
+                  </td>
+                  <td style={{ paddingLeft: "120px" }}>
+                    Rs. {item.payablePrice}
+                  </td>
+                  <td style={{ paddingLeft: "75px" }}>{item.purchasedQty}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          <div style={{ marginTop: "50px" }}>
+          <div style={{ marginTop: "50px", marginLeft: "20px" }}>
             <h2 style={{ color: "red", fontWeight: "bold" }}>
               Grand Total : Rs. {this.props.total}.00
             </h2>
           </div>
-        </Card>
+        </div>
       </div>
     );
   }

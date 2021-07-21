@@ -30,7 +30,7 @@
   /* padding: 24px; */
   align-items: center;
   color: #fff;
-  padding-bottom: 250px;
+  padding-bottom: 50px;
 }
 
 .pricing__container-OrderDetails h3 {
@@ -38,8 +38,10 @@
   font-size: 24px;
 }
 
-.pricing__container-OrderDetails h4 {
+.pricing__container_OrderDetails h4 {
   font-size: 40px;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .pricing__container-OrderDetails p {
@@ -57,11 +59,11 @@
   margin: 0 24px;
 } */
 
-/* .pricing__container_OrderDetails {
+.pricing__container_OrderDetails {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .pricing__wrapper_OrderDetails {
   display: flex;

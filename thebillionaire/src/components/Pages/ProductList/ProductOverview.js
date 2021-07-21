@@ -129,7 +129,7 @@ const ProductOverview = (props) => {
           <div className="pricing__container">
             <Link className="pricing__container-cardpo"></Link>
             <Link className="pricing__container-cardProdOver">
-              <div className="pricing__container-cardInfo">
+              <div>
                 <br></br>
                 <br></br>
                 <h1>{product.productDetails.name}</h1>
@@ -151,7 +151,9 @@ const ProductOverview = (props) => {
                     <div className="column">
                       <div className="overview">
                         <div className="overview-content">
-                          <h1>Rs. {product.productDetails.price}</h1>
+                          <div className="price">
+                            Rs. {product.productDetails.price}
+                          </div>
                           <br></br>
                           <p>{product.productDetails.description}</p>
                           <hr></hr>
@@ -161,7 +163,7 @@ const ProductOverview = (props) => {
                               <div className="size">
                                 {/* <h3>Size :</h3> */}
                                 <br></br>
-                                <div>
+                                <div className="size">
                                   <FormControl className={classes.formControl}>
                                     <InputLabel
                                       id="demo-simple-select-label"
@@ -213,16 +215,23 @@ const ProductOverview = (props) => {
                             Add to Cart
                           </Button>
                           &nbsp;&nbsp;&nbsp;&nbsp;
-                          <Button variant="contained">Buy Now</Button>
+                          {/* <Button variant="contained">Buy Now</Button> */}
                         </div>
                       </div>
+                      <br />
+                      <br />
                       <br />
                       {auth.authenticate ? (
                         <div
                           className="loggedInId"
                           style={{ paddingBottom: "15px" }}
                         >
-                          <div>Leave a Comment</div>
+                          <div
+                            className="comment"
+                            style={{ fontSize: "20px", marginBottom: "10px" }}
+                          >
+                            Give a review about this product
+                          </div>
                           <Form>
                             <Form.Group
                               className="mb-3"
@@ -230,12 +239,13 @@ const ProductOverview = (props) => {
                             >
                               <Form.Control
                                 as="textarea"
-                                rows={3}
-                                cols={50}
+                                rows={5}
+                                cols={70}
                                 value={reviewDescription}
                                 onChange={(e) => {
                                   setreviewDescription(e.target.value);
                                 }}
+                                style={{ marginBottom: "5px" }}
                               />
                             </Form.Group>
                             <StarRatings
@@ -246,6 +256,7 @@ const ProductOverview = (props) => {
                               changeRating={changeRating}
                               numberOfStars={5}
                             />
+                            <br />
                             <Button variant="contained" onClick={addNewReview}>
                               submit
                             </Button>
@@ -268,25 +279,43 @@ const ProductOverview = (props) => {
                       {/* <Review reviews={review} /> */}
                       {reviews
                         ? reviews.map((revie, index) => (
-                            <Card key={index}>
-                              <div>
+                            <Card key={index} style={{ marginTop: "10px" }}>
+                              <div
+                                style={{
+                                  paddingTop: "7px",
+                                  paddingLeft: "10px",
+                                }}
+                              >
                                 <h3>
                                   {revie.userId.firstName}{" "}
                                   {revie.userId.lastName}
                                 </h3>
                               </div>
+                              <div
+                                style={{
+                                  paddingTop: "7px",
+                                  paddingLeft: "10px",
+                                }}
+                              >
+                                {revie.review}
+                              </div>
                               <div>
-                                <h4>
-                                  Rating :
+                                <h4
+                                  style={{
+                                    paddingTop: "7px",
+                                    paddingLeft: "10px",
+                                    paddingBottom: "7px",
+                                  }}
+                                >
+                                  Rating :{" "}
                                   <StarRatings
                                     rating={revie.rating}
-                                    starDimension="25px"
+                                    starDimension="20px"
                                     starSpacing="5px"
                                     starRatedColor="orange"
                                   />
                                 </h4>
                               </div>
-                              <div>{revie.review}</div>
                             </Card>
                           ))
                         : null}
