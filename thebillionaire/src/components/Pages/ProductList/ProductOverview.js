@@ -39,7 +39,6 @@ const ProductOverview = (props) => {
   const { productId } = props.match.params;
   const [reviewDescription, setreviewDescription] = useState("");
   const [ratingValue, setRatingValue] = useState(0);
-  // const [currentProduct, setCurrentProduct] = useState("");
 
   let allRate = 0;
 
@@ -102,15 +101,15 @@ const ProductOverview = (props) => {
 
   const calcRate = () => {
     let ratings = [];
-    if (review) {
-      for (let i = 0; i < review.length; i++) {
-        ratings.push(review[i].rating);
+    if (reviews) {
+      for (let i = 0; i < reviews.length; i++) {
+        ratings.push(reviews[i].rating);
       }
       let rateO = ratings.reduce((a, b) => a + b, 0) / ratings.length;
-      var rate = Math.round(rateO * 10) / 10;
-      console.log(rate);
-      allRate = rate;
-      return rate;
+      var newrate = Math.round(rateO * 10) / 10;
+      console.log("ko bn meka" + newrate);
+      allRate = newrate;
+      return newrate;
     } else {
       return 0;
     }
@@ -123,7 +122,7 @@ const ProductOverview = (props) => {
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
-      {console.log(calcRate())}
+      {console.log("ado oi" + calcRate())}
       <div className="pricing__sectionPO">
         <div className="pricing__wrapper">
           <div className="pricing__container">
@@ -187,14 +186,29 @@ const ProductOverview = (props) => {
                                   </FormControl>
                                 </div>
                               </div>
-                              <h6>Rating: </h6>
-                              <StarRatings
-                                rating={allRate ? allRate : 0}
-                                starDimension="25px"
-                                starSpacing="5px"
-                                starRatedColor="orange"
-                              />
-                              {`(${review.length})`}
+                              <br />
+                              <h4 style={{ marginBottom: "10px" }}>
+                                Ratings :{" "}
+                              </h4>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <StarRatings
+                                  rating={allRate ? allRate : 0}
+                                  starDimension="25px"
+                                  starSpacing="5px"
+                                  starRatedColor="orange"
+                                />
+                                <h4
+                                  style={{
+                                    fontSize: "20px",
+                                    marginLeft: "10px",
+                                  }}
+                                >{`(${reviews.length})`}</h4>
+                              </div>
                             </div>
                           </div>
                           <br></br>
