@@ -67,7 +67,7 @@ const Profile = (props) => {
                 <h3>Orders Placed</h3>
                 <br />
                 <div>
-                  {user.orders ? (
+                  {user.orders.length > 0 ? (
                     user.orders.map((order) => {
                       return order.items.map((item) => (
                         <Card
