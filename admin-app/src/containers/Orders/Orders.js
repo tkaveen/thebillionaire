@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/index";
-import { Container } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import Card from "../../components/Ui/Card";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,22 @@ const Orders = () => {
   return (
     <Layout sidebar>
       <Container fluid>
-        <h3>Orders</h3>
+        <Jumbotron
+          style={{
+            backgroundColor: "rgb(52, 58, 64)",
+            color: "white",
+            height: "50px",
+            alignItems: "center",
+          }}
+        >
+          <h3
+            className="text-center"
+            style={{ fontSize: "40px", marginTop: "-20px" }}
+          >
+            Orders
+          </h3>
+        </Jumbotron>
+        {/* <h3>Orders</h3> */}
         <br />
         {order.orders.map((orderItem, index) => (
           <Card

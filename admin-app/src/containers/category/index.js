@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import Layout from "../../components/Layout/index";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -24,6 +24,7 @@ import { Alert } from "bootstrap";
 import UpdatedCategoriesModal from "./compoenets/UpdateCategoriesModal";
 import AddCategoryModal from "./compoenets/AddCategoryModal";
 import "./style.css";
+import Card from "../../components/Ui/Card";
 
 export default function Category() {
   const category = useSelector((state) => state.category);
@@ -204,10 +205,25 @@ export default function Category() {
   return (
     <Layout sidebar>
       <Container fluid>
+        <Jumbotron
+          style={{
+            backgroundColor: "rgb(52, 58, 64)",
+            color: "white",
+            height: "50px",
+            alignItems: "center",
+          }}
+        >
+          <h3
+            className="text-center"
+            style={{ fontSize: "40px", marginTop: "-20px" }}
+          >
+            Categories
+          </h3>
+        </Jumbotron>
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Category</h3>
+              {/* <h3>Category</h3> */}
 
               <div className="actionBtnContainer">
                 <span>Actions : </span>
@@ -230,20 +246,24 @@ export default function Category() {
         <br />
         <Row>
           <Col md={12}>
-            <CheckboxTree
-              nodes={renderCategories(category.categories)}
-              checked={checked}
-              expanded={expanded}
-              onCheck={(checked) => setChecked(checked)}
-              onExpand={(expanded) => setExpanded(expanded)}
-              icons={{
-                check: <IoIosCheckbox />,
-                uncheck: <IoIosCheckboxOutline />,
-                halfCheck: <IoIosCheckboxOutline />,
-                expandClose: <IoIosArrowForward />,
-                expandOpen: <IoIosArrowDown />,
-              }}
-            />
+            <Card>
+              <div style={{ margin: "20px" }}>
+                <CheckboxTree
+                  nodes={renderCategories(category.categories)}
+                  checked={checked}
+                  expanded={expanded}
+                  onCheck={(checked) => setChecked(checked)}
+                  onExpand={(expanded) => setExpanded(expanded)}
+                  icons={{
+                    check: <IoIosCheckbox />,
+                    uncheck: <IoIosCheckboxOutline />,
+                    halfCheck: <IoIosCheckboxOutline />,
+                    expandClose: <IoIosArrowForward />,
+                    expandOpen: <IoIosArrowDown />,
+                  }}
+                />
+              </div>
+            </Card>
           </Col>
         </Row>
       </Container>

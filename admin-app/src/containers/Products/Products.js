@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/index";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col, Table, Jumbotron } from "react-bootstrap";
 import Input from "../../components/Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -448,16 +448,31 @@ export default function Products() {
   return (
     <Layout sidebar>
       <Container fluid>
+        <Jumbotron
+          style={{
+            backgroundColor: "rgb(52, 58, 64)",
+            color: "white",
+            height: "50px",
+            alignItems: "center",
+          }}
+        >
+          <h3
+            className="text-center"
+            style={{ fontSize: "40px", marginTop: "-20px" }}
+          >
+            Products
+          </h3>
+        </Jumbotron>
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Products</h3>
+              {/* <h3>Products</h3> */}
               <button
                 type="button"
                 className="btn btn-dark"
                 onClick={handleShow}
               >
-                Add Product
+                Add New Product
               </button>
             </div>
           </Col>

@@ -10,6 +10,7 @@ import * as RiIcons from "react-icons/ri";
 import { VscMultipleWindows } from "react-icons/vsc";
 import { GoListOrdered } from "react-icons/go";
 import { BsFillPeopleFill } from "react-icons//bs";
+import { HiOutlineDocumentReport } from "react-icons/hi";
 
 const Layout = (props) => {
   return (
@@ -49,6 +50,12 @@ const Layout = (props) => {
                   <NavLink to={`/customers`}>
                     <BsFillPeopleFill />
                     <span> Customers</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/reports`}>
+                    <HiOutlineDocumentReport style={{ fontSize: "20px" }} />
+                    <span> Reports</span>
                   </NavLink>
                 </li>
               </ul>

@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 import { Row, Col, Table } from "react-bootstrap";
 import logo from "../../../images/TB1.png";
 
-export default class CustomerReport extends Component {
+export default class salesReport extends Component {
   constructor(props) {
     super(props);
   }
@@ -25,7 +25,7 @@ export default class CustomerReport extends Component {
       <div>
         <div className="mb5">
           <button class="btn btn-primary" onClick={this.printDocument}>
-            Download Customer Report
+            Download Sales Report
           </button>
         </div>
         <br />
@@ -38,7 +38,7 @@ export default class CustomerReport extends Component {
                 paddingTop: "40px",
               }}
             >
-              Customer Report
+              Sales Report
             </h1>
           </div>
           <img
@@ -66,30 +66,34 @@ export default class CustomerReport extends Component {
               </div>
             </div>
           </div> */}
-          <Table striped bordered hover style={{ marginTop: "50px" }}>
+          <Table
+            striped
+            bordered
+            style={{ marginTop: "50px", marginLeft: "20px" }}
+          >
             <thead>
               <tr style={{ color: "black", marginBottom: "10px" }}>
                 <th style={{ marginLeft: "20px", paddingBottom: "10px" }}>
-                  Customer ID
-                </th>
-                <th style={{ marginLeft: "20px", paddingBottom: "10px" }}>
-                  Customer Name
+                  Order ID
                 </th>
                 <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
                   Products Brought
                 </th>
-                {/* <th style={{ paddingLeft: "50px", paddingBottom: "10px" }}>
-                  Quantity
-                </th> */}
+                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
+                  Total Price
+                </th>
+                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
+                  Payment Method
+                </th>
+                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
+                  Delivery Status
+                </th>
               </tr>
             </thead>
             <tbody style={{ color: "black" }}>
               {this.props.items.map((orderItem, index) => (
                 <tr key={index}>
-                  <td>{orderItem.user._id}</td>
-                  <td>
-                    {orderItem.user.firstName} {orderItem.user.lastName}
-                  </td>
+                  <td>{orderItem._id}</td>
 
                   <td>
                     {orderItem.items.map((item, index) => (
@@ -98,6 +102,9 @@ export default class CustomerReport extends Component {
                       </div>
                     ))}
                   </td>
+                  <td>{orderItem.totalAmount}</td>
+                  <td>{orderItem.paymentType}</td>
+                  <td>{orderItem.paymentStatus}</td>
                 </tr>
               ))}
             </tbody>
