@@ -25,6 +25,7 @@ exports.getCustomerOrders = async (req, res) => {
     .populate("addressId.UserAddress.address")
     .populate({ path: "user", select: "_id firstName lastName" })
     .exec();
+    
   // let addressId = "";
 
   // orders.forEach((element) => {
@@ -63,3 +64,9 @@ exports.getCustomerOrders = async (req, res) => {
 //     });
 //   res.status(200).json({ orders });
 // };
+
+exports.getAddressByUser = async (req, res) => {
+  const id = req.params.id;
+  const address = await Address.findOne({ user: id }).exec();
+  res.status(200).json({ address });
+};

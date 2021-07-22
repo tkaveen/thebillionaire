@@ -15,6 +15,7 @@ const reviewRoutes = require("./routes/review");
 const initialDataRoutes = require("./routes/admin/initialData");
 const addressRoutes = require("./routes/address");
 const orderRoutes = require("./routes/order");
+const mailRoutes = require("./routes/mail");
 const adminOrderRoutes = require("./routes/admin/order.routes");
 
 // environment variable
@@ -46,6 +47,7 @@ app.use("/api", initialDataRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", reviewRoutes);
+app.use("/api", mailRoutes);
 app.use("/api", adminOrderRoutes);
 
 app.listen(process.env.PORT, () => {
