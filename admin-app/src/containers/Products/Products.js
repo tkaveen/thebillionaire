@@ -27,6 +27,7 @@ export default function Products() {
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
   const [productUpdateModal, setProductUpdateModal] = useState(false);
+  const [productdeleteModal, setProductDeleteModal] = useState(false);
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -41,6 +42,42 @@ export default function Products() {
 
   const handleClose = () => {
     const form = new FormData();
+
+    if (name === "") {
+      alert("Name can't be empty!");
+      return;
+    }
+
+    if (quantity === "") {
+      alert("Quantity can't be empty!");
+      return;
+    }
+    if (isNaN(quantity)) {
+      alert("Quantity must be a number!");
+      return;
+    }
+    if (price === "") {
+      alert("Price can't be empty!");
+      return;
+    }
+    if (isNaN(price)) {
+      alert("Price must be a number!");
+      return;
+    }
+    if (description === "") {
+      alert("Description can't be empty!");
+      return;
+    }
+
+    if (!categoryId) {
+      alert("Category can't be empty!");
+      return;
+    }
+    if (productPictures.length < 0) {
+      alert("Product images can't be empty!");
+      return;
+    }
+
     form.append("name", name);
     form.append("quantity", quantity);
     form.append("price", price);
@@ -391,59 +428,6 @@ export default function Products() {
       </Modal>
     );
   };
-
-  // const updateProductDetailsModal = () => {
-  //   if (!productDetails) {
-  //     return null;
-  //   }
-  //   return (
-  //     <Modal
-  //       show={productUpdateModal}
-  //       handleClose={handleCloseProductUpdateModal}
-  //       modalTitle={"Product Update"}
-  //       size="lg"
-  //     >
-  //       <Row>
-  //         <Col md={6}>
-  //           <label className="key">Name</label>
-  //           <Input value={productDetails.name} />
-  //         </Col>
-  //         <Col md={6}>
-  //           <label className="key">Price</label>
-  //           <Input value={productDetails.price} />
-  //         </Col>
-  //       </Row>
-  //       <Row>
-  //         <Col md={6}>
-  //           <label className="key">Quantity</label>
-  //           <Input value={productDetails.quantity} />
-  //         </Col>
-  //         <Col md={6}>
-  //           <label className="key">Category</label>
-  //           <select
-  //             className="form-control"
-  //             value={categoryId}
-  //             onChange={(e) => setCategoryId(e.target.value)}
-  //           >
-  //             <option>select category</option>
-  //             {createCategoryList(category.categories).map((option) => (
-  //               <option key={option.value} value={option.value}>
-  //                 {option.name}
-  //               </option>
-  //             ))}
-  //           </select>
-  //         </Col>
-  //       </Row>
-  //       <Row>
-  //         <Col md={12}>
-  //           <label className="key">Description</label>
-  //           <textarea class="form-control" value={productDetails.description} />
-  //         </Col>
-  //       </Row>
-
-  //     </Modal>
-  //   );
-  // };
 
   return (
     <Layout sidebar>
