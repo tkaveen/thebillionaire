@@ -4,7 +4,7 @@ import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { getAddress, getCartItems, addOrder } from "../../../actions";
+import { getAddress, getCartItems, addOrder, sendMail } from "../../../actions";
 import { Button } from "../../Button";
 import AddressForm from "./AddressForm";
 import { Anchor, MaterialInput } from "../../MaterialUi";
@@ -85,6 +85,12 @@ const CheckoutPage = (props) => {
   };
 
   const userOrderConfirmation = () => {
+    const emailObj = {
+      receiverMail: auth.user.email,
+    };
+
+    dispatch(sendMail(emailObj));
+
     setOrderConfirmation(true);
     setOrderSummary(false);
     setPaymentOption(true);
@@ -138,6 +144,16 @@ const CheckoutPage = (props) => {
       </Card>
     );
   }
+
+  // const currentMail = auth.user.email;
+
+  // const addNewMail = () => {
+  //   const emailObj = {
+  //     mail: currentMail,
+  //   };
+
+  //   dispatch(sendMail(emailObj));
+  // };
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>

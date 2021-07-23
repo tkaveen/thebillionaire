@@ -1,32 +1,27 @@
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 
-// const transporter = nodemailer.createTransport(
-//   sendgridTransport({
-//     auth: {
-//       // api_key: "theBillionaire",
-//       user: "theshankaveen2@gmail.com",
-//       pass: "yourpassword",
-//     },
-//   })
-// );
+const Email = "thebillionairepromotion@gmail.com";
+const EmailPassword = "00204060808";
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'theshankaveen2@gmail.com',
-    pass: 'adoko123456'
-  }
+    user: Email,
+    pass: EmailPassword,
+  },
 });
 
 exports.sendEmail = (req, res) => {
-  const { email } = req.body;
+  const { receiverMail } = req.body;
 
   var emailobj = {
-    to: "kaveenliyanaarachchi@gmail.com",
-    from: "theshankaveen2@gmail.com",
-    subject: "New Contact - Message",
-    html: `<h3>Email: ${email}</h3> </br>`,
+    to: receiverMail,
+    from: Email,
+    subject: "Order Confirmation",
+    html: `<h3>Dear Sir/Madam,</h3>
+    <p>Thanks for being part of The Billionaire Family. you will receive your order soon.<br></br> <br></br> 
+    You can track your orders through the order details page.</p> `,
   };
 
   try {
