@@ -17,7 +17,6 @@ export default function Reports() {
     <Layout sidebar>
       <Jumbotron
         style={{
-          backgroundColor: "rgb(52, 58, 64)",
           color: "white",
         }}
       >
@@ -25,7 +24,6 @@ export default function Reports() {
       </Jumbotron>
       <Jumbotron
         style={{
-          backgroundColor: "rgb(52, 58, 64)",
           color: "white",
         }}
       >

@@ -24,8 +24,12 @@ const PriceDetails = (props) => {
           <div style={{ color: "green" }}>FREE</div>
         </div>
         <div className="flexRow sb" style={{ margin: "10px 0" }}>
+          <div>Offers</div>
+          <div style={{ color: "green" }}>Rs. {props.offer}</div>
+        </div>
+        <div className="flexRow sb" style={{ margin: "10px 0" }}>
           <div>Total Amount</div>
-          <div>Rs. {props.totalPrice}</div>
+          <div>Rs. {props.totalPrice - props.offer}</div>
         </div>
       </div>
     </Card>

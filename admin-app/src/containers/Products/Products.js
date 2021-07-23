@@ -21,6 +21,7 @@ export default function Products() {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [offer, setOffer] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [productPictures, setProductPictures] = useState([]);
   const [show, setShow] = useState(false);
@@ -37,6 +38,7 @@ export default function Products() {
   const [productPriceUpdate, setProductPriceUpdate] = useState("");
   const [productQtyUpdate, setProductQtyUpdate] = useState("");
   const [productDescriptionUpdate, setProductDescriptionUpdate] = useState("");
+  const [productOfferUpdate, setProductOfferUpdate] = useState("");
   const [productCategoryUpdate, setProductCategoryUpdate] = useState({});
   const [productImageUpdate, setProductImageUpdate] = useState([]);
 
@@ -69,6 +71,15 @@ export default function Products() {
       return;
     }
 
+    if (offer === "") {
+      alert("offer can't be empty!");
+      return;
+    }
+    if (isNaN(offer)) {
+      alert("offer must be a number!");
+      return;
+    }
+
     if (!categoryId) {
       alert("Category can't be empty!");
       return;
@@ -82,6 +93,7 @@ export default function Products() {
     form.append("quantity", quantity);
     form.append("price", price);
     form.append("description", description);
+    form.append("offer", offer);
     form.append("category", categoryId);
     for (let pic of productPictures) {
       form.append("productPicture", pic);
@@ -117,6 +129,7 @@ export default function Products() {
     setProductIdUpdate(prod._id);
     setProductNameUpdate(prod.name);
     setProductDescriptionUpdate(prod.description);
+    setProductOfferUpdate(prod.offer);
     setProductQtyUpdate(prod.quantity);
     setProductPriceUpdate(prod.price);
     setProductCategoryUpdate(prod.category);
@@ -133,6 +146,7 @@ export default function Products() {
     form.append("_id", productIdUpdate);
     form.append("name", productNameUpdate);
     form.append("description", productDescriptionUpdate);
+    form.append("offer", productOfferUpdate);
     form.append("productImages", productImageUpdate);
     form.append("quantity", productQtyUpdate);
     form.append("price", productPriceUpdate);
@@ -151,6 +165,7 @@ export default function Products() {
             <th>Product Name</th>
             <th>Price(Rs.)</th>
             <th>Quantity</th>
+            <th>Offer</th>
             <th>Category</th>
             <th>Actions</th>
           </tr>
@@ -165,6 +180,7 @@ export default function Products() {
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
+                  <td>{product.offer}</td>
                   <td>{product.category.name}</td>
                   <td>
                     <button
@@ -233,6 +249,12 @@ export default function Products() {
           value={description}
           placeholder={`Description`}
           onChange={(e) => setDescription(e.target.value)}
+        />
+        <Input
+          label="Offer"
+          value={offer}
+          placeholder={`offer`}
+          onChange={(e) => setOffer(e.target.value)}
         />
         {/* <Input
           label="Description"
@@ -312,6 +334,12 @@ export default function Products() {
           </Col>
         </Row>
         <Row>
+          <Col md={6}>
+            <label className="key">Offer</label>
+            <p className="value">{productDetails.offer}</p>
+          </Col>
+        </Row>
+        <Row>
           <Col md={12}>
             <label className="key">Description</label>
             <p className="value">{productDetails.description}</p>
@@ -376,6 +404,15 @@ export default function Products() {
           placeholder={"Product Description"}
           onChange={(e) => {
             setProductDescriptionUpdate(e.target.value);
+          }}
+        />
+        <Input
+          lable="Product Offer"
+          type={"text"}
+          value={productOfferUpdate}
+          placeholder={"Product Offer"}
+          onChange={(e) => {
+            setProductOfferUpdate(e.target.value);
           }}
         />
 

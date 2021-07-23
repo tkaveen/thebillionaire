@@ -107,7 +107,7 @@ const ProductOverview = (props) => {
       }
       let rateO = ratings.reduce((a, b) => a + b, 0) / ratings.length;
       var newrate = Math.round(rateO * 10) / 10;
-      console.log("ko bn meka" + newrate);
+      console.log(newrate);
       allRate = newrate;
       return newrate;
     } else {
@@ -122,7 +122,7 @@ const ProductOverview = (props) => {
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
-      {console.log("ado oi" + calcRate())}
+      {console.log(calcRate())}
       <div className="pricing__sectionPO">
         <div className="pricing__wrapper">
           <div className="pricing__container">
@@ -153,6 +153,15 @@ const ProductOverview = (props) => {
                           <div className="price">
                             Rs. {product.productDetails.price}
                           </div>
+                          {product.productDetails.offer > 0 ? (
+                            <div style={{ color: "green" }}>
+                              {product.productDetails.offer} off!
+                            </div>
+                          ) : (
+                            <div style={{ color: "green" }}>
+                              "No Offers Available"
+                            </div>
+                          )}
                           <br></br>
                           <p>{product.productDetails.description}</p>
                           <hr></hr>
@@ -216,12 +225,19 @@ const ProductOverview = (props) => {
                           <Button
                             variant="contained"
                             onClick={() => {
-                              const { _id, name, price } =
+                              const { _id, name, price, offer } =
                                 product.productDetails;
                               const img =
                                 product.productDetails.productPictures[0].img;
                               dispatch(
-                                addToCart({ _id, name, price, img, size })
+                                addToCart({
+                                  _id,
+                                  name,
+                                  price,
+                                  img,
+                                  size,
+                                  offer,
+                                })
                               );
                               props.history.push(`/cart`);
                             }}
@@ -235,10 +251,56 @@ const ProductOverview = (props) => {
                       <br />
                       <br />
                       <br />
+
+                      {/* <Review reviews={review} /> */}
+                      {reviews
+                        ? reviews.map((revie, index) => (
+                            <Card key={index} style={{ marginTop: "10px" }}>
+                              <div
+                                style={{
+                                  paddingTop: "7px",
+                                  paddingLeft: "10px",
+                                }}
+                              >
+                                <h3>
+                                  {revie.userId.firstName}{" "}
+                                  {revie.userId.lastName}
+                                </h3>
+                              </div>
+                              <div
+                                style={{
+                                  paddingTop: "7px",
+                                  paddingLeft: "10px",
+                                }}
+                              >
+                                {revie.review}
+                              </div>
+                              <div>
+                                <h4
+                                  style={{
+                                    paddingTop: "7px",
+                                    paddingLeft: "10px",
+                                    paddingBottom: "7px",
+                                  }}
+                                >
+                                  Rating :{" "}
+                                  <StarRatings
+                                    rating={revie.rating}
+                                    starDimension="20px"
+                                    starSpacing="5px"
+                                    starRatedColor="orange"
+                                  />
+                                </h4>
+                              </div>
+                            </Card>
+                          ))
+                        : null}
+
+                      <br />
                       {auth.authenticate ? (
                         <div
                           className="loggedInId"
-                          style={{ paddingBottom: "15px" }}
+                          style={{ paddingBottom: "15px", marginLeft: "2px" }}
                         >
                           <div
                             className="comment"
@@ -289,51 +351,6 @@ const ProductOverview = (props) => {
                           </span> */}
                         </div>
                       ) : null}
-
-                      {/* <Review reviews={review} /> */}
-                      {reviews
-                        ? reviews.map((revie, index) => (
-                            <Card key={index} style={{ marginTop: "10px" }}>
-                              <div
-                                style={{
-                                  paddingTop: "7px",
-                                  paddingLeft: "10px",
-                                }}
-                              >
-                                <h3>
-                                  {revie.userId.firstName}{" "}
-                                  {revie.userId.lastName}
-                                </h3>
-                              </div>
-                              <div
-                                style={{
-                                  paddingTop: "7px",
-                                  paddingLeft: "10px",
-                                }}
-                              >
-                                {revie.review}
-                              </div>
-                              <div>
-                                <h4
-                                  style={{
-                                    paddingTop: "7px",
-                                    paddingLeft: "10px",
-                                    paddingBottom: "7px",
-                                  }}
-                                >
-                                  Rating :{" "}
-                                  <StarRatings
-                                    rating={revie.rating}
-                                    starDimension="20px"
-                                    starSpacing="5px"
-                                    starRatedColor="orange"
-                                  />
-                                </h4>
-                              </div>
-                            </Card>
-                          ))
-                        : null}
-                      <br />
                     </div>
                   </div>
                 </div>

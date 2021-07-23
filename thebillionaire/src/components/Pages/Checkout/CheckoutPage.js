@@ -432,6 +432,32 @@ const CheckoutPage = (props) => {
                   }}
                 >
                   <PriceDetails
+                    totalItems={Object.keys(cart.cartItems).reduce(function (
+                      qty,
+                      key
+                    ) {
+                      return qty + cart.cartItems[key].qty;
+                    },
+                    0)}
+                    totalPrice={Object.keys(cart.cartItems).reduce(
+                      (totalPrice, key) => {
+                        const { price, qty } = cart.cartItems[key];
+                        return totalPrice + price * qty;
+                      },
+                      0
+                    )}
+                    offer={Object.keys(cart.cartItems).reduce(function (
+                      offer,
+                      key
+                    ) {
+                      return (
+                        offer +
+                        cart.cartItems[key].offer * cart.cartItems[key].qty
+                      );
+                    },
+                    0)}
+                  />
+                  {/* <PriceDetails
                     totalItem={Object.keys(cart.cartItems).reduce(function (
                       qty,
                       key
@@ -446,7 +472,7 @@ const CheckoutPage = (props) => {
                       },
                       0
                     )}
-                  />
+                  /> */}
                 </div>
               </div>
               <br />

@@ -9,6 +9,7 @@ exports.createProduct = (req, res) => {
     name,
     price,
     description,
+    offer,
     category,
     quantity,
     reviews,
@@ -28,6 +29,7 @@ exports.createProduct = (req, res) => {
     price,
     quantity,
     description,
+    offer,
     productPictures,
     category,
     reviews,
@@ -129,6 +131,7 @@ exports.updateProduct = async (req, res) => {
       product._id = req.body._id;
       product.name = req.body.name;
       product.description = req.body.description;
+      product.offer = req.body.offer;
       product.price = req.body.price;
       product.quantity = req.body.quantity;
       product.category = req.body.category;
