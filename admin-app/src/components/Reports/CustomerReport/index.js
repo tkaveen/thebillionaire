@@ -66,7 +66,7 @@ export default class CustomerReport extends Component {
               </div>
             </div>
           </div> */}
-          <Table striped bordered hover style={{ marginTop: "50px" }}>
+          <Table striped bordered style={{ marginTop: "50px" }}>
             <thead>
               <tr style={{ color: "black", marginBottom: "10px" }}>
                 <th style={{ marginLeft: "20px", paddingBottom: "10px" }}>

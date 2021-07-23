@@ -46,6 +46,10 @@ export default function Category() {
     //   alert("Name is Required");
     //   return;
     // }
+    if (categoryName === "") {
+      alert("Name can't be empty!");
+      return;
+    }
     form.append("name", categoryName);
     form.append("parentId", parentCategoryId);
     form.append("categoryImage", categoryImage);
