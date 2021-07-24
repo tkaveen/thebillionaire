@@ -59,13 +59,13 @@
   margin: 0 24px;
 } */
 
-.imageholder {
+/* .imageholder {
   width: 30%;
   height: 30%;
   margin-right: 70%;
   margin-left: 10%;
-  /* position: absolute; */
-}
+  position: absolute;
+} */
 .cart-Item-Container {
   margin: 15px auto;
   justify-content: space-between;

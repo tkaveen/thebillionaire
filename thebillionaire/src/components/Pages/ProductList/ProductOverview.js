@@ -15,6 +15,7 @@ import { addReview, getReviews } from "../../../actions/review.action";
 import StarRatings from "react-star-ratings";
 import Card from "../../card/Card";
 import axios from "axios";
+import { Container, Row, Col, Table, Jumbotron } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -136,222 +137,248 @@ const ProductOverview = (props) => {
                 <br></br>
                 <br></br>
                 <div>
-                  <div className="row">
-                    <div className="column">
-                      <div className="imageholder">
-                        <img
-                          src={generatePublicUrl(
-                            product.productDetails.productPictures[0].img
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="column">
-                      <div className="overview">
-                        <div className="overview-content">
-                          <div className="price">
-                            Rs. {product.productDetails.price}
+                  <div>
+                    <Row>
+                      <Col>
+                        <div>
+                          <div className="imageholderr">
+                            <img
+                              src={generatePublicUrl(
+                                product.productDetails.productPictures[0].img
+                              )}
+                              alt=""
+                            />
                           </div>
-                          {product.productDetails.offer > 0 ? (
-                            <div style={{ color: "green" }}>
-                              {product.productDetails.offer} off!
-                            </div>
-                          ) : (
-                            <div style={{ color: "green" }}>
-                              "No Offers Available"
-                            </div>
-                          )}
-                          <br></br>
-                          <p>{product.productDetails.description}</p>
-                          <hr></hr>
-                          <br></br>
-                          <div className="row">
-                            <div className="column">
-                              <div className="size">
-                                {/* <h3>Size :</h3> */}
-                                <br></br>
-                                <div className="size">
-                                  <FormControl className={classes.formControl}>
-                                    <InputLabel
-                                      id="demo-simple-select-label"
-                                      style={{ color: "white" }}
-                                    >
-                                      Size
-                                    </InputLabel>
-                                    <Select
-                                      labelId="demo-simple-select-label"
-                                      id="demo-simple-select"
-                                      value={product.productDetails.size}
-                                      onChange={handleChange}
-                                      style={{ color: "white" }}
-                                    >
-                                      <MenuItem value={"Small"}>Small</MenuItem>
-                                      <MenuItem value={"Medium"}>
-                                        Medium
-                                      </MenuItem>
-                                      <MenuItem value={"Large"}>Large</MenuItem>
-                                    </Select>
-                                  </FormControl>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div>
+                          <div className="overview">
+                            <div className="overview-content">
+                              <div className="price">
+                                Rs. {product.productDetails.price}
+                              </div>
+                              {product.productDetails.offer > 0 ? (
+                                <div
+                                  style={{ color: "green", marginTop: "10px" }}
+                                >
+                                  Rs. {product.productDetails.offer} off!
+                                </div>
+                              ) : (
+                                <div
+                                  style={{ color: "green", marginTop: "10px" }}
+                                >
+                                  "No Offers Available"
+                                </div>
+                              )}
+                              <br></br>
+                              <p>{product.productDetails.description}</p>
+                              <hr></hr>
+                              <br></br>
+                              <div className="row">
+                                <div className="column">
+                                  <div className="size">
+                                    {/* <h3>Size :</h3> */}
+                                    <br></br>
+                                    <div className="size">
+                                      <FormControl
+                                        className={classes.formControl}
+                                      >
+                                        <InputLabel
+                                          id="demo-simple-select-label"
+                                          style={{ color: "white" }}
+                                        >
+                                          Size
+                                        </InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          value={product.productDetails.size}
+                                          onChange={handleChange}
+                                          style={{ color: "white" }}
+                                        >
+                                          <MenuItem value={"Small"}>
+                                            Small
+                                          </MenuItem>
+                                          <MenuItem value={"Medium"}>
+                                            Medium
+                                          </MenuItem>
+                                          <MenuItem value={"Large"}>
+                                            Large
+                                          </MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <h4 style={{ marginBottom: "10px" }}>
+                                    Ratings :{" "}
+                                  </h4>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <StarRatings
+                                      rating={allRate ? allRate : 0}
+                                      starDimension="25px"
+                                      starSpacing="5px"
+                                      starRatedColor="orange"
+                                    />
+                                    <h4
+                                      style={{
+                                        fontSize: "20px",
+                                        marginLeft: "10px",
+                                      }}
+                                    >{`(${reviews.length})`}</h4>
+                                  </div>
                                 </div>
                               </div>
-                              <br />
-                              <h4 style={{ marginBottom: "10px" }}>
-                                Ratings :{" "}
-                              </h4>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
+                              <br></br>
+                              <br></br>
+                              <Button
+                                variant="contained"
+                                onClick={() => {
+                                  const { _id, name, price, offer } =
+                                    product.productDetails;
+                                  const img =
+                                    product.productDetails.productPictures[0]
+                                      .img;
+                                  dispatch(
+                                    addToCart({
+                                      _id,
+                                      name,
+                                      price,
+                                      img,
+                                      size,
+                                      offer,
+                                    })
+                                  );
+                                  props.history.push(`/cart`);
                                 }}
                               >
+                                Add to Cart
+                              </Button>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              {/* <Button variant="contained">Buy Now</Button> */}
+                            </div>
+                          </div>
+                          <br />
+                          <br />
+                          <br />
+
+                          {/* <Review reviews={review} /> */}
+                          {reviews
+                            ? reviews.map((revie, index) => (
+                                <Card key={index} style={{ marginTop: "10px" }}>
+                                  <div
+                                    style={{
+                                      paddingTop: "7px",
+                                      paddingLeft: "10px",
+                                    }}
+                                  >
+                                    <h3>
+                                      {revie.userId.firstName}{" "}
+                                      {revie.userId.lastName}
+                                    </h3>
+                                  </div>
+                                  <div
+                                    style={{
+                                      paddingTop: "7px",
+                                      paddingLeft: "10px",
+                                    }}
+                                  >
+                                    {revie.review}
+                                  </div>
+                                  <div>
+                                    <h4
+                                      style={{
+                                        paddingTop: "7px",
+                                        paddingLeft: "10px",
+                                        paddingBottom: "7px",
+                                      }}
+                                    >
+                                      Rating :{" "}
+                                      <StarRatings
+                                        rating={revie.rating}
+                                        starDimension="20px"
+                                        starSpacing="5px"
+                                        starRatedColor="orange"
+                                      />
+                                    </h4>
+                                  </div>
+                                </Card>
+                              ))
+                            : null}
+
+                          <br />
+                          {auth.authenticate ? (
+                            <div
+                              className="loggedInId"
+                              style={{
+                                paddingBottom: "15px",
+                                marginLeft: "2px",
+                              }}
+                            >
+                              <div
+                                className="comment"
+                                style={{
+                                  fontSize: "20px",
+                                  marginBottom: "10px",
+                                }}
+                              >
+                                Give a review about this product
+                              </div>
+                              <Form>
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="exampleForm.ControlTextarea1"
+                                >
+                                  <Form.Control
+                                    as="textarea"
+                                    rows={5}
+                                    cols={70}
+                                    value={reviewDescription}
+                                    onChange={(e) => {
+                                      setreviewDescription(e.target.value);
+                                    }}
+                                    style={{ marginBottom: "5px" }}
+                                  />
+                                </Form.Group>
                                 <StarRatings
-                                  rating={allRate ? allRate : 0}
+                                  rating={ratingValue}
                                   starDimension="25px"
                                   starSpacing="5px"
                                   starRatedColor="orange"
+                                  changeRating={changeRating}
+                                  numberOfStars={5}
                                 />
-                                <h4
-                                  style={{
-                                    fontSize: "20px",
-                                    marginLeft: "10px",
-                                  }}
-                                >{`(${reviews.length})`}</h4>
-                              </div>
-                            </div>
-                          </div>
-                          <br></br>
-                          <br></br>
-                          <Button
-                            variant="contained"
-                            onClick={() => {
-                              const { _id, name, price, offer } =
-                                product.productDetails;
-                              const img =
-                                product.productDetails.productPictures[0].img;
-                              dispatch(
-                                addToCart({
-                                  _id,
-                                  name,
-                                  price,
-                                  img,
-                                  size,
-                                  offer,
-                                })
-                              );
-                              props.history.push(`/cart`);
-                            }}
-                          >
-                            Add to Cart
-                          </Button>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          {/* <Button variant="contained">Buy Now</Button> */}
-                        </div>
-                      </div>
-                      <br />
-                      <br />
-                      <br />
-
-                      {/* <Review reviews={review} /> */}
-                      {reviews
-                        ? reviews.map((revie, index) => (
-                            <Card key={index} style={{ marginTop: "10px" }}>
-                              <div
-                                style={{
-                                  paddingTop: "7px",
-                                  paddingLeft: "10px",
-                                }}
-                              >
-                                <h3>
-                                  {revie.userId.firstName}{" "}
-                                  {revie.userId.lastName}
-                                </h3>
-                              </div>
-                              <div
-                                style={{
-                                  paddingTop: "7px",
-                                  paddingLeft: "10px",
-                                }}
-                              >
-                                {revie.review}
-                              </div>
-                              <div>
-                                <h4
-                                  style={{
-                                    paddingTop: "7px",
-                                    paddingLeft: "10px",
-                                    paddingBottom: "7px",
-                                  }}
+                                <br />
+                                <Button
+                                  variant="contained"
+                                  onClick={addNewReview}
                                 >
-                                  Rating :{" "}
-                                  <StarRatings
-                                    rating={revie.rating}
-                                    starDimension="20px"
-                                    starSpacing="5px"
-                                    starRatedColor="orange"
-                                  />
-                                </h4>
-                              </div>
-                            </Card>
-                          ))
-                        : null}
-
-                      <br />
-                      {auth.authenticate ? (
-                        <div
-                          className="loggedInId"
-                          style={{ paddingBottom: "15px", marginLeft: "2px" }}
-                        >
-                          <div
-                            className="comment"
-                            style={{ fontSize: "20px", marginBottom: "10px" }}
-                          >
-                            Give a review about this product
-                          </div>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlTextarea1"
-                            >
-                              <Form.Control
-                                as="textarea"
-                                rows={5}
-                                cols={70}
-                                value={reviewDescription}
-                                onChange={(e) => {
-                                  setreviewDescription(e.target.value);
-                                }}
-                                style={{ marginBottom: "5px" }}
-                              />
-                            </Form.Group>
-                            <StarRatings
-                              rating={ratingValue}
-                              starDimension="25px"
-                              starSpacing="5px"
-                              starRatedColor="orange"
-                              changeRating={changeRating}
-                              numberOfStars={5}
-                            />
-                            <br />
-                            <Button variant="contained" onClick={addNewReview}>
-                              submit
-                            </Button>
-                            {/* <Button
+                                  submit
+                                </Button>
+                                {/* <Button
                               variant="primary"
                               type="submit"
                               onSubmit={addNewReview}
                             >
                               Submit
                             </Button> */}
-                          </Form>
-                          {/* <span>
+                              </Form>
+                              {/* <span>
                             <b style={{ fontSize: "15px" }}>
                               {auth.user.fullName}
                             </b>
                           </span> */}
+                            </div>
+                          ) : null}
                         </div>
-                      ) : null}
-                    </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
                 <ul className="pricing__container-features"></ul>
