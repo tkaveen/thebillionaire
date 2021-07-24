@@ -22,8 +22,13 @@
   object-fit: contain;
 }
 
-.act-btn{
+.act-btn {
   border: 0;
   margin: 0 5px;
   font-size: 14px;
+}
+
+.prodtable {
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px 3px !important;
+  border-radius: 10px 10px 10px 10px;
 }

@@ -3,6 +3,7 @@ import { Container, Table, Jumbotron } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
+import "./styles.css";
 
 const Customer = () => {
   const order = useSelector((state) => state.order);
@@ -34,7 +35,7 @@ const Customer = () => {
         <br />
 
         <div>
-          <Table responsive="sm">
+          <Table className="custable" responsive="sm">
             <thead>
               <tr>
                 <th>Customer ID</th>

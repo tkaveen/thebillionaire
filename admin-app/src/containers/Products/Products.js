@@ -159,7 +159,7 @@ export default function Products() {
 
   const renderProducts = () => {
     return (
-      <Table responsive="sm">
+      <Table className="prodtable" responsive="sm">
         <thead>
           <tr>
             <th></th>
