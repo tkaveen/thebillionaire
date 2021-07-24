@@ -155,7 +155,7 @@ function Navbar() {
             </li>
             <li style={{ marginRight: "20px", marginLeft: "8px" }}>
               <Link to="/cart">
-                <CartNav cout={Object.keys(cart.cartItems).length} />
+                <CartNav count={Object.keys(cart.cartItems).length} />
                 {/* <RiShoppingCartLine className="nav-shopp" /> */}
               </Link>
             </li>
