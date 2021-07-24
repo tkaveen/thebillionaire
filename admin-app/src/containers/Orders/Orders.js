@@ -49,6 +49,7 @@ const Orders = () => {
         <br />
         {order.orders.map((orderItem, index) => (
           <Card
+            className="ordercard"
             key={index}
             headerLeft={"ORDER ID : " + orderItem._id}
             style={{ marginBottom: "15px" }}

@@ -8,17 +8,22 @@
   color: white;
 }
 
-.modal-footer{
-    padding: 5px 15px;
+.modal-footer {
+  padding: 5px 15px;
 }
 
-.actionBtnContainer{
-    display: flex;
-    align-items: center;
+.actionBtnContainer {
+  display: flex;
+  align-items: center;
 }
 
-.actionBtnContainer > button{
-    border: 0;
-    margin: 0 5px;
-    font-size: 14px;
+.actionBtnContainer > button {
+  border: 0;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+.catecard {
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px 3px !important;
+  border-radius: 10px 10px 10px 10px;
 }

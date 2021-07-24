@@ -250,8 +250,8 @@ export default function Category() {
         <br />
         <Row>
           <Col md={12}>
-            <Card>
-              <div style={{ margin: "20px" }}>
+            <Card className="catecard">
+              <div style={{ margin: "20px", padding: "40px" }}>
                 <CheckboxTree
                   nodes={renderCategories(category.categories)}
                   checked={checked}

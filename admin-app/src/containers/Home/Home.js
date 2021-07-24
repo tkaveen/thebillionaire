@@ -36,6 +36,7 @@ export default function Home() {
       <Row>
         <Col>
           <Card
+            className="chartcard"
             style={{
               width: "49rem",
               borderRadius: "10px",

@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import Card from "../../components/Ui/Card";
 import { Link } from "react-router-dom";
+import { BsFillPersonFill } from "react-icons/bs";
+import { GoGraph } from "react-icons/go";
+import "./styles.css";
 
 export default function Reports() {
   const order = useSelector((state) => state.order);
@@ -33,18 +36,77 @@ export default function Reports() {
         </Jumbotron>
         <Row>
           <Col>
-            <Card style={{ height: "200px" }}>
-              <Link to={"/reports/customerreport"}>
-                <Button>Customer Report</Button>
-              </Link>
-            </Card>
+            <Link
+              to={"/reports/customerreport"}
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                className="reportcart"
+                style={{
+                  height: "200px",
+                  borderLeft: "8px solid #0f1abd",
+                }}
+              >
+                <Row>
+                  <Col>
+                    <h3
+                      className="text-muted"
+                      style={{
+                        marginLeft: "20px",
+                        marginTop: "72px",
+                      }}
+                    >
+                      Customer Report
+                    </h3>
+                  </Col>
+                  <Col>
+                    <BsFillPersonFill
+                      style={{
+                        fontSize: "100px",
+                        marginLeft: "230px",
+                        marginTop: "40px",
+                        color: "0f1abd",
+                      }}
+                    />
+                  </Col>
+                </Row>
+              </Card>
+            </Link>
           </Col>
           <Col>
-            <Card style={{ height: "200px" }}>
-              <Link to={"/reports/salesreport"}>
-                <Button>sales Report</Button>
-              </Link>
-            </Card>
+            <Link
+              to={"/reports/salesreport"}
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                className="reportcart"
+                style={{ height: "200px", borderLeft: "8px solid #e42c45" }}
+              >
+                <Row>
+                  <Col>
+                    <h3
+                      className="text-muted"
+                      style={{
+                        marginLeft: "20px",
+                        marginTop: "72px",
+                      }}
+                    >
+                      Sales Report
+                    </h3>
+                  </Col>
+                  <Col>
+                    <GoGraph
+                      style={{
+                        fontSize: "100px",
+                        marginLeft: "230px",
+                        marginTop: "40px",
+                        color: "#e42c45",
+                      }}
+                    />
+                  </Col>
+                </Row>
+              </Card>
+            </Link>
           </Col>
         </Row>
       </Container>

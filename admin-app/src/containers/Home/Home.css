@@ -1,0 +1,6 @@
+.chartcard {
+  width: 49rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px 3px !important;
+  background-color: rgb(0, 0, 0);
+}
