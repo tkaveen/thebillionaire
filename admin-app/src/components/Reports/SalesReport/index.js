@@ -66,28 +66,14 @@ export default class salesReport extends Component {
               </div>
             </div>
           </div> */}
-          <Table
-            striped
-            bordered
-            style={{ marginTop: "50px", marginLeft: "20px" }}
-          >
+          <Table striped bordered style={{ marginTop: "50px" }}>
             <thead>
               <tr style={{ color: "black", marginBottom: "10px" }}>
-                <th style={{ marginLeft: "20px", paddingBottom: "10px" }}>
-                  Order ID
-                </th>
-                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
-                  Products Brought
-                </th>
-                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
-                  Total Price
-                </th>
-                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
-                  Payment Method
-                </th>
-                <th style={{ paddingLeft: "120px", paddingBottom: "10px" }}>
-                  Delivery Status
-                </th>
+                <th>Order ID</th>
+                <th>Products Brought</th>
+                <th>Total Price</th>
+                <th>Payment Method</th>
+                <th>Delivery Status</th>
               </tr>
             </thead>
             <tbody style={{ color: "black" }}>

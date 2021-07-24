@@ -13,6 +13,8 @@ import Category from "./containers/category/index";
 import Customer from "./containers/customers/index";
 import Report from "./containers/Reports/index";
 import { getInitialData } from "./actions/initialData.action";
+import CustomerReports from "./containers/customerReport/index";
+import SalesReports from "./containers/salesReport/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +35,13 @@ function App() {
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
         <PrivateRoute path="/customers" component={Customer} />
+        <PrivateRoute
+          path="/reports/customerreport"
+          component={CustomerReports}
+        />
+        <PrivateRoute path="/reports/salesreport" component={SalesReports} />
         <PrivateRoute path="/reports" component={Report} />
+
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
       </Switch>

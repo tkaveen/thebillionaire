@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import { Container, Jumbotron, Row, Col, Button } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
-import Card from "../../components/Ui/Card";
-import { Link } from "react-router-dom";
+import CustomerReport from "../../components/Reports/CustomerReport/index";
 
-export default function Reports() {
+export default function CustomerReports() {
   const order = useSelector((state) => state.order);
 
   const componentRef = useRef();
@@ -28,25 +27,12 @@ export default function Reports() {
             className="text-center"
             style={{ fontSize: "40px", marginTop: "-20px" }}
           >
-            Reports
+            Customer Report
           </h3>
         </Jumbotron>
-        <Row>
-          <Col>
-            <Card style={{ height: "200px" }}>
-              <Link to={"/reports/customerreport"}>
-                <Button>Customer Report</Button>
-              </Link>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ height: "200px" }}>
-              <Link to={"/reports/salesreport"}>
-                <Button>sales Report</Button>
-              </Link>
-            </Card>
-          </Col>
-        </Row>
+        <Jumbotron>
+          <CustomerReport items={order.orders} />
+        </Jumbotron>
       </Container>
     </Layout>
   );
