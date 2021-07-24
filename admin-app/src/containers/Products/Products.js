@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/index";
-import { Container, Row, Col, Table, Jumbotron } from "react-bootstrap";
+import { Container, Row, Col, Table, Jumbotron, Button } from "react-bootstrap";
 import Input from "../../components/Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,9 +25,10 @@ export default function Products() {
   const [categoryId, setCategoryId] = useState("");
   const [productPictures, setProductPictures] = useState([]);
   const [show, setShow] = useState(false);
-  const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
+  const [productDetailModal, setProductDetailModal] = useState(false);
   const [productUpdateModal, setProductUpdateModal] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState({});
   const [productdeleteModal, setProductDeleteModal] = useState(false);
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
@@ -200,11 +201,15 @@ export default function Products() {
                     </button>
                     <button
                       className="act-btn"
+                      // onClick={() => {
+                      //   const payload = {
+                      //     productId: product._id,
+                      //   };
+                      //   dispatch(deleteProductById(payload));
+                      // }}
                       onClick={() => {
-                        const payload = {
-                          productId: product._id,
-                        };
-                        dispatch(deleteProductById(payload));
+                        showProductDeleteModal(true);
+                        setCurrentProduct(product);
                       }}
                     >
                       Del <AiOutlineDelete />
@@ -295,6 +300,23 @@ export default function Products() {
   const showProductDetailModal = (product) => {
     setProductDetails(product);
     setProductDetailModal(true);
+  };
+
+  const handleCloseProductDeleteModal = () => {
+    setProductDeleteModal(false);
+  };
+
+  const deleteProductData = (product) => {
+    const payload = {
+      productId: product._id,
+    };
+    dispatch(deleteProductById(payload));
+    setProductDeleteModal(false);
+  };
+
+  const showProductDeleteModal = (product) => {
+    // setProductDelete(product);
+    setProductDeleteModal(true);
   };
 
   const showProductUpdateModal = (product) => {
@@ -466,6 +488,34 @@ export default function Products() {
     );
   };
 
+  const renderProductDeleteModal = () => {
+    return (
+      <Modal
+        show={productdeleteModal}
+        handleClose={handleCloseProductDeleteModal}
+        modalTitle={"Product Details"}
+        size="lg"
+        buttons={[
+          {
+            label: "No",
+            color: "primary",
+            onClick: handleCloseProductDeleteModal,
+          },
+          {
+            label: "Yes",
+            color: "danger",
+            onClick: () => deleteProductData(currentProduct),
+          },
+        ]}
+      >
+        Are you Sure?
+        {/* <Button onClick={() => deleteProductData(currentProduct)}>
+          delete
+        </Button> */}
+      </Modal>
+    );
+  };
+
   return (
     <Layout sidebar>
       <Container fluid>
@@ -506,6 +556,7 @@ export default function Products() {
       {renderAddProductModal()}
       {renderProductDetailsModal()}
       {updateProductDetailsModal()}
+      {renderProductDeleteModal()}
     </Layout>
   );
 }
