@@ -36,16 +36,16 @@ function Footer() {
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>About Us</h2>
-            <Link to="/sign-up">How it works</Link>
+            <Link to="/aboutus">How it works</Link>
             {/* <Link to="/">Testimonials</Link> */}
             {/* <Link to="/">Careers</Link> */}
             {/* <Link to="/">Investors</Link> */}
-            <Link to="/">Terms of Service</Link>
+            <Link to="/aboutus">Terms of Service</Link>
           </div>
           <div className="footer-link-items">
             <h2>Contact Us</h2>
-            <Link to="/">Contact</Link>
-            <Link to="/">Support</Link>
+            <Link to="/aboutus">Contact</Link>
+            <Link to="/aboutus">Support</Link>
             {/* <Link to="/">Destinations</Link> */}
             {/* <Link to="/">Sponsorships</Link> */}
           </div>
@@ -60,8 +60,18 @@ function Footer() {
           </div>
           <div className="footer-link-items">
             <h2>Social Media</h2>
-            <Link to="/">Instagram</Link>
-            <Link to="/">Facebook</Link>
+            <Link
+              target="_blank"
+              to={"//www.instagram.com/billionaireceylon/?utm_medium=copy_link"}
+            >
+              Instagram
+            </Link>
+            <Link
+              target="_blank"
+              to={"//www.facebook.com/thebillionaireclothing"}
+            >
+              Facebook
+            </Link>
             {/* <Link to="/">Youtube</Link> */}
             {/* <Link to="/">Twitter</Link> */}
           </div>
@@ -77,7 +87,7 @@ function Footer() {
           <div className="social-icons">
             <Link
               className="social-icon-link"
-              to="/"
+              to={"//www.facebook.com/thebillionaireclothing"}
               target="_blank"
               aria-label="Facebook"
             >
@@ -85,7 +95,7 @@ function Footer() {
             </Link>
             <Link
               className="social-icon-link"
-              to="/"
+              to={"//www.instagram.com/billionaireceylon/?utm_medium=copy_link"}
               target="_blank"
               aria-label="Instagram"
             >
@@ -93,9 +103,6 @@ function Footer() {
             </Link>
             <Link
               className="social-icon-link"
-              to={
-                "//www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A?view_as=subscriber"
-              }
               target="_blank"
               aria-label="Youtube"
             >
@@ -109,14 +116,14 @@ function Footer() {
             >
               <FaTwitter />
             </Link>
-            <Link
+            {/* <Link
               className="social-icon-link"
               to="/"
               target="_blank"
               aria-label="LinkedIn"
             >
               <FaLinkedin />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

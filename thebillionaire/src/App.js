@@ -12,6 +12,7 @@ import { isUserLoggedIn, updateCart } from "./actions";
 import ProductOverview from "./components/Pages/ProductList/ProductOverview";
 import Cart from "./components/Pages/Shoppingcart/Cart";
 import Profile from "./components/Pages/Profile/Profile";
+import About from "./components/Pages/About/index";
 import CheckoutPage from "./components/Pages/Checkout/CheckoutPage";
 // import OrderDetails from "./components/Pages/OrderDetailsPage";
 import OrderDetailsPage from "./components/Pages/OrderDetailsPage";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/signup" component={Form} />
           <Route path="/cart" component={Cart} />
           <Route path="/profile" component={Profile} />
+          <Route path="/aboutus" component={About} />
           <Route path="/thankyou" component={Thankyou} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path="/checkout" component={CheckoutPage} />
