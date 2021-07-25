@@ -27,3 +27,11 @@
   box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px 3px !important;
   border-radius: 10px 10px 10px 10px;
 }
+
+.jumb{
+  background-color: rgb(52, 58, 64);
+  color: white;
+  height: 50px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px 3px !important;
+}

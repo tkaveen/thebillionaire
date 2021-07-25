@@ -209,7 +209,7 @@
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  padding-bottom: 20px;
+  margin-left: -21px;
   font-weight: 600;
   font-family: "Roboto";
   font-size: 12px;
@@ -230,6 +230,7 @@
   font-size: 12px;
   letter-spacing: 1px;
   line-height: 18px;
+  margin-left: -21px;
 }
 .stepCompleted {
   padding: 0 0 20px 60px;

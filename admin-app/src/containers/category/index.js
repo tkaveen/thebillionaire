@@ -209,14 +209,7 @@ export default function Category() {
   return (
     <Layout sidebar>
       <Container fluid>
-        <Jumbotron
-          style={{
-            backgroundColor: "rgb(52, 58, 64)",
-            color: "white",
-            height: "50px",
-            alignItems: "center",
-          }}
-        >
+        <Jumbotron className="jumb">
           <h3
             className="text-center"
             style={{ fontSize: "40px", marginTop: "-20px" }}

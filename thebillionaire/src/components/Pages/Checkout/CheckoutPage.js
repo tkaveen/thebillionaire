@@ -14,6 +14,11 @@ import Card from "../../card/Card";
 import { makeStyles } from "@material-ui/core/styles";
 import Buttonn from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -48,6 +53,7 @@ const CheckoutPage = (props) => {
   const cart = useSelector((state) => state.cart);
   const [newAddress, setNewAddress] = useState(false);
   const [address, setAddress] = useState([]);
+  const [location, setLocation] = useState("");
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
@@ -60,6 +66,8 @@ const CheckoutPage = (props) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
     setOrderSummary(true);
+    setLocation(addr.address);
+    console.log(addr.address);
   };
 
   const selectAddress = (addr) => {
@@ -75,6 +83,8 @@ const CheckoutPage = (props) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
     setOrderSummary(true);
+    setLocation(addr.address);
+    console.log(addr.address);
   };
 
   const enableAddressEditForm = (addr) => {
@@ -116,6 +126,7 @@ const CheckoutPage = (props) => {
       items,
       paymentStatus: "pending",
       paymentType: "cod",
+      location: location,
     };
 
     console.log(payload);
@@ -233,7 +244,16 @@ const CheckoutPage = (props) => {
                               }}
                             >
                               <div>
-                                <input
+                                <FormControlLabel
+                                  name="address"
+                                  control={<Radio />}
+                                  onClick={() => selectAddress(adr)}
+                                  style={{
+                                    marginLeft: "10px",
+                                    marginBottom: "23px",
+                                  }}
+                                />
+                                {/* <input
                                   name="address"
                                   type="radio"
                                   onClick={() => selectAddress(adr)}
@@ -241,14 +261,17 @@ const CheckoutPage = (props) => {
                                     marginLeft: "25px",
                                     marginBottom: "23px",
                                   }}
-                                />
+                                /> */}
                               </div>
                               <div className="flexRow sb addressinfo">
                                 {!adr.edit ? (
                                   <div style={{ width: "100%" }}>
                                     <div className="addressDetail">
                                       <div>
-                                        <span className="addressName">
+                                        <span
+                                          className="addressName"
+                                          style={{ marginTop: "10px" }}
+                                        >
                                           {adr.name}
                                         </span>
                                         <span
@@ -284,7 +307,19 @@ const CheckoutPage = (props) => {
                                     </div>
                                     {adr.selected && (
                                       <div style={{ marginTop: "10px" }}>
-                                        <Button
+                                        <Buttonn
+                                          variant="contained"
+                                          size="small"
+                                          color="primary"
+                                          className={classes.margin}
+                                          onClick={() =>
+                                            confirmDeliveryAddress(adr)
+                                          }
+                                          style={{ marginLeft: "-21px" }}
+                                        >
+                                          DELIVERY HERE
+                                        </Buttonn>
+                                        {/* <Button
                                           buttonSize="btn--wide"
                                           buttonColor="blue"
                                           onClick={() =>
@@ -292,7 +327,7 @@ const CheckoutPage = (props) => {
                                           }
                                         >
                                           DELIVERY HERE
-                                        </Button>
+                                        </Button> */}
                                       </div>
                                     )}
                                   </div>
@@ -396,13 +431,25 @@ const CheckoutPage = (props) => {
                               display: "flex",
                             }}
                           >
-                            <input
+                            <FormControlLabel
+                              name="paymentOption"
+                              value="cod"
+                              control={<Radio />}
+                              style={
+                                {
+                                  // marginTop: "3px",
+                                }
+                              }
+                            />
+                            {/* <input
                               type="radio"
                               name="paymentOption"
                               value="cod"
                               style={{ marginTop: "3px" }}
-                            />
-                            <div style={{ marginLeft: "18px" }}>
+                            /> */}
+                            <div
+                              style={{ marginTop: "10px", marginLeft: "-12px" }}
+                            >
                               Cash on Delivery
                             </div>
                           </div>

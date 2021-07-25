@@ -15,6 +15,9 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    location: {
+      type: String,
+    },
     items: [
       {
         productId: {

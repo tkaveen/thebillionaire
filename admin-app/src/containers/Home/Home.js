@@ -10,12 +10,7 @@ import TB2 from "../../images/TB2.png";
 export default function Home() {
   return (
     <Layout sidebar>
-      <Jumbotron
-        style={{
-          backgroundColor: "rgb(52, 58, 64)",
-          color: "white",
-        }}
-      >
+      <Jumbotron className="jumbHome">
         <Row>
           <Col md={2}>
             <img src={TB2} />
@@ -45,7 +40,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <BarChart />
+              <BarChart label="Customer" />
             </Card.Body>
           </Card>
         </Col>
@@ -59,7 +54,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <LineChart />
+              <LineChart label="Sales" />
             </Card.Body>
           </Card>
         </Col>
@@ -76,7 +71,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <BarChart />
+              <BarChart label="Orders" />
             </Card.Body>
           </Card>
         </Col>
@@ -90,7 +85,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <LineChart />
+              <LineChart label="Products" />
             </Card.Body>
           </Card>
         </Col>

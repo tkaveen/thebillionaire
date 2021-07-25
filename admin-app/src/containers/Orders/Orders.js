@@ -30,14 +30,7 @@ const Orders = () => {
   return (
     <Layout sidebar>
       <Container fluid>
-        <Jumbotron
-          style={{
-            backgroundColor: "rgb(52, 58, 64)",
-            color: "white",
-            height: "50px",
-            alignItems: "center",
-          }}
-        >
+        <Jumbotron className="jumb">
           <h3
             className="text-center"
             style={{ fontSize: "40px", marginTop: "-20px" }}
@@ -85,7 +78,14 @@ const Orders = () => {
               </div>
               <div>
                 <span className="title">Dilivery Address</span> <br />
-                <span className="value">{orderItem.addressId.address}</span>
+                <span className="value">
+                  {" "}
+                  {orderItem.location ? (
+                    <>{orderItem.location}</>
+                  ) : (
+                    <>Test Address</>
+                  )}
+                </span>
               </div>
             </div>
             <div

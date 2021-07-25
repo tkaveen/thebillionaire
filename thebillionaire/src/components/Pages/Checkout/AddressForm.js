@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../actions";
 import { MaterialButton, MaterialInput } from "../../../components/MaterialUi";
 import { Button } from "../../Button";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 /**
  * @author
@@ -178,26 +184,46 @@ const AddressForm = (props) => {
           <label>Address Type</label>
           <div className="flexRow">
             <div>
-              <input
+              <FormControl component="fieldset">
+                <RadioGroup>
+                  <FormControlLabel
+                    value="home"
+                    control={<Radio />}
+                    label="Home"
+                    onClick={() => setAddressType("home")}
+                    name="addressType"
+                    style={{ color: "gray" }}
+                  />
+                  <FormControlLabel
+                    value="work"
+                    control={<Radio />}
+                    label="Work"
+                    onClick={() => setAddressType("work")}
+                    name="addressType"
+                    style={{ color: "gray" }}
+                  />
+                </RadioGroup>
+              </FormControl>
+              {/* <input
                 type="radio"
                 onClick={() => setAddressType("home")}
                 name="addressType"
                 value="home"
-              />
-              <span>Home</span>
+              /> */}
+              {/* <span style={{ color: "gray", marginLeft: "10px" }}>Home</span> */}
             </div>
-            <div>
+            {/* <div>
               <input
                 type="radio"
                 onClick={() => setAddressType("work")}
                 name="addressType"
                 value="work"
               />
-              <span>Work</span>
-            </div>
+              <span style={{ color: "gray", marginLeft: "10px" }}>Work</span>
+            </div> */}
           </div>
         </div>
-        <div className="flexRow">
+        <div className="flexRow" style={{ marginTop: "10px" }}>
           <Button
             buttonSize="btn--wide"
             buttonColor="blue"
@@ -205,14 +231,6 @@ const AddressForm = (props) => {
           >
             SAVE AND DELIVER HERE
           </Button>
-          {/* <MaterialButton
-            title="SAVE AND DELIVER HERE"
-            onClick={onAddressSubmit}
-            style={{
-              width: "250px",
-              margin: "20px 0",
-            }}
-          /> */}
         </div>
       </>
     );

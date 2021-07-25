@@ -1,15 +1,15 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-export default function Chart() {
+export default function Chart(props) {
   return (
     <div>
       <Bar
         data={{
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
           datasets: [
             {
-              label: "# of Votes",
+              label: props.label,
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",

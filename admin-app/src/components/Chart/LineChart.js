@@ -1,16 +1,16 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-export default function Chart() {
+export default function Chart(props) {
   return (
     <div>
       <Line
         data={{
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
           datasets: [
             {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
+              label: props.label,
+              data: [12, 19, 3, 10, 2, 15],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
