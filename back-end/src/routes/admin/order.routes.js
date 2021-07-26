@@ -5,6 +5,7 @@ const {
   getCustomerOrders,
   getChartDetails,
   getChartDetailsTwo,
+  getChartDetailsThree,
 } = require("../../controller/admin/order.admin");
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.post(
 router.get(`/order/getChartDetails/`, getChartDetails);
 
 router.get(`/order/getChartDetailsTwo/`, getChartDetailsTwo);
+
+router.get(`/order/getChartDetailsThree/`, getChartDetailsThree);
 
 module.exports = router;

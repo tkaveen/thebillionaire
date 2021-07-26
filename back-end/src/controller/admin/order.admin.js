@@ -2,7 +2,7 @@ const Order = require("../../models/order");
 const Address = require("../../models/address");
 const Product = require("../../models/product");
 const Category = require("../../models/category");
-const User = require("../../models/user");
+const user = require("../../models/user");
 const order = require("../../models/order");
 
 exports.updateOrder = (req, res) => {
@@ -109,6 +109,28 @@ exports.getChartDetailsTwo = async (req, res) => {
       .then((dta) => {
         dataArray = dta;
         res.status(200).json(dataArray);
+      });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getChartDetailsThree = async (req, res) => {
+  try {
+    user
+      // .populate()
+      .aggregate([
+        {
+          $group: {
+            _id: {
+              $arrayElemAt: [{ $split: [{ $toString: "$createdAt" }, "-"] }, 1],
+            },
+            total: { $sum: 1 },
+          },
+        },
+      ])
+      .then((dta) => {
+        res.status(200).json(dta);
       });
   } catch (err) {
     res.status(500).json({ error: err.message });
