@@ -19,6 +19,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import Paypal from "../../Paypal/index";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -61,6 +62,9 @@ const CheckoutPage = (props) => {
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
   const dispatch = useDispatch();
+  const [checkout, setCheckout] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("");
+  const [paid, setPaid] = useState("");
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
@@ -426,6 +430,36 @@ const CheckoutPage = (props) => {
                             paddingBottom: "20px",
                           }}
                         >
+                          {checkout ? (
+                            <Paypal
+                              totalPrice={Object.keys(cart.cartItems).reduce(
+                                (totalPrice, key, deli) => {
+                                  const { price, qty } = cart.cartItems[key];
+                                  return totalPrice + price * qty;
+                                },
+                                0
+                              )}
+                              distance="10"
+                              offer={Object.keys(cart.cartItems).reduce(
+                                function (offer, key) {
+                                  return (
+                                    offer +
+                                    cart.cartItems[key].offer *
+                                      cart.cartItems[key].qty
+                                  );
+                                },
+                                0
+                              )}
+                            ></Paypal>
+                          ) : (
+                            <Button
+                              onClick={() => {
+                                setCheckout(true);
+                              }}
+                            >
+                              ado
+                            </Button>
+                          )}
                           <div
                             style={{
                               display: "flex",

@@ -3,7 +3,8 @@ const { requireSignin, adminMiddleware } = require("../../common-middleware");
 const {
   updateOrder,
   getCustomerOrders,
-  getAddressByUser,
+  getChartDetails,
+  getChartDetailsTwo,
 } = require("../../controller/admin/order.admin");
 const router = express.Router();
 
@@ -15,6 +16,8 @@ router.post(
   getCustomerOrders
 );
 
-router.get(`/order/getAddressByUser/:id`, getAddressByUser);
+router.get(`/order/getChartDetails/`, getChartDetails);
+
+router.get(`/order/getChartDetailsTwo/`, getChartDetailsTwo);
 
 module.exports = router;

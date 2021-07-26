@@ -40,7 +40,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <BarChart label="Customer" />
+              <BarChart />
             </Card.Body>
           </Card>
         </Col>
@@ -54,38 +54,7 @@ export default function Home() {
             }}
           >
             <Card.Body>
-              <LineChart label="Sales" />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col>
-          <Card
-            style={{
-              width: "49rem",
-              borderRadius: "10px",
-              boxShadow: "3px 3px red, -1em 0 .4em olive",
-              backgroundColor: "rgb(52, 58, 64)",
-            }}
-          >
-            <Card.Body>
-              <BarChart label="Orders" />
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card
-            style={{
-              width: "47.3rem",
-              borderRadius: "10px",
-              boxShadow: "3px 3px red, -1em 0 .4em olive",
-              backgroundColor: "rgb(52, 58, 64)",
-            }}
-          >
-            <Card.Body>
-              <LineChart label="Products" />
+              <LineChart />
             </Card.Body>
           </Card>
         </Col>
