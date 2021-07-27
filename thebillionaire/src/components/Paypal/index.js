@@ -40,3 +40,6 @@ export default function Paypal(props) {
     </div>
   );
 }
+
+// sb-rq2xs6943322@personal.example.com
+// bzs$Vi0o

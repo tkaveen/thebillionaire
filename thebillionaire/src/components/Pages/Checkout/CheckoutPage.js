@@ -64,6 +64,7 @@ const CheckoutPage = (props) => {
   const dispatch = useDispatch();
   const [checkout, setCheckout] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
+  const [paymentType, setPaymentType] = useState("");
   const [paid, setPaid] = useState("");
 
   const onAddressSubmit = (addr) => {
@@ -128,8 +129,8 @@ const CheckoutPage = (props) => {
       addressId: selectedAddress._id,
       totalAmount,
       items,
-      paymentStatus: "pending",
-      paymentType: "cod",
+      paymentStatus: paymentStatus,
+      paymentType: paymentType,
       location: location,
     };
 
@@ -452,13 +453,39 @@ const CheckoutPage = (props) => {
                               )}
                             ></Paypal>
                           ) : (
-                            <Button
-                              onClick={() => {
-                                setCheckout(true);
-                              }}
-                            >
-                              ado
-                            </Button>
+                            <>
+                              <div
+                                style={{
+                                  display: "flex",
+                                }}
+                              >
+                                <FormControlLabel
+                                  name="paymentOption"
+                                  value="online"
+                                  control={<Radio />}
+                                  onClick={() => {
+                                    setCheckout(true);
+                                    setPaymentType("online");
+                                    setPaymentStatus("completed");
+                                  }}
+                                />
+                                <div
+                                  style={{
+                                    marginTop: "10px",
+                                    marginLeft: "-12px",
+                                  }}
+                                >
+                                  Online Payment
+                                </div>
+                              </div>
+                            </>
+                            // <Button
+                            //   onClick={() => {
+                            //     setCheckout(true);
+                            //   }}
+                            // >
+                            //   ado
+                            // </Button>
                           )}
                           <div
                             style={{
@@ -469,11 +496,10 @@ const CheckoutPage = (props) => {
                               name="paymentOption"
                               value="cod"
                               control={<Radio />}
-                              style={
-                                {
-                                  // marginTop: "3px",
-                                }
-                              }
+                              onClick={() => {
+                                setPaymentType("cod");
+                                setPaymentStatus("pending");
+                              }}
                             />
                             {/* <input
                               type="radio"
