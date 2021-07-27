@@ -60,7 +60,16 @@ const Profile = (props) => {
                       </span>
                     </div>
                   ) : null}
+                  <div className="change-pass">
+                    <Link to="/passwordchange">
+                      <button className="PCButton">Change Password</button>
+                    </Link>
+                    {/* <a className="forgot" href="/passwordchange">
+                      Change Password
+                    </a> */}
+                  </div>
                 </div>
+
                 <br />
                 <br />
                 <br />

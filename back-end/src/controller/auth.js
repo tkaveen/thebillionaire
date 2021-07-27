@@ -140,3 +140,47 @@ exports.signin = (req, res) => {
     }
   });
 };
+
+exports.resetPassword = async (req, res) => {
+  try {
+    const { userId, currentPassword, newPassword, confirmPassword } = req.body;
+
+    // validate
+    if (!currentPassword || !newPassword || !confirmPassword)
+      return res.status(200).json({ msg: "Not all fields have been entered." });
+
+    if (confirmPassword !== newPassword)
+      return res.status(200).json({ msg: "Passwords do not match" });
+
+    if (newPassword.length < 5)
+      return res.status(200).json({
+        msg: "The password needs to be at least 5 characters long.",
+      });
+
+    const user = await User.findOne({ _id: userId });
+    if (!user)
+      return res
+        .status(200)
+        .json({ msg: "No account with this id has been registered." });
+
+    const isMatch = await bcrypt.compare(currentPassword, user.hash_password);
+    if (!isMatch) return res.status(200).json({ msg: "Invalid Password." });
+
+    const isMatch2 = await bcrypt.compare(newPassword, user.hash_password);
+    if (isMatch2)
+      return res.status(200).json({ msg: "Use a Different Password." });
+
+    //res.json("Password updated!");
+    // const salt = await bcrypt.genSalt();
+    // const passwordHash = await bcrypt.hash(confirmPassword, salt);
+
+    const passwordHash = await bcrypt.hash(confirmPassword, 10);
+
+    User.findById(userId).then((user) => {
+      user.hash_password = passwordHash;
+      user.save().then(() => res.json({ msg: "Password updated!" }));
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

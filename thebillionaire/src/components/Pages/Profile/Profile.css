@@ -76,6 +76,16 @@
   margin-bottom: 24px;
 }
 
+.change-pass {
+  margin-left: 310px;
+}
+
+.PCButton {
+  background-color: #276afb;
+  color: #fff;
+  border: none;
+  padding: 10px;
+}
 /* .pricing__container-cardInfo_profile {
   display: flex;
   flex-direction: column;

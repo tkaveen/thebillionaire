@@ -17,6 +17,7 @@ import CheckoutPage from "./components/Pages/Checkout/CheckoutPage";
 // import OrderDetails from "./components/Pages/OrderDetailsPage";
 import OrderDetailsPage from "./components/Pages/OrderDetailsPage";
 import Thankyou from "./components/Pages/ThankYouPage/Thankyou";
+import ChangePassword from "./components/Pages/ChangePassword/ChangePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signin" component={Signin} />
+          <Route path="/passwordchange" component={ChangePassword} />
           <Route path="/signup" component={Form} />
           <Route path="/cart" component={Cart} />
           <Route path="/profile" component={Profile} />

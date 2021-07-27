@@ -164,3 +164,17 @@
   color: #27cdff;
   font-weight: 600;
 }
+
+.forP {
+  color: white;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 3px;
+}
+
+.forgot {
+  text-decoration: none;
+  color: #27cdff;
+  font-weight: 600;
+}
