@@ -45,7 +45,7 @@ exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
       return res.status(202).json({
-        errormessage: "User already registered",
+        error: "User already registered",
       });
 
     const { firstName, lastName, email, password } = req.body;
@@ -131,12 +131,12 @@ exports.signin = (req, res) => {
           user: { _id, firstName, lastName, email, role, fullName },
         });
       } else {
-        return res.status(202).json({
+        return res.status(400).json({
           message: "Something went wrong",
         });
       }
     } else {
-      return res.status(202).json({ message: "Something went wrong" });
+      return res.status(400).json({ message: "Something went wrong" });
     }
   });
 };
@@ -178,7 +178,9 @@ exports.resetPassword = async (req, res) => {
 
     User.findById(userId).then((user) => {
       user.hash_password = passwordHash;
-      user.save().then(() => res.json({ msg: "Password updated!" }));
+      user
+        .save()
+        .then(() => res.status(200).json({ msg: "Password updated!" }));
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

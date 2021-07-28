@@ -9,6 +9,7 @@ const ChangePassword = (props) => {
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [backendError, setBackendError] = useState("");
   const auth = useSelector((state) => state.auth);
 
   const changePassword = (e) => {
@@ -22,6 +23,7 @@ const ChangePassword = (props) => {
     axios
       .post("http://localhost:5000/api/resetPassword", passChange)
       .then((response) => {
+        setBackendError(response.data.msg);
         if (response.data.msg === "Password updated!") {
           setNewPassword("");
           setConfirmPassword("");
@@ -34,7 +36,7 @@ const ChangePassword = (props) => {
         console.log(error);
       });
 
-    window.location.href = "/profile";
+    // window.location.href = "/profile";
   };
 
   // const changePassword = (e) => {
@@ -67,6 +69,7 @@ const ChangePassword = (props) => {
                 Reset your Password here!
                 <br />
               </h1>
+              <div style={{ color: "red", fontSize: 12 }}>{backendError}</div>
 
               <div className="form-inputs-signin">
                 <label className="form-label-signin">Current Password</label>

@@ -77,7 +77,8 @@
 }
 
 .change-pass {
-  margin-left: 310px;
+  /* margin-left: 310px; */
+  text-align: center;
 }
 
 .PCButton {

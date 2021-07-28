@@ -62,6 +62,7 @@ const FormSignup = ({ submitForm }) => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [error, setError] = useState("");
 
   // const { handleChange, handleSubmit, values, errors } = useForm(
   //   submitForm,
@@ -126,6 +127,9 @@ const FormSignup = ({ submitForm }) => {
           Get started with us today! Create your account by filling out the
           information below.
         </h1>
+        {auth.error && (
+          <div style={{ color: "red", fontSize: 12 }}>{auth.error}</div>
+        )}
         <div className="form-inputs">
           <label className="form-label">First Name</label>
           <input

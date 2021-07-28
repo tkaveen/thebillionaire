@@ -96,30 +96,7 @@ exports.deleteProductById = (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-  //const { _id, name,price,quantity, description,offer, productImages } = req.body;
-
-  /* const product = {  _id, name,price,quantity, description,offer, productImages  };
-
-  const updatedProduct = await Product.findOneAndUpdate({ _id }, product, {
-    new: true,
-  });
-
-  return res.status(201).json({ updatedProduct}); */
-
-  //saving all Productimages uploaded in an array
-  // let productImages = [];
-
-  //if productImages exists then mapping them to a array of objects as needed in the product schema
-  // if (req.files.length > 0) {
-  //   productImages = req.files.map((file) => {
-  //     return { img: file.filename };
-  //   });
-  // }
-
-  // const { name, price, description, category, quantity, createdBy } = req.body;
-
   let productPictures = [];
-
   if (req.files.length > 0) {
     productPictures = req.files.map((file) => {
       return { img: file.filename };
