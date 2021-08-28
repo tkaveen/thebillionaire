@@ -39,3 +39,37 @@ export const getProductDetailsById = (payload) => {
     }
   };
 };
+
+export const getProductsByMen = () => {
+  return async (dispatch) => {
+    const res = await axios.get(`/products/Mens`);
+    if (res.status === 200) {
+      dispatch({
+        type: productConstants.GET_ALL_PRODUCTS_BY_SLUG,
+        payload: res.data,
+      });
+    } else {
+      // dispatch({
+      //   type :
+      // })
+    }
+    console.log(res);
+  };
+};
+
+export const getProductsByWomen = () => {
+  return async (dispatch) => {
+    const res = await axios.get(`/products/Mens`);
+    if (res.status === 200) {
+      dispatch({
+        type: productConstants.GET_ALL_PRODUCTS_BY_SLUG,
+        payload: res.data,
+      });
+    } else {
+      // dispatch({
+      //   type :
+      // })
+    }
+    console.log(res);
+  };
+};

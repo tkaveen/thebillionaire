@@ -49,6 +49,14 @@
   margin-bottom: 24px;
 }
 
+.imgcont {
+  width: 180px;
+  height: 230px;
+  object-fit: contain;
+  overflow: hidden;
+  text-align: center;
+}
+
 .pricing__container-cardInfo {
   display: flex;
   flex-direction: column;

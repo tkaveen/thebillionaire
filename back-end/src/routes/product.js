@@ -7,6 +7,7 @@ const {
   deleteProductById,
   updateProduct,
   getProducts,
+  getAllProducts,
 } = require("../controller/product");
 const multer = require("multer");
 const path = require("path");
@@ -57,5 +58,7 @@ router.post(
   adminMiddleware,
   getProducts
 );
+
+router.post("/products/getAllProducts", getAllProducts);
 
 module.exports = router;

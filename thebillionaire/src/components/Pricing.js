@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "./Button";
 import "./Pricing.css";
 import { IconContext } from "react-icons/lib";
@@ -6,30 +6,55 @@ import { Link } from "react-router-dom";
 import S1 from "../components/images/S1.png";
 import S2 from "../components/images/S2.png";
 import T1 from "../components/images/T1.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsByMen } from "../actions";
+import { generatePublicUrl } from "../urlConfig";
 
-function Pricing() {
+const Pricing = (props) => {
+  const product = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // const { match } = props;
+    dispatch(getProductsByMen());
+  }, []);
+
   return (
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section">
         <div className="pricing__wrapper">
-          <h1 className="pricing__heading">BEST PRICE</h1>
+          <h1 className="pricing__heading">MENS BEST PRICE </h1>
           <div className="pricing__container">
-            <Link className="pricing__container-card">
-              <div className="pricing__container-cardInfo">
-                <img src={S1}></img>
-                <h3 style={{ textAlign: "center" }}>
-                  The Billionaire Flower Shirt
-                </h3>
-                <h4>Rs. 1300</h4>
-                <ul className="pricing__container-features"></ul>
-                <Link to="/The-Billionaire-Flower-Shirt/60b0eb4fdd76f11604f444bb/p">
-                  <Button buttonSize="btn--wide" buttonColor="primary">
-                    Buy Now
-                  </Button>
-                </Link>
-              </div>
-            </Link>
-            <Link className="pricing__container-card">
+            {/* {Object.keys(product.productByPrice.under1k).map((key, index) => { */}
+            {/* return ( */}
+            <>
+              {product.productByPrice.under1k.slice(0, 3).map((product) => (
+                <>
+                  <Link className="pricing__container-card">
+                    <div className="pricing__container-cardInfo">
+                     <div className="imgcont">
+                     <img
+                        src={generatePublicUrl(product.productPictures[0].img)}
+                        alt=""
+                      />
+                     </div>
+                      <h3 style={{ textAlign: "center" }}>{product.name}</h3>
+                      <h4>Rs. {product.price}</h4>
+                      <ul className="pricing__container-features"></ul>
+                      <Link to={`/${product.slug}/${product._id}/p`}>
+                        <Button buttonSize="btn--wide" buttonColor="primary">
+                          Buy Now
+                        </Button>
+                      </Link>
+                    </div>
+                  </Link>
+                </>
+              ))}
+            </>
+            {/* ); */}
+            {/* })} */}
+
+            {/* <Link className="pricing__container-card">
               <div className="pricing__container-cardInfo">
                 <img src={T1}></img>
                 <h3></h3>
@@ -57,11 +82,11 @@ function Pricing() {
                   </Button>
                 </Link>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
     </IconContext.Provider>
   );
-}
+};
 export default Pricing;

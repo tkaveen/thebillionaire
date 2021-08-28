@@ -2,6 +2,10 @@ import { productConstants } from "../actions/constants";
 
 const initialState = {
   products: [],
+  productByPrice: {
+    under1k: [],
+    upper2k: [],
+  },
   productDetails: {},
   loading: false,
 };
@@ -12,6 +16,9 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         products: action.payload.products,
+        productByPrice: {
+          ...action.payload.productByPrice,
+        },
       };
       break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST:
