@@ -59,7 +59,7 @@ export const getProductsByMen = () => {
 
 export const getProductsByWomen = () => {
   return async (dispatch) => {
-    const res = await axios.get(`/products/Mens`);
+    const res = await axios.get(`/products/Womens`);
     if (res.status === 200) {
       dispatch({
         type: productConstants.GET_ALL_PRODUCTS_BY_SLUG,

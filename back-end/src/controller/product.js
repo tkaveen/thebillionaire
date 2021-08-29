@@ -64,7 +64,9 @@ exports.getProductsBySlug = (req, res) => {
               products,
               productByPrice: {
                 under1k: products.filter((product) => product.price <= 1000),
-                upper2k: products.filter((product) => product.price >= 2000),
+                upper2k: products.filter(
+                  (product) => product.price >= 1000 && product.price <= 2000
+                ),
               },
             });
           }
@@ -73,21 +75,33 @@ exports.getProductsBySlug = (req, res) => {
     });
 };
 
-exports.getAllProducts = (req, res) => {
-  Product.find({})
-    .select()
-    .populate()
-    .exec((error, products) => {
-      if (error) return res.status(400).json({ error });
-      if (products0) {
-        res.status(200).json({
-          productByPrice: {
-            under1k: products.filter((product) => product.price <= 1000),
-            upper2k: products.filter((product) => product.price >= 2000),
-          },
-        });
-      }
-    });
+exports.getAllProducts = async (req, res) => {
+  Product.find({}).exec((error, products) => {
+    if (error) {
+      return res.status(400).json({ error });
+    }
+    if (products.length > 0) {
+      res.status(200).json({
+        products,
+        productByPrice: {
+          under1k: products.filter((product) => product.price <= 1000),
+          upper2k: products.filter((product) => product.price >= 2000),
+        },
+      });
+    }
+  });
+  // Product.find({})
+  //   .exec((error, products) => {
+  //     if (error) return res.status(400).json({ error });
+  //     if (products.length > 0) {
+  //       res.status(200).json({
+  //         productByPrice: {
+  //           under1k: products.filter((product) => product.price <= 1000),
+  //           upper2k: products.filter((product) => product.price >= 2000),
+  //         },
+  //       });
+  //     }
+  //   });
   // const products = Product.find({})
   //   .select("_id ")
   //   .exec((error, product) => {

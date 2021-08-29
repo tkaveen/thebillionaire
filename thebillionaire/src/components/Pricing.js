@@ -23,7 +23,7 @@ const Pricing = (props) => {
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section">
         <div className="pricing__wrapper">
-          <h1 className="pricing__heading">MENS BEST PRICE </h1>
+          <h1 className="pricing__heading">BEST PRICE </h1>
           <div className="pricing__container">
             {/* {Object.keys(product.productByPrice.under1k).map((key, index) => { */}
             {/* return ( */}
@@ -32,12 +32,14 @@ const Pricing = (props) => {
                 <>
                   <Link className="pricing__container-card">
                     <div className="pricing__container-cardInfo">
-                     <div className="imgcont">
-                     <img
-                        src={generatePublicUrl(product.productPictures[0].img)}
-                        alt=""
-                      />
-                     </div>
+                      <div className="imgcont">
+                        <img
+                          src={generatePublicUrl(
+                            product.productPictures[0].img
+                          )}
+                          alt=""
+                        />
+                      </div>
                       <h3 style={{ textAlign: "center" }}>{product.name}</h3>
                       <h4>Rs. {product.price}</h4>
                       <ul className="pricing__container-features"></ul>

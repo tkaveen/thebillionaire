@@ -10,7 +10,7 @@ import T3 from "../components/images/polo.png";
 import den from "../components/images/den.png";
 import str from "../components/images/str.png";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsByMen, getProductsByWomen } from "../actions";
+import { getProductsByWomen } from "../actions";
 import { generatePublicUrl } from "../urlConfig";
 
 function NewTrends() {
@@ -26,7 +26,7 @@ function NewTrends() {
     <IconContext.Provider value={{ color: "#fff", size: 64 }}>
       <div className="pricing__section">
         <div className="pricing__wrapper">
-          <h1 className="pricing__heading">HIGN END PRICE </h1>
+          <h1 className="pricing__heading">AVERAGE PRICE </h1>
           <div className="pricing__container">
             {/* {Object.keys(product.productByPrice.under1k).map((key, index) => { */}
             {/* return ( */}
