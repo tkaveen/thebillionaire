@@ -131,6 +131,11 @@ export default function Signup() {
                 <Col md={{ span: 9, offset: 1 }}>
                   <h3>Admin Signup</h3>
                   <br />
+                  {user.message && (
+                    <div style={{ color: "red", fontSize: 12 }}>
+                      {user.message}
+                    </div>
+                  )}
                   <Form onSubmit={userSignup}>
                     <Row>
                       <Col md={6}>

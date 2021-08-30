@@ -80,10 +80,10 @@ export const login = (user) => {
         },
       });
     } else {
-      if (res.status === 400) {
+      if (res.status === 202) {
         dispatch({
           type: authConstants.LOGIN_FAILURE,
-          payload: { error: res.data.error },
+          payload: { message: res.data.message },
         });
       }
     }

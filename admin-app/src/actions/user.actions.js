@@ -17,10 +17,11 @@ export const signup = (user) => {
         payload: { message },
       });
     } else {
-      if (res.status === 400) {
+      if (res.status === 202) {
+        const { message } = res.data;
         dispatch({
           type: userConstants.USER_REGISTER_FAILURE,
-          payload: { error: res.data.error },
+          payload: { message },
         });
       }
     }

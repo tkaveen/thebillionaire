@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
-      return res.status(400).json({
+      return res.status(202).json({
         message: "Admin already registered",
       });
 
@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
 
     _user.save((error, data) => {
       if (error) {
-        return res.status(400).json({
+        return res.status(201).json({
           message: "Something went wrong",
         });
       }
@@ -62,12 +62,12 @@ exports.signin = (req, res) => {
           },
         });
       } else {
-        return res.status(400).json({
-          message: "Invalid Password",
+        return res.status(202).json({
+          message: "Invalid Password or Email",
         });
       }
     } else {
-      return res.status(400).json({ message: "Something went wrong" });
+      return res.status(202).json({ message: "Something went wrong" });
     }
   });
 };

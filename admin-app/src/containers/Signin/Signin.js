@@ -59,6 +59,11 @@ export default function Signin() {
                 <Col md={{ span: 9, offset: 1 }}>
                   <h3>Admin Signin</h3>
                   <br />
+                  {auth.message && (
+                    <div style={{ color: "red", fontSize: 12 }}>
+                      {auth.message}
+                    </div>
+                  )}
                   <Form onSubmit={userLogin}>
                     <Input
                       label="Email"

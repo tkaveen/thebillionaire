@@ -59,6 +59,9 @@ const Signin = () => {
                 <br />
                 Sign In here
               </h1>
+              {auth.message && (
+                <div style={{ color: "red", fontSize: 12 }}>{auth.message}</div>
+              )}
               <div className="form-inputs-signin">
                 <label className="form-label-signin">Email</label>
                 <input
