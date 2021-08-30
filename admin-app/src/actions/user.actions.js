@@ -18,10 +18,10 @@ export const signup = (user) => {
       });
     } else {
       if (res.status === 202) {
-        const { message } = res.data;
+        const { errmessage } = res.data;
         dispatch({
           type: userConstants.USER_REGISTER_FAILURE,
-          payload: { message },
+          payload: { errmessage },
         });
       }
     }

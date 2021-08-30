@@ -6,7 +6,7 @@ exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
       return res.status(202).json({
-        message: "Admin already registered",
+        errmessage: "Admin already registered",
       });
 
     const { firstName, lastName, email, password } = req.body;

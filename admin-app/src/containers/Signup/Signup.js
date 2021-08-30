@@ -131,11 +131,11 @@ export default function Signup() {
                 <Col md={{ span: 9, offset: 1 }}>
                   <h3>Admin Signup</h3>
                   <br />
-                  {user.message && (
+                  {/* {user.errmessage && (
                     <div style={{ color: "red", fontSize: 12 }}>
-                      {user.message}
+                      {user.errmessage}
                     </div>
-                  )}
+                  )} */}
                   <Form onSubmit={userSignup}>
                     <Row>
                       <Col md={6}>
@@ -183,9 +183,15 @@ export default function Signup() {
                       autoHideDuration={6000}
                       onClose={handleClose}
                     >
-                      <Alert onClose={handleClose} severity="success">
-                        {user.message}
-                      </Alert>
+                      {user.message ? (
+                        <Alert onClose={handleClose} severity="success">
+                          {user.message}
+                        </Alert>
+                      ) : (
+                        <Alert onClose={handleClose} severity="info">
+                          {user.errmessage}
+                        </Alert>
+                      )}
                     </Snackbar>
                   </Form>
                   <br />
